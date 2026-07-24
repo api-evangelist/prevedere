@@ -1,0 +1,77 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert Enumeration API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: Enumeration
+  description: ''
+paths:
+  /aggregationmethods:
+    get:
+      tags:
+      - Enumeration
+      description: The complete list of aggregation methods in the system.
+      responses:
+        '200':
+          description: OK
+        '429':
+          description: If the user has sent too many requests
+  /calculations:
+    get:
+      tags:
+      - Enumeration
+      description: The complete list of calculations in the system.
+      responses:
+        '200':
+          description: OK
+        '429':
+          description: If the user has sent too many requests
+  /frequencies:
+    get:
+      tags:
+      - Enumeration
+      description: The complete list of frequencies which may be applied to an Indicator in the system.
+      responses:
+        '200':
+          description: OK
+        '429':
+          description: If the user has sent too many requests
+  /seasonalities:
+    get:
+      tags:
+      - Enumeration
+      description: The complete list of seasonalities which may be specified for an Indicator in the system.
+      responses:
+        '200':
+          description: OK
+        '429':
+          description: If the user has sent too many requests
+  /forecastmodeltypes:
+    get:
+      tags:
+      - Enumeration
+      description: The complete list of forecast model types which may be specified for a Forecast Model in the system.
+      responses:
+        '200':
+          description: OK
+        '429':
+          description: If the user has sent too many requests
+  /classifications:
+    get:
+      tags:
+      - Enumeration
+      description: The complete list of classifications which may be applied to an Indicator in the system.
+      responses:
+        '200':
+          description: OK
+        '429':
+          description: If the user has sent too many requests
+components:
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

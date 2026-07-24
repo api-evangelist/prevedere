@@ -1,0 +1,279 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert DiscoverJob API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: DiscoverJob
+  description: ''
+paths:
+  /discover/jobs:
+    get:
+      tags:
+      - DiscoverJob
+      description: Retrieves a list of v2 discover jobs
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DiscoverJob'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DiscoverJob'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DiscoverJob'
+        '429':
+          description: If the user has sent too many requests
+  /discover/search/{definitionId}:
+    get:
+      tags:
+      - DiscoverJob
+      summary: Searches latest discover results for a given definition id
+      parameters:
+      - name: definitionId
+        in: path
+        description: Definition id for the discover job (found in app url for discover job or discover/jobs endpoint)
+        required: true
+        schema:
+          type: string
+      - name: Query
+        in: query
+        description: String query identical to the search box in the application, defaults to *
+        schema:
+          type: string
+      - name: Page
+        in: query
+        description: Desired page defaults to 0
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Desired page size, maximum of 1000 defaults to 20
+        schema:
+          type: integer
+          format: int32
+      - name: Frequency
+        in: query
+        description: Setting this will return only indicators with a matching base Frequency, blank ignores the filter
+        schema:
+          type: string
+      - name: Seasonality
+        in: query
+        description: Setting this will return only indicators with matching Seasonality, blank ignores the filter
+        schema:
+          type: string
+      - name: InternalOnly
+        in: query
+        description: Setting this flag to true will only return internal indicators, default is false
+        schema:
+          type: boolean
+      - name: Classification
+        in: query
+        description: Setting this will return only indicators with matching Classification, blank ignores the filter
+        schema:
+          type: string
+      - name: MinimumOverlap
+        in: query
+        description: Minimum overlap percentage filter, Defaults to 100
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DiscoverSearchResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DiscoverSearchResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DiscoverSearchResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '429':
+          description: If the user has sent too many requests
+components:
+  schemas:
+    DiscoverResult:
+      type: object
+      properties:
+        indicatorKey:
+          $ref: '#/components/schemas/IndicatorKey'
+        bestROffset:
+          $ref: '#/components/schemas/DiscoverCorrelationResult'
+      additionalProperties: false
+    DiscoverCorrelationResult:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        coefficient:
+          type: number
+          format: double
+        pValue:
+          type: number
+          format: double
+        rSquared:
+          type: number
+          format: double
+        overlapPercent:
+          type: number
+          format: double
+        numberOfDataPoints:
+          type: integer
+          format: int32
+        proCyclic:
+          type: number
+          format: double
+        counterCyclic:
+          type: number
+          format: double
+        numberOfMinorOutliers:
+          type: integer
+          format: int32
+        numberOfMajorOutliers:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    IndicatorKey:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: The ID of the provider for the indicator.
+          format: uuid
+        providerId:
+          type: string
+          description: The provider id of the indicator.
+          nullable: true
+      additionalProperties: false
+      description: The provider:providerId pair. This is used to identify an indicator in the system.
+    DiscoverJob:
+      type: object
+      properties:
+        executionId:
+          type: string
+          format: uuid
+        definitionId:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        jobUrl:
+          type: string
+          nullable: true
+        projectId:
+          type: string
+          format: uuid
+        primaryIndicator:
+          $ref: '#/components/schemas/IndicatorKey'
+        created:
+          type: string
+          format: date-time
+        lastExecutionDate:
+          type: string
+          format: date-time
+        resultsAvailable:
+          type: boolean
+        companyPrefix:
+          type: string
+          nullable: true
+        owner:
+          type: string
+          nullable: true
+        project:
+          type: string
+          nullable: true
+      additionalProperties: false
+      description: This schema contains information about the Discover job definition.
+    DiscoverSearchResponse:
+      type: object
+      properties:
+        totalResults:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscoverResult'
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

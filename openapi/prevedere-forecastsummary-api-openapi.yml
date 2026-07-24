@@ -1,0 +1,44 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert ForecastSummary API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: ForecastSummary
+  description: ''
+paths:
+  /summaries:
+    get:
+      tags:
+      - ForecastSummary
+      responses:
+        '410':
+          description: Gone
+        '429':
+          description: If the user has sent too many requests
+      deprecated: true
+  /forecast/summary/{forecastSummaryId}:
+    get:
+      tags:
+      - ForecastSummary
+      parameters:
+      - name: forecastSummaryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '410':
+          description: Gone
+        '429':
+          description: If the user has sent too many requests
+      deprecated: true
+components:
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

@@ -1,0 +1,2485 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert ForecastModel API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: ForecastModel
+  description: ''
+paths:
+  /backtest:
+    get:
+      tags:
+      - ForecastModel
+      description: Performs a backtest on the supplied model id
+      parameters:
+      - name: ForecastModelId
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: TargetHorizon
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '410':
+          description: Gone
+        '429':
+          description: If the user has sent too many requests
+      deprecated: true
+  /forecastmodel/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      summary: Retrieves information for a single model given the ID
+      description: "This endpoint is used to pull information about an individual model accessible to the API key.\r\n\r\n\r\nThe response includes model metadata, information about the dependent variable or Primary Indicator and independent or Explanatory Indicators including offsets and display values."
+      parameters:
+      - name: ForecastModelId
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForecastModelInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMessage'
+        '422':
+          description: Model is expired or in a non-production state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMessage'
+        '429':
+          description: If the user has sent too many requests
+  /forecastmodels:
+    get:
+      tags:
+      - ForecastModel
+      summary: Retrieves the list of accessible forecast models for the user
+      description: Retrieves the list of accessible forecast models for the user
+      parameters:
+      - name: tags
+        in: query
+        description: Provide of list of tags to filter by. Only models with at least one of the provided tags will be returned
+        schema:
+          type: array
+          items:
+            type: string
+      - name: states
+        in: query
+        description: "Provide a list of states to filter by. Only models with one of the provided states will be returned. \r\n            Hold CTRL or Command key to select multiple model states\r\n            \r\n\r\n            0 = Draft\r\n            \r\n\r\n            1 = Archive\r\n            \r\n\r\n            2 = Production"
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelState'
+      - name: generateSummary
+        in: query
+        description: If true, generates a brief summary of each model. This will increase the time for a response by 7 seconds per model.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ForecastModelInfo'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ForecastModelInfo'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ForecastModelInfo'
+        '429':
+          description: If the user has sent too many requests
+  /rawmodel/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      description: Retrieves the component data of a forecast model
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: UseForecastFrequency
+        in: query
+        schema:
+          type: boolean
+      - name: ExcludeIndicators
+        in: query
+        schema:
+          type: boolean
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ForecastModelComponentInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForecastModelComponentInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ForecastModelComponentInfo'
+        '429':
+          description: If the user has sent too many requests
+        '422':
+          description: Model is expired or in a non-production state
+  /rawmodel/{ForecastModelId}/{UseForecastFrequency}:
+    get:
+      tags:
+      - ForecastModel
+      description: Retrieves the component data of a forecast model
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: UseForecastFrequency
+        in: path
+        required: true
+        schema:
+          type: boolean
+      - name: ExcludeIndicators
+        in: query
+        schema:
+          type: boolean
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ForecastModelComponentInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForecastModelComponentInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ForecastModelComponentInfo'
+        '429':
+          description: If the user has sent too many requests
+        '422':
+          description: Model is expired or in a non-production state
+  /model/summary/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      description: Retrieves the model commentary summary for a forecast model
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ForecastModelSummaryInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForecastModelSummaryInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ForecastModelSummaryInfo'
+        '400':
+          description: Bad Request
+        '422':
+          description: Model is expired or in a non-production state
+        '500':
+          description: Internal Server Error
+        '429':
+          description: If the user has sent too many requests
+  /model/consistency/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      description: Retrieves the consistency information for a forecast model
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+      - name: UseCalculation
+        in: query
+        description: When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ForecastModelConsistencyInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForecastModelConsistencyInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ForecastModelConsistencyInfo'
+        '400':
+          description: Bad Request
+        '422':
+          description: Model is expired or in a non-production state
+        '500':
+          description: Internal Server Error
+        '429':
+          description: If the user has sent too many requests
+  /forecast/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      description: Retrieves a forecast
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+      - name: UseCalculation
+        in: query
+        description: When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Point'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Point'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Point'
+        '422':
+          description: Model is expired or in a non-production state
+        '429':
+          description: If the user has sent too many requests
+  /model/contribution/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      description: Retrieves independent variable contribution information
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+      - name: UseCalculation
+        in: query
+        description: When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ContributionResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContributionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ContributionResult'
+        '422':
+          description: Model is expired or in a non-production state
+        '429':
+          description: If the user has sent too many requests
+  /model/modelhealth/{ForecastModelId}:
+    post:
+      tags:
+      - ForecastModel
+      summary: Checks model health for the given model id
+      description: The forecast model id must be a locked model of the type segmented or multivariate
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ForecastModelHealth'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForecastModelHealth'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ForecastModelHealth'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ForecastModelHealth'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ModelHealthResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelHealthResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ModelHealthResponse'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '422':
+          description: Model is expired or in a non-production state
+        '429':
+          description: If the user has sent too many requests
+  /model/impact/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      description: Retrieves a forecast
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+      - name: UseCalculation
+        in: query
+        description: When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RelativeImpactInfo'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RelativeImpactInfo'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RelativeImpactInfo'
+        '422':
+          description: Model is expired or in a non-production state
+        '429':
+          description: If the user has sent too many requests
+  /forecast/risk/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      description: Retrieves model risk
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+      - name: UseCalculation
+        in: query
+        description: When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RiskResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RiskResult'
+        '422':
+          description: Model is expired or in a non-production state
+        '429':
+          description: If the user has sent too many requests
+  /forecast/riskgrowth/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      description: Retrieves model risk growth
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+      - name: UseCalculation
+        in: query
+        description: When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RiskGrowthResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskGrowthResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RiskGrowthResult'
+        '422':
+          description: Model is expired or in a non-production state
+        '429':
+          description: If the user has sent too many requests
+  /forecast/statistics/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      description: Retrieves model statistics
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+      - name: UseCalculation
+        in: query
+        description: When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatisticsResult'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatisticsResult'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatisticsResult'
+        '422':
+          description: Model is expired or in a non-production state
+        '429':
+          description: If the user has sent too many requests
+  /forecast/modelscore/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      description: Retrieves model score
+      parameters:
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+      - name: UseCalculation
+        in: query
+        description: When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ModelScore'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelScore'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ModelScore'
+        '422':
+          description: Model is expired or in a non-production state
+        '429':
+          description: If the user has sent too many requests
+  /forecast/logcontribution/{ForecastModelId}:
+    get:
+      tags:
+      - ForecastModel
+      summary: Retrieves a log forecast model contribution
+      description: Retrieves a log model contribution
+      parameters:
+      - name: FiscalYearStart
+        in: query
+        description: Fiscal year start specifies the fiscal year start month to aggregate values. The default start month is January.
+        schema:
+          type: string
+      - name: PeriodOverPeriod
+        in: query
+        description: When set to true, this will change values to Period over Period lift basis for CCR calculation. The default is false.
+        schema:
+          type: boolean
+      - name: ForecastModelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: AsOfDate
+        in: query
+        schema:
+          type: string
+      - name: UseCalculation
+        in: query
+        description: When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VolumeDecompResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumeDecompResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VolumeDecompResult'
+        '422':
+          description: Model is expired or in a non-production state
+        '429':
+          description: If the user has sent too many requests
+components:
+  schemas:
+    RiskResult:
+      type: object
+      properties:
+        forecast:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+        risk:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+        target:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndicatorValues'
+          nullable: true
+      additionalProperties: false
+    ControlChartMeta:
+      type: object
+      properties:
+        average_residual:
+          type: number
+          description: Average Residual Calculated by the control chart. Should always be zero
+          format: double
+          nullable: true
+        ucl3:
+          type: number
+          description: 'Upper Control Limit 3- This is 3 standard deviations above the mean and will be the value of one of the control lines in the chart in the app. Calculation: Average_Resid + 3 * stand_dev_resid.'
+          format: double
+          nullable: true
+        standard_dev_resid:
+          type: number
+          description: Standard Deviation of the Residuals calculated by the control chart.Used to calculate the control limits
+          format: double
+          nullable: true
+        lcl3:
+          type: number
+          description: 'Lower Control Limit 3- This is 3 standard deviations below the mean and will be the value of one of the control lines in the chart in the app. Calculation: Average_Resid - 3 * stand_dev_resid.'
+          format: double
+          nullable: true
+        ucl2:
+          type: number
+          description: 'Upper Control Limit 2- This is 2 standard deviations above the mean and will be the value of one of the control lines in the chart in the app. Calculation: Average_Resid + 2 * stand_dev_resid.'
+          format: double
+          nullable: true
+        lcl2:
+          type: number
+          description: 'Lower Control Limit 2- This is 2 standard deviations below the mean and will be the value of one of the control lines in the chart in the app. Calculation: Average_Resid - 2 * stand_dev_resid.'
+          format: double
+          nullable: true
+        ucl1:
+          type: number
+          description: 'Upper Control Limit 1- This is 1 standard deviations above the mean and will be the value of one of the control lines in the chart in the app. Calculation: Average_Resid + 1 * stand_dev_resid.'
+          format: double
+          nullable: true
+        lcl1:
+          type: number
+          description: 'Lower Control Limit 1- This is 1 standard deviations below the mean and will be the value of one of the control lines in the chart in the app. Calculation: Average_Resid - 1 * stand_dev_resid.'
+          format: double
+          nullable: true
+        total_violations:
+          type: number
+          description: Total Number of violations found in the input dataset residuals
+          format: double
+          nullable: true
+        plot_rule1_major_outlier:
+          type: number
+          description: Flags used as switches in the control chart macro to determine if violation type needs to be plotted in the chart. If so, 'PLOT_RULE1_MAJOR_OUTLIER' will be set to one, otherwise it will be zero.
+          format: double
+          nullable: true
+        plot_rule2_9pos_inarow:
+          type: number
+          description: Flags used as switches in the control chart macro to determine if violation type needs to be plotted in the chart. If so, 'PLOT_RULE2_9POS_INAROW' will be set to one, otherwise it will be zero.
+          format: double
+          nullable: true
+        plot_rule3_6_trend:
+          type: number
+          description: Flags used as switches in the control chart macro to determine if violation type needs to be plotted in the chart. If so, 'PLOT_RULE3_6_TREND' will be set to one, otherwise it will be zero.
+          format: double
+          nullable: true
+        plot_rule4_14_up_and_down:
+          type: number
+          description: Flags used as switches in the control chart macro to determine if violation type needs to be plotted in the chart. If so, 'PLOT_RULE4_14_UP_AND_DOWN' will be set to one, otherwise it will be zero.
+          format: double
+          nullable: true
+        plot_rule7_15_stay_within_1std:
+          type: number
+          description: Flags used as switches in the control chart macro to determine if violation type needs to be plotted in the chart. If so, 'PLOT_RULE7_15_STAY_WITHIN_1STD' will be set to one, otherwise it will be zero.
+          format: double
+          nullable: true
+        plot_rule5_2_out_of_3:
+          type: number
+          description: Flags used as switches in the control chart macro to determine if violation type needs to be plotted in the chart. If so, 'PLOT_RULE5_2_OUT_OF_3' will be set to one, otherwise it will be zero.
+          format: double
+          nullable: true
+        plot_rule6_4_out_of_5:
+          type: number
+          description: Flags used as switches in the control chart macro to determine if violation type needs to be plotted in the chart. If so, 'PLOT_RULE6_4_OUT_OF_5' will be set to one, otherwise it will be zero.
+          format: double
+          nullable: true
+        plot_rule8_8stay_out_1std:
+          type: number
+          description: Flags used as switches in the control chart macro to determine if violation type needs to be plotted in the chart. If so, 'PLOT_RULE8_8STAY_OUT_1STD' will be set to one, otherwise it will be zero.
+          format: double
+          nullable: true
+        model_decay_chart_cntrol_std:
+          type: string
+          description: The standard deviation used to calculate the model decay metric control limits.We are still playing with this setting.
+          nullable: true
+        model_decay_ucl:
+          type: string
+          description: Upper Control Limit for the model decay metric.This is calculated by the control chart using the model score and is based off of the Prevedere simulator data.
+          nullable: true
+        model_decay_lcl:
+          type: string
+          description: Lower Control Limit for the model decay metric. This is calculated by the control chart using the model score and is based off of the Prevedere simulator data.
+          nullable: true
+        model_decay_mov_avg_n:
+          type: string
+          description: The moving average setting used in the calculation of model decay.Null for usage 2 right now. This might change.
+          nullable: true
+        model_score2:
+          type: string
+          description: The value of model_score2 that was received by the control chart macro.This is used in calculating the model MODEL_DECAY_LCL and MODEL_DECAY_UCL values.Higher scoring models have tighter expected control limits.
+          nullable: true
+        alt_xref_date:
+          type: string
+          description: Null for Usage 2
+          nullable: true
+        data_level:
+          type: string
+          description: Not required for Usage two- This is the level of the data received by the control chart macro as submitted to the control chart macro.
+          nullable: true
+      additionalProperties: false
+    EfficiencyResult:
+      type: object
+      properties:
+        averageStandardDeviation:
+          type: number
+          format: double
+        absoluteResidualTrend:
+          type: number
+          format: double
+        modelPrediction:
+          type: number
+          format: double
+        normalizedMeasuredEfficiency:
+          type: number
+          format: double
+        modelPredictionNormalized:
+          type: number
+          format: double
+        modeledScoreComponent:
+          type: number
+          format: double
+        measuredScoreComponent:
+          type: number
+          format: double
+        overallComponent:
+          type: number
+          format: double
+        impactResidualTrend:
+          type: number
+          format: double
+        impactCooksDistanceOutliers:
+          type: number
+          format: double
+        impactObservationsPerVariable:
+          type: number
+          format: double
+        impactModelMeanVif:
+          type: number
+          format: double
+        impactStabilityOfModelStandardErrors:
+          type: number
+          format: double
+        impactModelMeanPValues:
+          type: number
+          format: double
+        impactDataTransformation:
+          type: number
+          format: double
+        meanPercentChangeStandardErrorDummy:
+          type: number
+          format: double
+        meanPercentChangeStandardError:
+          type: number
+          format: double
+        meanModelPValue:
+          type: number
+          format: double
+        meanModelVif:
+          type: number
+          format: double
+        yearOverYearTransformationDummy:
+          type: number
+          format: double
+        noneTransformationDummy:
+          type: number
+          format: double
+        observationsPerVariable86Decay:
+          type: number
+          format: double
+        observationsPerVariable86:
+          type: number
+          format: double
+        cooksDistanceSegmentTwo:
+          type: number
+          format: double
+        cooksDistanceSegment:
+          type: number
+          format: double
+      additionalProperties: false
+    ContributionPeriod:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        errorFlag:
+          type: boolean
+        errorText:
+          type: string
+          nullable: true
+        yearOverYear:
+          type: number
+          format: double
+        unexplained:
+          type: number
+          format: double
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndicatorContribution'
+          nullable: true
+      additionalProperties: false
+    ProviderAccess:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    ForecastModelConsistencyInfo:
+      type: object
+      properties:
+        asOfDate:
+          type: string
+          format: date-time
+        averageSinglePeriodError:
+          type: number
+          format: double
+        averageSinglePeriodErrorModeled:
+          type: number
+          format: double
+          nullable: true
+        averageAggregatePeriodError:
+          type: number
+          format: double
+        averageAggregatePeriodErrorModeled:
+          type: number
+          format: double
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupedPeriodError'
+          nullable: true
+      additionalProperties: false
+    ForecastModelHealth:
+      type: object
+      properties:
+        runModelHealthNow:
+          type: boolean
+          description: "This field give the user the ability to ‘remotely press’ the ‘check model health now’ button in the app to get the latest model health results.\r\nThe default operation for this input will be to NOT ‘check model health now’. When the default value of false (don’t run model health now) is\r\nreplaced with a value of true (run model health now), the equivalent of depressing the green button in the app will be triggered."
+          example: true
+        referenceTable:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlChartPoint'
+          description: ''
+          nullable: true
+          example:
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+          - rule1_major_outlier: 0
+            rule2_9pos_inarow: 0
+            rule3_6_trend: 0
+            rule4_14_up_and_down: 0
+            rule5_2_out_of_3: 0
+            rule6_4_out_of_5: 0
+            rule7_15_stay_within_1std: 0
+            rule8_8stay_out_1std: 0
+            model_decay: 0
+            dateString: string
+      additionalProperties: false
+    IndicatorType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      type: integer
+      format: int32
+    IndicatorValue:
+      type: object
+      properties:
+        indicatorKey:
+          $ref: '#/components/schemas/IndicatorKey'
+        value:
+          type: number
+          format: double
+      additionalProperties: false
+    ForecastModelEntry:
+      type: object
+      properties:
+        indicator:
+          $ref: '#/components/schemas/IndicatorKey'
+        displayName:
+          type: string
+          description: A user defined name for an indicator.
+          nullable: true
+        displayDescription:
+          type: string
+          description: A user defined description for an indicator.
+          nullable: true
+        displayColor:
+          type: string
+          description: 'A user defined color for an indicator. A valid six integer hex value with the leading #'
+          nullable: true
+        displayCategory:
+          type: string
+          description: A user defined category for the indicator.
+          nullable: true
+        offset:
+          type: integer
+          description: The number of periods to shift the data when modeling.
+          format: int32
+        includeInModel:
+          type: boolean
+          description: A flag used to determine if the indicator should be used when modeling.
+        includeInAllSegments:
+          type: boolean
+          description: "A flag used to force the indicator in every segment. If true the indicator will be used in all segments, but may trim the model forecast to periods where data exists for the forced indicator.\r\n\r\n\r\nOnly allowed for entries with an offset of 0."
+        isLogged:
+          type: boolean
+          description: A flag used to determine if the data for this indicator should be logged transformed.
+        transformations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transformation'
+          description: The series transformations applied to the series of this entry and the order that they are applied
+          nullable: true
+      additionalProperties: false
+    ForecastModelSummaryInfo:
+      type: object
+      properties:
+        modelId:
+          type: string
+          format: uuid
+        modelSummary:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ForecastAccuracyResult:
+      type: object
+      properties:
+        cooksDCapped:
+          type: number
+          format: double
+        cooksDSegment1:
+          type: number
+          format: double
+        cooksDSegment2:
+          type: number
+          format: double
+        nobsPerVar:
+          type: number
+          format: double
+        nobsPerVarDecayCurve:
+          type: number
+          format: double
+        absResidualTrend:
+          type: number
+          format: double
+        avgSinglePeriodError:
+          type: number
+          format: double
+        mape:
+          type: number
+          format: double
+        targetHorizon:
+          type: number
+          format: double
+        targetHorizonAdjustment:
+          type: number
+          format: double
+        meanVif:
+          type: number
+          format: double
+        meanPValue:
+          type: number
+          format: double
+        fcError:
+          type: number
+          format: double
+        phillipsPerron:
+          type: number
+          format: double
+        fcErrorNormalized:
+          type: number
+          format: double
+        fcErrorModelComp:
+          type: number
+          format: double
+        fcErrorActualComp:
+          type: number
+          format: double
+        avgSinglePeriodErrorNormalized:
+          type: number
+          format: double
+        scoreFCError:
+          type: number
+          format: double
+        impactPhillipsPerron:
+          type: number
+          format: double
+        impactCooksD:
+          type: number
+          format: double
+        impactResidualTrend:
+          type: number
+          format: double
+        impactNobsPerVar:
+          type: number
+          format: double
+        impactMape:
+          type: number
+          format: double
+        impactMeanPValue:
+          type: number
+          format: double
+        impactMeanVif:
+          type: number
+          format: double
+      additionalProperties: false
+    BiasResult:
+      type: object
+      properties:
+        scoreBias:
+          type: number
+          format: double
+        impactBiasSampleSize:
+          type: number
+          format: double
+        impactBiasCooksD:
+          type: number
+          format: double
+        impactBiasBreuschGodfrey:
+          type: number
+          format: double
+        impactBiasPredRSquare:
+          type: number
+          format: double
+        impactBiasLinearity:
+          type: number
+          format: double
+        impactBiasMaxVif:
+          type: number
+          format: double
+        impactBiasTransformation:
+          type: number
+          format: double
+        biasNoneTransformation:
+          type: number
+          format: double
+        biasYoyTransformation:
+          type: number
+          format: double
+        biasedSampleSize:
+          type: number
+          format: double
+        breuschGodfrey:
+          type: number
+          format: double
+        biasedMaxVIF:
+          type: number
+          format: double
+        biasedPredictiveRSquared1:
+          type: number
+          format: double
+        biasedPredictiveRSquared2:
+          type: number
+          format: double
+        biasedCooksDPercentage:
+          type: number
+          format: double
+        biasedMeanPValue:
+          type: number
+          format: double
+        biasedLinearityDummyVariable:
+          type: integer
+          format: int32
+        normalizedBiasComponent:
+          type: number
+          format: double
+        biasComponent:
+          type: number
+          format: double
+        normalizedBiasedCoefficientDifference:
+          type: number
+          format: double
+        biasedModelAdjustment:
+          type: number
+          format: double
+        biasedActualAdjustment:
+          type: number
+          format: double
+      additionalProperties: false
+    SegmentBiasInfo:
+      type: object
+      properties:
+        logTransformationBias:
+          type: number
+          format: double
+          nullable: true
+        dates:
+          type: array
+          items:
+            type: string
+            format: date-time
+          nullable: true
+      additionalProperties: false
+    Classification:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      type: integer
+      format: int32
+    IndicatorContribution:
+      type: object
+      properties:
+        entryId:
+          type: string
+          nullable: true
+        value:
+          type: number
+          format: double
+      additionalProperties: false
+    ForecastModelInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the model.
+          format: uuid
+        name:
+          type: string
+          description: The name of the model.
+          nullable: true
+        description:
+          type: string
+          description: The description of the model.
+          nullable: true
+        indicator:
+          $ref: '#/components/schemas/Indicator'
+        created:
+          type: string
+          description: The timestamp in UTC for when the model was created.
+          format: date-time
+        lastModified:
+          type: string
+          description: The timestamp in UTC when the model was last saved.
+          format: date-time
+        owner:
+          type: string
+          description: The username of the owner of the model.
+          nullable: true
+        companyName:
+          type: string
+          description: The name of the company the model belongs to.
+          nullable: true
+        companyPrefix:
+          type: string
+          description: The prefix of the company. A shortened name in the application which is used to differentiate between companies.
+          nullable: true
+        calculation:
+          $ref: '#/components/schemas/Calculation'
+        type:
+          $ref: '#/components/schemas/ForecastModelType'
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        cutOffPeriods:
+          type: integer
+          description: The target horizon of the model. Any forecasts after the cut off periods will be trimmed.
+          format: int32
+        active:
+          type: boolean
+          description: "A flag to signal that the model is locked.\r\n\r\n\r\nTrue: Model is locked and it should have a LockedModel associated with it.\r\n\r\n\r\nFalse: Model is not locked and is editable in the application."
+        projectId:
+          type: string
+          description: The UUID for the project the model is in.
+          format: uuid
+        usedAsIndicator:
+          type: boolean
+          description: A flag to signal that an indicator has been created from the model.
+        analysisAsOfDate:
+          type: string
+          description: The As Of Date of the model. This is used to front trim the model's dependent variable to use less than the full data history to run a back test or by locked models to set their coefficients to a certain model period.
+          format: date-time
+        logPrimary:
+          type: boolean
+          description: "A flag which is used to determine if the primary dataset should be log(x + 1) transformed.\r\n\r\n\r\nIf this is true the calculation must be 'None'\r\n\r\n\r\nTrue: Transform the points.\r\n\r\n\r\nFalse: Does not transform the points."
+        activeLockedModel:
+          type: string
+          description: The locked model Id.
+          format: uuid
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          description: A list of tags that are assigned to the model.
+          nullable: true
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForecastModelEntry'
+          description: A list of the entries that are in the model. Includes hidden indicators as well.
+          nullable: true
+        lockedModel:
+          $ref: '#/components/schemas/LockedModelInfo'
+        url:
+          type: string
+          description: The link to the model in the application.
+          nullable: true
+        parentType:
+          type: string
+          description: The parent type of the model. Currently only parent type is a 'predict'
+          nullable: true
+        parentId:
+          type: string
+          description: The UUID of the parent entity of the model.
+          format: uuid
+        parentUrl:
+          type: string
+          description: The URL to the model's parent entity.
+          nullable: true
+        notes:
+          type: string
+          description: User entered notes for the model.
+          nullable: true
+        modelState:
+          type: string
+          description: "The state of the model. Currently there are three possible options:\r\n\r\n\r\nDraft\r\n\r\n\r\nArchive\r\n\r\n\r\nProduction"
+          nullable: true
+        manual:
+          type: boolean
+          description: If true, model output was manually entered.
+        modelForecastSummary:
+          type: string
+          description: For models in the Insights dashboard, an AI generated summary of the forecast.
+          nullable: true
+      additionalProperties: false
+      description: "This schema contains information about the Model, the dependent variable or Primary Indicator of the model under the Indicator subschema, and dependent variables or Explanatory Indicators in the ForecastModelEntry subschema.\r\n\r\n\r\nIf the Model is locked information is populated in the LockedModelInfo subschema."
+    ModelState:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      type: integer
+      format: int32
+    SegmentScore:
+      type: object
+      properties:
+        fStatistic:
+          type: number
+          format: double
+        rSquared:
+          type: number
+          format: double
+        adjustedRSquared:
+          type: number
+          format: double
+        predictiveRSquared:
+          type: number
+          format: double
+        estimateOfStandardError:
+          type: number
+          format: double
+        numberOfObservations:
+          type: integer
+          format: int32
+        observationsPerVariable:
+          type: number
+          format: double
+        inSampleMeanAbsoluteError:
+          type: number
+          format: double
+        holdoutMeanAbsoluteError:
+          type: number
+          format: double
+        percentOfClassificationsUtilized:
+          type: number
+          format: double
+        durbinWatson:
+          type: number
+          format: double
+        residualTrend:
+          type: number
+          format: double
+        residualFitPValue:
+          type: number
+          format: double
+        percentOfVariablesToPenalize:
+          type: number
+          format: double
+        segmentEndDate:
+          type: string
+          format: date-time
+        segmentStartDate:
+          type: string
+          format: date-time
+        modelOverfit:
+          type: number
+          format: double
+        meanPercentAbsoluteChange:
+          type: number
+          format: double
+        breuschGodfrey:
+          type: number
+          format: double
+        avgSinglePeriodError:
+          type: number
+          format: double
+        efficiency:
+          type: number
+          format: double
+        meanPValue:
+          type: number
+          format: double
+        predRSquaredRatio:
+          type: number
+          format: double
+        biasResult:
+          $ref: '#/components/schemas/BiasResult'
+        efficiencyResult:
+          $ref: '#/components/schemas/EfficiencyResult'
+        forecastAccuracyResult:
+          $ref: '#/components/schemas/ForecastAccuracyResult'
+      additionalProperties: false
+    ContributionResult:
+      type: object
+      properties:
+        forecast:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+        componentContributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndicatorValues'
+          nullable: true
+      additionalProperties: false
+    IndicatorDataSource:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        dataSourceType:
+          $ref: '#/components/schemas/IndicatorType'
+      additionalProperties: false
+    Transformation:
+      type: object
+      properties:
+        order:
+          type: integer
+          format: int32
+        required:
+          type: boolean
+      additionalProperties: false
+    IndicatorKey:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: The ID of the provider for the indicator.
+          format: uuid
+        providerId:
+          type: string
+          description: The provider id of the indicator.
+          nullable: true
+      additionalProperties: false
+      description: The provider:providerId pair. This is used to identify an indicator in the system.
+    AggregationMethod:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      type: integer
+      format: int32
+    WhiskerResult:
+      type: object
+      properties:
+        median:
+          type: number
+          format: double
+        mean:
+          type: number
+          format: double
+        upperQuartile:
+          type: number
+          format: double
+        lowerQuartile:
+          type: number
+          format: double
+        upperExtreme:
+          type: number
+          format: double
+        lowerExtreme:
+          type: number
+          format: double
+        outliers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Outlier'
+          nullable: true
+      additionalProperties: false
+    FitLine:
+      type: object
+      properties:
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+        slope:
+          type: number
+          format: double
+        intercept:
+          type: number
+          format: double
+      additionalProperties: false
+    DisplayInformation:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The display name to be used in the application. Limited to 50 characters.
+          nullable: true
+        description:
+          type: string
+          description: The description to be shown in the application. Limited to 1,000 characters.
+          nullable: true
+        color:
+          type: string
+          description: The color to use in the application. Must be a valid hex color code.
+          nullable: true
+        category:
+          type: string
+          description: The category of the indicator. Limited to 1,000 characters.
+          nullable: true
+      additionalProperties: false
+    ControlChartErrors:
+      type: object
+      properties:
+        error_flag:
+          type: number
+          format: double
+          nullable: true
+        error_text:
+          type: string
+          nullable: true
+      additionalProperties: false
+    IndicatorEntry:
+      type: object
+      properties:
+        indicator:
+          $ref: '#/components/schemas/Indicator'
+        offset:
+          type: integer
+          format: int32
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+        includeInModel:
+          type: boolean
+        isLogged:
+          type: boolean
+        entryId:
+          type: string
+          format: uuid
+        useCoefficientBounds:
+          type: boolean
+        coefficientLowerBounds:
+          type: number
+          format: double
+          nullable: true
+        coefficientUpperBounds:
+          type: number
+          format: double
+          nullable: true
+        transformations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transformation'
+          nullable: true
+      additionalProperties: false
+    Frequency:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      - 365
+      - 1000
+      type: integer
+      description: "The frequency of the data.\r\n\r\n\r\nDaily: 365\r\n\r\n\r\nWeekly: 52\r\n\r\n\r\nMonthly: 12\r\n\r\n\r\nQuarterly: 4\r\n\r\n\r\nSemiAnnual: 2\r\n\r\n\r\nAnnual: 1"
+      format: int32
+    ResponseMessage:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Provider:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        id:
+          type: string
+          format: uuid
+        source:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MessageType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      type: integer
+      format: int32
+    ModelScore:
+      type: object
+      properties:
+        score:
+          type: number
+          format: double
+        modelScoreType:
+          type: string
+          nullable: true
+        predictiveRSquared:
+          type: number
+          format: double
+        inSampleMeanAbsoluteError:
+          type: number
+          format: double
+        holdoutMeanAbsoluteError:
+          type: number
+          format: double
+        percentOfClassificationsUtilized:
+          type: number
+          format: double
+        durbinWatson:
+          type: number
+          format: double
+        residualTrend:
+          type: number
+          format: double
+        percentOfVariablesToPenalize:
+          type: number
+          format: double
+        aggregateEffectAtHorizon:
+          type: number
+          format: double
+        weightedAggregateEffectAtHorizon:
+          type: number
+          format: double
+        averageSinglePeriodErrorThroughHorizon:
+          type: number
+          format: double
+        weightedAverageSinglePeriodErrorThroughHorizon:
+          type: number
+          format: double
+        percentOfTargetHorizonUtilized:
+          type: number
+          format: double
+        indicatorDiversity:
+          type: number
+          format: double
+        segmentScores:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentScore'
+          nullable: true
+      additionalProperties: false
+    Calculation:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      type: integer
+      description: "The transformation applied to the data.\r\n\r\n\r\nPossible options:\r\n\r\n\r\nNone 1\r\n\r\n\r\nPeriodOverPeriod 2\r\n\r\n\r\nYearOverYear 3\r\n\r\n\r\nThreePeriodYearOverYear 6"
+      format: int32
+    RelativeImpactInfo:
+      type: object
+      properties:
+        segment:
+          type: integer
+          format: int32
+        relativeImpact:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndicatorValue'
+          nullable: true
+      additionalProperties: false
+    IndicatorValues:
+      type: object
+      properties:
+        indicator:
+          $ref: '#/components/schemas/Indicator'
+        leadTime:
+          type: integer
+          format: int32
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+      additionalProperties: false
+    ForecastModelCategoryInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        sort:
+          type: integer
+          format: int32
+        note:
+          type: string
+          nullable: true
+        indicators:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndicatorKey'
+          nullable: true
+      additionalProperties: false
+    ControlChartResult:
+      type: object
+      properties:
+        controlChartPoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlChartPoint'
+          nullable: true
+        controlChartErrors:
+          $ref: '#/components/schemas/ControlChartErrors'
+        controlChartMeta:
+          $ref: '#/components/schemas/ControlChartMeta'
+        controlChartPrescription:
+          $ref: '#/components/schemas/ControlChartPrescription'
+        controlChartInsights:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlChartPrescription'
+          nullable: true
+      additionalProperties: false
+    Indicator:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        aggregate:
+          $ref: '#/components/schemas/AggregationMethod'
+        calculation:
+          $ref: '#/components/schemas/Calculation'
+        color:
+          type: string
+          nullable: true
+        displayInformation:
+          $ref: '#/components/schemas/DisplayInformation'
+        count:
+          type: integer
+          format: int32
+        created:
+          type: string
+          format: date-time
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+        transformedStartTime:
+          type: string
+          format: date-time
+          nullable: true
+        transformedEndTime:
+          type: string
+          format: date-time
+          nullable: true
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        deprecated:
+          type: boolean
+        deprecationReason:
+          type: string
+          nullable: true
+        lastModified:
+          type: string
+          format: date-time
+        provider:
+          $ref: '#/components/schemas/Provider'
+        providerId:
+          type: string
+          nullable: true
+        seasonality:
+          $ref: '#/components/schemas/Seasonality'
+        source:
+          type: string
+          nullable: true
+        classification:
+          $ref: '#/components/schemas/Classification'
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        units:
+          type: string
+          nullable: true
+        accessibility:
+          $ref: '#/components/schemas/ProviderAccess'
+        periodAlignment:
+          $ref: '#/components/schemas/PeriodAlignment'
+        path:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        citation:
+          type: string
+          nullable: true
+        dataSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndicatorDataSource'
+          nullable: true
+        industryCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+          nullable: true
+        hasZeroVariance:
+          type: boolean
+          nullable: true
+        interval:
+          type: string
+          nullable: true
+        countryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Point:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        date:
+          type: string
+          format: date-time
+        annotation:
+          type: string
+          nullable: true
+        manuallyAdjusted:
+          type: boolean
+        isForecasted:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    VolumeDecompResult:
+      type: object
+      properties:
+        decomps:
+          type: object
+          properties:
+            Unknown:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Annual:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            SemiAnnual:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Quarterly:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Monthly:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Weekly:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Daily:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Raw:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+          additionalProperties: false
+          nullable: true
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndicatorEntry'
+          nullable: true
+      additionalProperties: false
+    Coefficient:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        standardError:
+          type: number
+          format: double
+        tValue:
+          type: number
+          format: double
+        confidence95:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        indicatorName:
+          type: string
+          nullable: true
+        dates:
+          type: array
+          items:
+            type: string
+            format: date-time
+          nullable: true
+        pValue:
+          type: number
+          format: double
+        vif:
+          type: number
+          format: double
+        cooksDistanceCoefficient:
+          type: number
+          format: double
+        quadraticPValue:
+          type: number
+          format: double
+      additionalProperties: false
+    ModelHealthResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/ControlChartResult'
+        modelHealthScoreAtPublish:
+          type: number
+          format: double
+        projectId:
+          type: string
+          format: uuid
+        modelId:
+          type: string
+          format: uuid
+        modelType:
+          type: string
+          nullable: true
+        instanceCode:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StatisticsResult:
+      type: object
+      properties:
+        rootMeanSquare:
+          type: number
+          format: double
+        rootMeanSquareInModelCalculation:
+          type: number
+          format: double
+        durbinWatson:
+          type: number
+          format: double
+        durbinWatsonInModelCalculation:
+          type: number
+          format: double
+        inSampleMeanAbsolutePercentError:
+          type: number
+          format: double
+        inSampleMeanAbsoluteError:
+          type: number
+          format: double
+        rawResiduals:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+        residualsInModelCalculation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+        rawResidualFitLine:
+          $ref: '#/components/schemas/FitLine'
+        modelCalculationResidualFitLine:
+          $ref: '#/components/schemas/FitLine'
+        holdoutMape:
+          type: number
+          format: double
+        holdoutMapeInModelCalculation:
+          type: number
+          format: double
+        rawHoldoutMape:
+          type: number
+          format: double
+      additionalProperties: false
+    ControlChartPoint:
+      type: object
+      properties:
+        rule1_major_outlier:
+          type: number
+          description: Populated with the value of the residual IF rule 1 is violated.If no violation is found, the value will be missing.
+          format: double
+          nullable: true
+        rule2_9pos_inarow:
+          type: number
+          description: Populated with the value of the residual IF rule 2 is violated.If no violation is found, the value will be missing.
+          format: double
+          nullable: true
+        rule3_6_trend:
+          type: number
+          description: Populated with the value of the residual IF rule 3 is violated.If no violation is found, the value will be missing.
+          format: double
+          nullable: true
+        rule4_14_up_and_down:
+          type: number
+          description: Populated with the value of the residual IF rule 4 is violated.If no violation is found, the value will be missing.
+          format: double
+          nullable: true
+        rule5_2_out_of_3:
+          type: number
+          description: Populated with the value of the residual IF rule 5 is violated.If no violation is found, the value will be missing.
+          format: double
+          nullable: true
+        rule6_4_out_of_5:
+          type: number
+          description: Populated with the value of the residual IF rule 6 is violated.If no violation is found, the value will be missing.
+          format: double
+          nullable: true
+        rule7_15_stay_within_1std:
+          type: number
+          description: Populated with the value of the residual IF rule 7 is violated.If no violation is found, the value will be missing.
+          format: double
+          nullable: true
+        rule8_8stay_out_1std:
+          type: number
+          description: Populated with the value of the residual IF rule 8 is violated.If no violation is found, the value will be missing.
+          format: double
+          nullable: true
+        model_decay:
+          type: number
+          description: Model Decay value calculated by the macro
+          format: double
+          nullable: true
+        dateString:
+          type: string
+          description: The authoritative calendar date for this point (e.g. "2024-02-01").
+          nullable: true
+      additionalProperties: false
+    PeriodAlignment:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    RiskGrowthResult:
+      type: object
+      properties:
+        forecast:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+        risk:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+        target:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
+          nullable: true
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndicatorValues'
+          nullable: true
+      additionalProperties: false
+    LockedModelInfo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the locked model.
+          nullable: true
+        createdOn:
+          type: string
+          description: When the locked model was created.
+          format: date-time
+        asOf:
+          type: string
+          description: An optional date used to trim the model period.
+          format: date-time
+          nullable: true
+        lockedBy:
+          type: string
+          description: The user who locked the model.
+          nullable: true
+        lastCheckedBy:
+          type: string
+          description: The last user to trigger a model health check.
+          nullable: true
+        modelScoreWhenLocked:
+          type: number
+          description: The model quality score when the model was locked.
+          format: double
+        dataEndDateWhenLocked:
+          type: string
+          description: The last date in the model period when the model was locked.
+          format: date-time
+          nullable: true
+        lastModelCheckupDate:
+          type: string
+          description: The last time model health was checked.
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    ControlChartPrescription:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        prescription:
+          type: string
+          nullable: true
+        event:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        date:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    Seasonality:
+      enum:
+      - 0
+      - 1
+      - 999
+      type: integer
+      format: int32
+    GroupedPeriodError:
+      type: object
+      properties:
+        period:
+          type: integer
+          format: int32
+        sampleSize:
+          type: integer
+          format: int32
+        averageSinglePeriodError:
+          type: number
+          format: double
+        averageSinglePeriodErrorModeled:
+          type: number
+          format: double
+          nullable: true
+        singlePeriodErrorWhisker:
+          $ref: '#/components/schemas/WhiskerResult'
+        singlePeriodErrorWhiskerModeled:
+          $ref: '#/components/schemas/WhiskerResult'
+        averageAggregateError:
+          type: number
+          format: double
+        averageAggregateErrorModeled:
+          type: number
+          format: double
+          nullable: true
+        aggregateErrorWhisker:
+          $ref: '#/components/schemas/WhiskerResult'
+        aggregateErrorWhiskerModeled:
+          $ref: '#/components/schemas/WhiskerResult'
+      additionalProperties: false
+    ForecastModelType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      type: integer
+      description: "None: 0\r\n\r\n\r\nRocet: 1\r\n\r\n\r\nMultivariate: 2\r\n\r\n\r\nSegmentedMultivariate: 3\r\n\r\n\r\nWeightedUnivariateRegression: 4\r\n\r\n"
+      format: int32
+    Outlier:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        tertile:
+          type: integer
+          format: int32
+      additionalProperties: false
+    BuilderMessage:
+      type: object
+      properties:
+        message:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        type:
+          $ref: '#/components/schemas/MessageType'
+      additionalProperties: false
+    IndustryCode:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ForecastModelComponentInfo:
+      type: object
+      properties:
+        indicators:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndicatorEntry'
+          nullable: true
+        coefficients:
+          type: array
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/Coefficient'
+          nullable: true
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/BuilderMessage'
+          nullable: true
+        startDate:
+          type: string
+          format: date-time
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForecastModelCategoryInfo'
+          nullable: true
+        lockedModel:
+          $ref: '#/components/schemas/LockedModelInfo'
+        biasInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentBiasInfo'
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

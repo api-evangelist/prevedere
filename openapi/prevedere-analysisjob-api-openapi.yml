@@ -1,0 +1,48 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert AnalysisJob API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: AnalysisJob
+  description: ''
+paths:
+  /analysisjobs:
+    get:
+      tags:
+      - AnalysisJob
+      responses:
+        '410':
+          description: Gone
+        '429':
+          description: If the user has sent too many requests
+      deprecated: true
+  /analysisjob/{AnalysisJobId}/{ReturnData}:
+    get:
+      tags:
+      - AnalysisJob
+      parameters:
+      - name: AnalysisJobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ReturnData
+        in: path
+        required: true
+        schema:
+          type: boolean
+      responses:
+        '410':
+          description: Gone
+        '429':
+          description: If the user has sent too many requests
+      deprecated: true
+components:
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

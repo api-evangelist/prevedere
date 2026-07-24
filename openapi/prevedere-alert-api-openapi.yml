@@ -1,0 +1,99 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: Alert
+  description: ''
+paths:
+  /alerts:
+    get:
+      tags:
+      - Alert
+      description: Retrieves alert history
+      parameters:
+      - name: LookbackDays
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 90
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlertHistory'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlertHistory'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlertHistory'
+        '429':
+          description: If the user has sent too many requests
+components:
+  schemas:
+    AlertHistory:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        alertDate:
+          type: string
+          format: date-time
+        value:
+          type: number
+          format: double
+        time:
+          type: string
+          format: date-time
+        alertMessage:
+          type: string
+          nullable: true
+        alertDefinitionId:
+          type: string
+          format: uuid
+        targetIndicatorProvider:
+          type: string
+          format: uuid
+          nullable: true
+        targetIndicatorProviderId:
+          type: string
+          nullable: true
+        targetForecastModelId:
+          type: string
+          format: uuid
+          nullable: true
+        containingEntityType:
+          type: string
+          nullable: true
+        containingEntityId:
+          type: string
+          format: uuid
+          nullable: true
+        contextMessages:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

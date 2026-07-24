@@ -1,0 +1,117 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert Context API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: Context
+  description: ''
+paths:
+  /context:
+    get:
+      tags:
+      - Context
+      summary: Retrieves current User Context (Company, Features, Roles, User)
+      description: User context
+      responses:
+        '200':
+          description: If the User context was retrieved successfully
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Context'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+        '429':
+          description: If the user has sent too many requests
+        '401':
+          description: If the user isn't authenticated
+        '403':
+          description: If the user isn't authorized for such action
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        lastLogin:
+          type: string
+          format: date-time
+        isLocked:
+          type: boolean
+      additionalProperties: false
+    Company:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        prefix:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        createDate:
+          type: string
+          format: date-time
+        id:
+          type: string
+          format: uuid
+      additionalProperties: false
+    Context:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        company:
+          $ref: '#/components/schemas/Company'
+        roles:
+          type: array
+          items:
+            type: string
+          nullable: true
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Feature'
+          nullable: true
+      additionalProperties: false
+    Feature:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

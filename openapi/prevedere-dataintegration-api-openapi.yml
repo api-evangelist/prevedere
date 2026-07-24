@@ -1,0 +1,94 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert DataIntegration API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: DataIntegration
+  description: ''
+paths:
+  /clientdimensions:
+    get:
+      tags:
+      - DataIntegration
+      description: The complete list of client dimension groups available for data import. Contains dimension and hierarchy information
+      parameters:
+      - name: request
+        in: query
+        schema:
+          $ref: '#/components/schemas/ClientDimensions'
+      responses:
+        '200':
+          description: OK
+        '429':
+          description: If the user has sent too many requests
+  /importclientdata/{ClientDimensionGroupId}/{ShouldDeleteExistingRecords}:
+    post:
+      tags:
+      - DataIntegration
+      description: "Imports a client data file into the system.  The file should be posted as part of a 'multipart/form-data'-encoded request.  Only one file may be posted per request.\r\n        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to 'date', 'measure' and 'value' fields."
+      parameters:
+      - name: ShouldDeleteExistingRecords
+        in: path
+        required: true
+        schema:
+          type: boolean
+      - name: ShouldReplaceRecordIfExists
+        in: query
+        schema:
+          type: boolean
+      - name: ClientDimensionGroupId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: InlineData
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '429':
+          description: If the user has sent too many requests
+  /validateclientdata/{ClientDimensionGroupId}:
+    post:
+      tags:
+      - DataIntegration
+      description: "Validates a client data file against a client dimension group.  The file should be posted as part of a 'multipart/form-data'-encoded request.  Only one file may be posted per request.\r\n        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to 'date', 'measure' and 'value' fields."
+      parameters:
+      - name: ShouldDeleteExistingRecords
+        in: query
+        required: true
+        schema:
+          type: boolean
+      - name: ShouldReplaceRecordIfExists
+        in: query
+        schema:
+          type: boolean
+      - name: ClientDimensionGroupId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: InlineData
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '429':
+          description: If the user has sent too many requests
+components:
+  schemas:
+    ClientDimensions:
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

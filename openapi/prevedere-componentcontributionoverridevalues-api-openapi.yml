@@ -1,0 +1,203 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert ComponentContributionOverrideValues API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: ComponentContributionOverrideValues
+  description: ''
+paths:
+  /componentcontributionoverridevalues/{forecastModelId}:
+    get:
+      tags:
+      - ComponentContributionOverrideValues
+      summary: Retrieves all Contribution Override Values for a given locked model
+      parameters:
+      - name: forecastModelId
+        in: path
+        description: Forecast Model Id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: If Contribution Override Values were retrieved successfully
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ComponentContributionOverrideValues'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ComponentContributionOverrideValues'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ComponentContributionOverrideValues'
+        '401':
+          description: If the user isn't authenticated
+        '403':
+          description: Forbidden
+        '404':
+          description: If model wasn't found
+        '422':
+          description: Forecast model is expired or is not a production model
+        '429':
+          description: If the user has sent too many requests
+        '400':
+          description: If model is not locked
+    delete:
+      tags:
+      - ComponentContributionOverrideValues
+      summary: Deletes all Component Contribution Override Values for a given locked model
+      parameters:
+      - name: forecastModelId
+        in: path
+        description: Forecast Model Id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: If Contribution Override Values were deleted successfully
+        '401':
+          description: If the user isn't authenticated
+        '403':
+          description: Forbidden
+        '404':
+          description: If model wasn't found
+        '422':
+          description: Forecast model is expired or is not a production model
+        '429':
+          description: If the user has sent too many requests
+        '400':
+          description: If model is not locked
+  /componentcontributionoverridevalues:
+    post:
+      tags:
+      - ComponentContributionOverrideValues
+      summary: Creates Component Contribution Override Values for a given locked model
+      requestBody:
+        description: Component Contribution Override Values
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ComponentContributionOverrideValuesRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComponentContributionOverrideValuesRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ComponentContributionOverrideValuesRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ComponentContributionOverrideValuesRequest'
+        required: true
+      responses:
+        '200':
+          description: If Contribution Override Values were retrieved successfully
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ComponentContributionOverrideValues'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentContributionOverrideValues'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ComponentContributionOverrideValues'
+        '401':
+          description: If the user isn't authenticated
+        '403':
+          description: Forbidden
+        '404':
+          description: If model wasn't found
+        '422':
+          description: Forecast model is expired or is not a production model
+        '429':
+          description: If the user has sent too many requests
+components:
+  schemas:
+    Frequency:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      - 365
+      - 1000
+      type: integer
+      description: "The frequency of the data.\r\n\r\n\r\nDaily: 365\r\n\r\n\r\nWeekly: 52\r\n\r\n\r\nMonthly: 12\r\n\r\n\r\nQuarterly: 4\r\n\r\n\r\nSemiAnnual: 2\r\n\r\n\r\nAnnual: 1"
+      format: int32
+    ComponentContributionFrequency:
+      enum:
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      type: integer
+      description: "The frequency of the data.\r\n\r\n\r\nWeekly: 52\r\n\r\n\r\nMonthly: 12\r\n\r\n\r\nQuarterly: 4\r\n\r\n\r\nSemiAnnual: 2\r\n\r\n\r\nAnnual: 1"
+      format: int32
+    ComponentContributionOverrideValuesRequest:
+      type: object
+      properties:
+        forecastModelId:
+          type: string
+          description: The id of the forecast model that will have its Component Contribution values overridden.
+          format: uuid
+        frequency:
+          $ref: '#/components/schemas/ComponentContributionFrequency'
+        entryId:
+          type: string
+          description: The entry id of the indicator that will have its value overridden.
+          format: uuid
+        contributionPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/ComponentContribution'
+          description: A list of override values, with a date and value for each.
+          nullable: true
+      additionalProperties: false
+    ComponentContribution:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        value:
+          type: number
+          format: double
+      additionalProperties: false
+    ComponentContributionOverrideValues:
+      type: object
+      properties:
+        forecastModelId:
+          type: string
+          format: uuid
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        entryId:
+          type: string
+          format: uuid
+        contributionPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/ComponentContribution'
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

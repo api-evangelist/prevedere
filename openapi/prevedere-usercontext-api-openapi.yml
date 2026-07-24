@@ -1,0 +1,94 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert UserContext API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: UserContext
+  description: ''
+paths:
+  /company:
+    get:
+      tags:
+      - UserContext
+      summary: Retrieves all companies for authenticated user
+      description: The company information associated with the user
+      responses:
+        '200':
+          description: If the companies were retrieved successfully
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+        '429':
+          description: If the user has sent too many requests
+        '401':
+          description: If the user isn't authenticated
+        '403':
+          description: If the user isn't authorized for such action
+  /company/{CompanyId}:
+    put:
+      tags:
+      - UserContext
+      description: Switch company context
+      parameters:
+      - name: CompanyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '429':
+          description: If the user has sent too many requests
+components:
+  schemas:
+    Company:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        prefix:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        createDate:
+          type: string
+          format: date-time
+        id:
+          type: string
+          format: uuid
+      additionalProperties: false
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

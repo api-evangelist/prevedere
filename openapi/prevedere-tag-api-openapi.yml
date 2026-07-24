@@ -1,0 +1,48 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert Tag API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: Tag
+  description: ''
+paths:
+  /tag:
+    get:
+      tags:
+      - Tag
+      description: Retrieve a list of indicator tags
+      parameters:
+      - name: Internal
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  type: string
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+            text/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '429':
+          description: If the user has sent too many requests
+components:
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

@@ -1,0 +1,377 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert AlertDefinition API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: AlertDefinition
+  description: ''
+paths:
+  /alertdefinitions:
+    get:
+      tags:
+      - AlertDefinition
+      description: Retrieves all the alert definitions for the current company.
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlertDefinition'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlertDefinition'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlertDefinition'
+        '429':
+          description: If the user has sent too many requests
+  /{id}:
+    get:
+      tags:
+      - AlertDefinition
+      description: Retrieves the alert definition for the given alert definition ID.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+        '429':
+          description: If the user has sent too many requests
+components:
+  schemas:
+    AlertDefinition:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        createDate:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+          nullable: true
+        owner:
+          type: string
+          nullable: true
+        lastModifiedDate:
+          type: string
+          format: date-time
+        targetIndicator:
+          $ref: '#/components/schemas/Indicator'
+        targetForecastModelId:
+          type: string
+          format: uuid
+          nullable: true
+        calculationType:
+          $ref: '#/components/schemas/Calculation'
+        comparer:
+          type: string
+          nullable: true
+        threshold:
+          type: number
+          format: double
+        timeframe:
+          type: integer
+          format: int32
+        companyId:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date-time
+          nullable: true
+        notificationEmails:
+          type: array
+          items:
+            type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        containingEntityId:
+          type: string
+          format: uuid
+          nullable: true
+        containingEntityType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Classification:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      type: integer
+      format: int32
+    PeriodAlignment:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    Frequency:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      - 365
+      - 1000
+      type: integer
+      description: "The frequency of the data.\r\n\r\n\r\nDaily: 365\r\n\r\n\r\nWeekly: 52\r\n\r\n\r\nMonthly: 12\r\n\r\n\r\nQuarterly: 4\r\n\r\n\r\nSemiAnnual: 2\r\n\r\n\r\nAnnual: 1"
+      format: int32
+    Seasonality:
+      enum:
+      - 0
+      - 1
+      - 999
+      type: integer
+      format: int32
+    Provider:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        id:
+          type: string
+          format: uuid
+        source:
+          type: string
+          nullable: true
+      additionalProperties: false
+    IndicatorDataSource:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        dataSourceType:
+          $ref: '#/components/schemas/IndicatorType'
+      additionalProperties: false
+    Calculation:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      type: integer
+      description: "The transformation applied to the data.\r\n\r\n\r\nPossible options:\r\n\r\n\r\nNone 1\r\n\r\n\r\nPeriodOverPeriod 2\r\n\r\n\r\nYearOverYear 3\r\n\r\n\r\nThreePeriodYearOverYear 6"
+      format: int32
+    ProviderAccess:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    IndustryCode:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Indicator:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        aggregate:
+          $ref: '#/components/schemas/AggregationMethod'
+        calculation:
+          $ref: '#/components/schemas/Calculation'
+        color:
+          type: string
+          nullable: true
+        displayInformation:
+          $ref: '#/components/schemas/DisplayInformation'
+        count:
+          type: integer
+          format: int32
+        created:
+          type: string
+          format: date-time
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+        transformedStartTime:
+          type: string
+          format: date-time
+          nullable: true
+        transformedEndTime:
+          type: string
+          format: date-time
+          nullable: true
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        deprecated:
+          type: boolean
+        deprecationReason:
+          type: string
+          nullable: true
+        lastModified:
+          type: string
+          format: date-time
+        provider:
+          $ref: '#/components/schemas/Provider'
+        providerId:
+          type: string
+          nullable: true
+        seasonality:
+          $ref: '#/components/schemas/Seasonality'
+        source:
+          type: string
+          nullable: true
+        classification:
+          $ref: '#/components/schemas/Classification'
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        units:
+          type: string
+          nullable: true
+        accessibility:
+          $ref: '#/components/schemas/ProviderAccess'
+        periodAlignment:
+          $ref: '#/components/schemas/PeriodAlignment'
+        path:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        citation:
+          type: string
+          nullable: true
+        dataSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndicatorDataSource'
+          nullable: true
+        industryCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+          nullable: true
+        hasZeroVariance:
+          type: boolean
+          nullable: true
+        interval:
+          type: string
+          nullable: true
+        countryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AggregationMethod:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      type: integer
+      format: int32
+    IndicatorType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      type: integer
+      format: int32
+    DisplayInformation:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The display name to be used in the application. Limited to 50 characters.
+          nullable: true
+        description:
+          type: string
+          description: The description to be shown in the application. Limited to 1,000 characters.
+          nullable: true
+        color:
+          type: string
+          description: The color to use in the application. Must be a valid hex color code.
+          nullable: true
+        category:
+          type: string
+          description: The category of the indicator. Limited to 1,000 characters.
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

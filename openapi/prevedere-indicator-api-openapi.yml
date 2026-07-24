@@ -1,0 +1,1517 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert Indicator API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: Indicator
+  description: ''
+paths:
+  /indicator/composite/definition/{Provider}/{ProviderId}:
+    get:
+      tags:
+      - Indicator
+      summary: Retrieves the definition of a composite indicator
+      description: Retrieves the definition for a given composite indicator in the system
+      parameters:
+      - name: Provider
+        in: path
+        description: Unique Identifier for Provider
+        required: true
+        schema:
+          type: string
+      - name: ProviderId
+        in: path
+        description: Identifier for specific indicator
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CompositeDefinition'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CompositeDefinition'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResponseMessage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMessage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMessage'
+        '429':
+          description: If the user has sent too many requests
+    put:
+      tags:
+      - Indicator
+      summary: Updates the definition of a composite indicator
+      description: updates the definition for a given composite indicator in the system
+      parameters:
+      - name: Provider
+        in: path
+        description: Unique Identifier for Provider
+        required: true
+        schema:
+          type: string
+      - name: ProviderId
+        in: path
+        description: Identifier for specific indicator
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Composite indicator definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CompositeDefinitionUpdateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompositeDefinitionUpdateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CompositeDefinitionUpdateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompositeDefinitionUpdateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CompositeDefinitionUpdateResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeDefinitionUpdateResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CompositeDefinitionUpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseMessage'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseMessage'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseMessage'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseMessage'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseMessage'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseMessage'
+        '429':
+          description: If the user has sent too many requests
+  /indicator/composite/definition:
+    post:
+      tags:
+      - Indicator
+      summary: Creates a composite indicator
+      description: creates a composite indicator
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CompositeDefinitionCreateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompositeDefinitionCreateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CompositeDefinitionCreateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompositeDefinitionCreateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CompositeDefinition'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CompositeDefinition'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseMessage'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseMessage'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseMessage'
+        '429':
+          description: If the user has sent too many requests
+  /indicator/{Provider}/{ProviderId}:
+    get:
+      tags:
+      - Indicator
+      description: Retrieves metadata for a given indicator in the system
+      parameters:
+      - name: Provider
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ProviderId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Indicator'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Indicator'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Indicator'
+        '429':
+          description: If the user has sent too many requests
+  /indicator/series/{Provider}/{ProviderId}:
+    get:
+      tags:
+      - Indicator
+      description: Retrieves time-series data for a given indicator in the system
+      parameters:
+      - name: Provider
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ProviderId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Calculation
+        in: query
+        schema:
+          type: string
+      - name: Frequency
+        in: query
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        schema:
+          type: string
+      - name: EndDate
+        in: query
+        schema:
+          type: string
+      - name: Offset
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Point'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Point'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Point'
+        '429':
+          description: If the user has sent too many requests
+  /indicator/series/transform:
+    post:
+      tags:
+      - Indicator
+      description: Retrieves time-series data for a given indicator in the system with transformations applied
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/IndicatorTransformation'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndicatorTransformation'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/IndicatorTransformation'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/IndicatorTransformation'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Point'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Point'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Point'
+        '429':
+          description: If the user has sent too many requests
+  /correlation/{FixedProvider}/{FixedProviderId}/{LeadingProvider}/{LeadingProviderId}/{Frequency}/{Calculation}:
+    get:
+      tags:
+      - Indicator
+      description: Generates correlation data by comparing two indicators
+      parameters:
+      - name: FixedProvider
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: FixedProviderId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: LeadingProvider
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: LeadingProviderId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Frequency
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Calculation
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CorrelationSet'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorrelationSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CorrelationSet'
+        '429':
+          description: If the user has sent too many requests
+  /search:
+    get:
+      tags:
+      - Indicator
+      description: retrieves indicators based on search criteria
+      parameters:
+      - name: Frequency
+        in: query
+        description: A frequency value to filter search results by. <seealso cref="T:Prevedere.Analytics.Domain.Enum.Frequency" />
+        schema:
+          type: string
+      - name: Calculation
+        in: query
+        description: A calculation value to filter search results by. <seealso cref="T:Prevedere.Analytics.Domain.Enum.Calculation" />
+        schema:
+          type: string
+      - name: Seasonality
+        in: query
+        description: A seasonality value to filter search results by. <seealso cref="T:Prevedere.Analytics.Domain.Enum.Seasonality" />
+        schema:
+          type: string
+      - name: Internal
+        in: query
+        description: A flag for returning internal company data sets
+        schema:
+          type: boolean
+      - name: IncludeForecasted
+        in: query
+        description: A flag for returning forecasted indicators in the search results.
+        schema:
+          type: boolean
+      - name: Query
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '*'
+      - name: Page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: PageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IndicatorSearchResults'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicatorSearchResults'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IndicatorSearchResults'
+        '429':
+          description: If the user has sent too many requests
+  /indicator/create:
+    post:
+      tags:
+      - Indicator
+      description: creates a new indicator.
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/IndicatorCreate'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndicatorCreate'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/IndicatorCreate'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/IndicatorCreate'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Indicator'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Indicator'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Indicator'
+        '429':
+          description: If the user has sent too many requests
+  /indicator/update:
+    put:
+      tags:
+      - Indicator
+      description: updates one or more indicators.
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/BulkIndicatorUpdateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkIndicatorUpdateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BulkIndicatorUpdateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BulkIndicatorUpdateRequest'
+      responses:
+        '200':
+          description: OK
+        '429':
+          description: If the user has sent too many requests
+components:
+  schemas:
+    IndicatorUpdateRequest:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Unique identifier for provider
+          nullable: true
+        providerId:
+          type: string
+          description: Indicator Identifier
+          nullable: true
+        name:
+          type: string
+          description: Indicator Name
+          nullable: true
+        description:
+          type: string
+          description: Indicator Description
+          nullable: true
+        notes:
+          type: string
+          description: Indicator Notes
+          nullable: true
+        units:
+          type: string
+          description: Indicator Units of measurement
+          nullable: true
+        citation:
+          type: string
+          description: Indicator Citation
+          nullable: true
+        path:
+          type: string
+          description: Path of indicator in Prevedere folder structure
+          nullable: true
+        color:
+          type: string
+          description: Color code to be used in the Prevedere application
+          nullable: true
+        aggregation:
+          type: string
+          description: Aggregation method used for indicator time series
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags assigned to help organize indicator
+          nullable: true
+        industryCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+          description: Industry codes assigned to indicator
+          nullable: true
+        classification:
+          type: string
+          description: Prevedere Classification for indicator
+          nullable: true
+        seasonalAdjustment:
+          type: string
+          description: Identifies if indicator is seasonally adjusted
+          nullable: true
+        periodAlignment:
+          type: string
+          description: Identifies if time series aligns with the beginning or end of time period
+          nullable: true
+        interval:
+          type: string
+          description: Name and multiple used to describe period length of indicator the time series, similar to frequency
+          nullable: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequestPoint'
+          description: Data Time Series For Indicator
+          nullable: true
+        deleteExistingDataRecords:
+          type: boolean
+      additionalProperties: false
+    CompositeDefinitionCreateRequest:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompositeEntryUpdateRequest'
+          description: Indicator Entries that are used in the composite formula
+          nullable: true
+        formula:
+          type: string
+          description: Formula for composite Indicator where each variable represents a CompositeIndicatorEntry
+          nullable: true
+        startDate:
+          type: string
+          description: Optional Start Date of Composite, when blank the series will start on the first common date across variables
+          format: date-time
+          nullable: true
+        compositeMetadata:
+          $ref: '#/components/schemas/CompositeMetadataCreateRequest'
+      additionalProperties: false
+      description: Request used to create a composite indicator
+    ProviderAccess:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    CorrelationSet:
+      type: object
+      properties:
+        calculation:
+          $ref: '#/components/schemas/Calculation'
+        maxDataPointOverlap:
+          type: integer
+          format: int32
+        minDataPointOverlap:
+          type: integer
+          format: int32
+        bestCorrelationCoefficient:
+          type: number
+          format: double
+        bestRSquared:
+          type: number
+          format: double
+        bestProcyclic:
+          type: number
+          format: double
+        bestCountercyclic:
+          type: number
+          format: double
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Correlation'
+          nullable: true
+      additionalProperties: false
+    IndicatorType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      type: integer
+      format: int32
+    Classification:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      type: integer
+      format: int32
+    CompositeDefinitionUpdateResponse:
+      type: object
+      properties:
+        compositeDefinition:
+          $ref: '#/components/schemas/CompositeDefinition'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+          nullable: true
+      additionalProperties: false
+    IndicatorTransformation:
+      type: object
+      properties:
+        provider:
+          type: string
+          nullable: true
+        providerId:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          nullable: true
+        endDate:
+          type: string
+          nullable: true
+        transformations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transformation'
+          nullable: true
+        offset:
+          type: integer
+          format: int32
+          nullable: true
+        isLogged:
+          type: boolean
+      additionalProperties: false
+    CompositeDefinitionUpdateRequest:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompositeEntryUpdateRequest'
+          description: Indicator Entries that are used in the composite formula
+          nullable: true
+        formula:
+          type: string
+          description: Formula for composite Indicator where each variable represents a CompositeIndicatorEntry
+          nullable: true
+        startDate:
+          type: string
+          description: Optional Start Date of Composite, when blank the series will start on the first common date across variables
+          format: date-time
+          nullable: true
+        compositeMetadata:
+          $ref: '#/components/schemas/BaseIndicatorMetadataWithFrequencyRequest'
+      additionalProperties: false
+      description: Request used to update the formula of an existing composite indicator, the mix of indicators used as variables in the composite formula, or metadata about the composite indicator.
+    BaseIndicatorMetadataWithFrequencyRequest:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Unique identifier for provider
+          nullable: true
+        providerId:
+          type: string
+          description: Indicator Identifier
+          nullable: true
+        name:
+          type: string
+          description: Indicator Name
+          nullable: true
+        description:
+          type: string
+          description: Indicator Description
+          nullable: true
+        notes:
+          type: string
+          description: Indicator Notes
+          nullable: true
+        units:
+          type: string
+          description: Indicator Units of measurement
+          nullable: true
+        citation:
+          type: string
+          description: Indicator Citation
+          nullable: true
+        path:
+          type: string
+          description: Path of indicator in Prevedere folder structure
+          nullable: true
+        color:
+          type: string
+          description: Color code to be used in the Prevedere application
+          nullable: true
+        aggregation:
+          type: string
+          description: Aggregation method used for indicator time series
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags assigned to help organize indicator
+          nullable: true
+        industryCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+          description: Industry codes assigned to indicator
+          nullable: true
+        classification:
+          type: string
+          description: Prevedere Classification for indicator
+          nullable: true
+        seasonalAdjustment:
+          type: string
+          description: Identifies if indicator is seasonally adjusted
+          nullable: true
+        periodAlignment:
+          type: string
+          description: Identifies if time series aligns with the beginning or end of time period
+          nullable: true
+        interval:
+          type: string
+          description: Name and multiple used to describe period length of indicator the time series, similar to frequency
+          nullable: true
+        frequency:
+          type: string
+          description: Frequency of indicator time series
+          nullable: true
+      additionalProperties: false
+    IndicatorDataSource:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        dataSourceType:
+          $ref: '#/components/schemas/IndicatorType'
+      additionalProperties: false
+    CompositeEntryUpdateRequest:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Unique Identifier for Provider.
+          nullable: true
+        providerId:
+          type: string
+          description: Identifier for indicator
+          nullable: true
+        offset:
+          type: integer
+          description: Offset applied to indicator
+          format: int32
+        calculation:
+          type: string
+          description: Calculation of indicator
+          nullable: true
+      additionalProperties: false
+    CompositeDefinition:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompositeIndicatorEntry'
+          description: A list of indicators used in the composite formula.
+          nullable: true
+        formula:
+          type: string
+          description: Formula for composite Indicator
+          nullable: true
+        startDate:
+          type: string
+          description: Start Date of Composite Indicator
+          format: date-time
+          nullable: true
+        compositeMetadata:
+          $ref: '#/components/schemas/CompositeMetadata'
+      additionalProperties: false
+      description: This schema contains the definition of a composite indicator. It includes the formula, start date and information for each indicator used in the formula.
+    CompositeMetadata:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Unique identifier for provider
+          nullable: true
+        providerId:
+          type: string
+          description: Indicator Identifier
+          nullable: true
+        name:
+          type: string
+          description: Indicator Name
+          nullable: true
+        description:
+          type: string
+          description: Indicator Description
+          nullable: true
+        notes:
+          type: string
+          description: Indicator Notes
+          nullable: true
+        units:
+          type: string
+          description: Indicator Units of measurement
+          nullable: true
+        citation:
+          type: string
+          description: Indicator Citation
+          nullable: true
+        path:
+          type: string
+          description: Path of indicator in Prevedere folder structure
+          nullable: true
+        color:
+          type: string
+          description: Color code to be used in the Prevedere application
+          nullable: true
+        aggregation:
+          type: string
+          description: Aggregation method used for indicator time series
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags assigned to help organize indicator
+          nullable: true
+        industryCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+          description: Industry codes assigned to indicator
+          nullable: true
+        classification:
+          type: string
+          description: Classification for indicator
+          nullable: true
+        seasonalAdjustment:
+          type: string
+          description: Identifies if indicator is seasonally adjusted
+          nullable: true
+        periodAlignment:
+          type: string
+          description: Identifies if time series aligns with the beginning or end of time period
+          nullable: true
+        interval:
+          type: string
+          description: Name and multiple used to describe period length of indicator time series, similar to frequency
+          nullable: true
+        frequency:
+          type: string
+          description: Frequency of indicator time series
+          nullable: true
+        calculation:
+          type: string
+          description: Calculation of composite indicator
+          nullable: true
+      additionalProperties: false
+      description: This schema contains the metadata for the composite indicator
+    Transformation:
+      type: object
+      properties:
+        order:
+          type: integer
+          format: int32
+        required:
+          type: boolean
+      additionalProperties: false
+    AggregationMethod:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      type: integer
+      format: int32
+    Correlation:
+      type: object
+      properties:
+        counterCyclic:
+          type: number
+          format: double
+        periodShift:
+          type: integer
+          format: int32
+        proCyclic:
+          type: number
+          format: double
+        correlationCoefficient:
+          type: number
+          format: double
+        rSquared:
+          type: number
+          format: double
+        numberOfDataPoints:
+          type: integer
+          format: int32
+        notes:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CompositeMetadataCreateRequest:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Unique identifier for provider
+          nullable: true
+        providerId:
+          type: string
+          description: Indicator Identifier
+          nullable: true
+        name:
+          type: string
+          description: Indicator Name
+          nullable: true
+        description:
+          type: string
+          description: Indicator Description
+          nullable: true
+        notes:
+          type: string
+          description: Indicator Notes
+          nullable: true
+        units:
+          type: string
+          description: Indicator Units of measurement
+          nullable: true
+        citation:
+          type: string
+          description: Indicator Citation
+          nullable: true
+        path:
+          type: string
+          description: Path of indicator in Prevedere folder structure
+          nullable: true
+        color:
+          type: string
+          description: Color code to be used in the Prevedere application
+          nullable: true
+        aggregation:
+          type: string
+          description: Aggregation method used for indicator time series
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags assigned to help organize indicator
+          nullable: true
+        industryCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+          description: Industry codes assigned to indicator
+          nullable: true
+        classification:
+          type: string
+          description: Prevedere Classification for indicator
+          nullable: true
+        seasonalAdjustment:
+          type: string
+          description: Identifies if indicator is seasonally adjusted
+          nullable: true
+        periodAlignment:
+          type: string
+          description: Identifies if time series aligns with the beginning or end of time period
+          nullable: true
+        interval:
+          type: string
+          description: Name and multiple used to describe period length of indicator the time series, similar to frequency
+          nullable: true
+        frequency:
+          type: string
+          description: Frequency of indicator time series
+          nullable: true
+        calculation:
+          type: string
+          description: Calculation of composite indicator
+          nullable: true
+        projectId:
+          type: string
+          description: Optional Project ID to associate the indicator with a specific project
+          nullable: true
+      additionalProperties: false
+    DisplayInformation:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The display name to be used in the application. Limited to 50 characters.
+          nullable: true
+        description:
+          type: string
+          description: The description to be shown in the application. Limited to 1,000 characters.
+          nullable: true
+        color:
+          type: string
+          description: The color to use in the application. Must be a valid hex color code.
+          nullable: true
+        category:
+          type: string
+          description: The category of the indicator. Limited to 1,000 characters.
+          nullable: true
+      additionalProperties: false
+    ResponseMessage:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Frequency:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      - 365
+      - 1000
+      type: integer
+      description: "The frequency of the data.\r\n\r\n\r\nDaily: 365\r\n\r\n\r\nWeekly: 52\r\n\r\n\r\nMonthly: 12\r\n\r\n\r\nQuarterly: 4\r\n\r\n\r\nSemiAnnual: 2\r\n\r\n\r\nAnnual: 1"
+      format: int32
+    Provider:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        id:
+          type: string
+          format: uuid
+        source:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Calculation:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      type: integer
+      description: "The transformation applied to the data.\r\n\r\n\r\nPossible options:\r\n\r\n\r\nNone 1\r\n\r\n\r\nPeriodOverPeriod 2\r\n\r\n\r\nYearOverYear 3\r\n\r\n\r\nThreePeriodYearOverYear 6"
+      format: int32
+    Indicator:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        aggregate:
+          $ref: '#/components/schemas/AggregationMethod'
+        calculation:
+          $ref: '#/components/schemas/Calculation'
+        color:
+          type: string
+          nullable: true
+        displayInformation:
+          $ref: '#/components/schemas/DisplayInformation'
+        count:
+          type: integer
+          format: int32
+        created:
+          type: string
+          format: date-time
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+        transformedStartTime:
+          type: string
+          format: date-time
+          nullable: true
+        transformedEndTime:
+          type: string
+          format: date-time
+          nullable: true
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        deprecated:
+          type: boolean
+        deprecationReason:
+          type: string
+          nullable: true
+        lastModified:
+          type: string
+          format: date-time
+        provider:
+          $ref: '#/components/schemas/Provider'
+        providerId:
+          type: string
+          nullable: true
+        seasonality:
+          $ref: '#/components/schemas/Seasonality'
+        source:
+          type: string
+          nullable: true
+        classification:
+          $ref: '#/components/schemas/Classification'
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        units:
+          type: string
+          nullable: true
+        accessibility:
+          $ref: '#/components/schemas/ProviderAccess'
+        periodAlignment:
+          $ref: '#/components/schemas/PeriodAlignment'
+        path:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        citation:
+          type: string
+          nullable: true
+        dataSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndicatorDataSource'
+          nullable: true
+        industryCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+          nullable: true
+        hasZeroVariance:
+          type: boolean
+          nullable: true
+        interval:
+          type: string
+          nullable: true
+        countryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Point:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        date:
+          type: string
+          format: date-time
+        annotation:
+          type: string
+          nullable: true
+        manuallyAdjusted:
+          type: boolean
+        isForecasted:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    PeriodAlignment:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    Seasonality:
+      enum:
+      - 0
+      - 1
+      - 999
+      type: integer
+      format: int32
+    CompositeIndicatorEntry:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Unique Identifier for Provider.
+          nullable: true
+        providerId:
+          type: string
+          description: Identifier for indicator
+          nullable: true
+        offset:
+          type: integer
+          description: Offset applied to indicator
+          format: int32
+        calculation:
+          type: string
+          description: Calculation of indicator
+          nullable: true
+        variableName:
+          type: string
+          description: Variable name for indicator that is reference in the formula
+          nullable: true
+      additionalProperties: false
+    IndicatorCreateRequest:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Unique identifier for provider
+          nullable: true
+        providerId:
+          type: string
+          description: Indicator Identifier
+          nullable: true
+        name:
+          type: string
+          description: Indicator Name
+          nullable: true
+        description:
+          type: string
+          description: Indicator Description
+          nullable: true
+        notes:
+          type: string
+          description: Indicator Notes
+          nullable: true
+        units:
+          type: string
+          description: Indicator Units of measurement
+          nullable: true
+        citation:
+          type: string
+          description: Indicator Citation
+          nullable: true
+        path:
+          type: string
+          description: Path of indicator in Prevedere folder structure
+          nullable: true
+        color:
+          type: string
+          description: Color code to be used in the Prevedere application
+          nullable: true
+        aggregation:
+          type: string
+          description: Aggregation method used for indicator time series
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags assigned to help organize indicator
+          nullable: true
+        industryCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+          description: Industry codes assigned to indicator
+          nullable: true
+        classification:
+          type: string
+          description: Prevedere Classification for indicator
+          nullable: true
+        seasonalAdjustment:
+          type: string
+          description: Identifies if indicator is seasonally adjusted
+          nullable: true
+        periodAlignment:
+          type: string
+          description: Identifies if time series aligns with the beginning or end of time period
+          nullable: true
+        interval:
+          type: string
+          description: Name and multiple used to describe period length of indicator the time series, similar to frequency
+          nullable: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequestPoint'
+          description: Data Time Series For Indicator
+          nullable: true
+        calculation:
+          type: string
+          nullable: true
+        projectId:
+          type: string
+          description: Optional Project ID to associate the indicator with a specific project
+          nullable: true
+      additionalProperties: false
+    RequestPoint:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        annotation:
+          type: string
+          nullable: true
+        date:
+          type: string
+          format: date-time
+        isForecasted:
+          type: boolean
+      additionalProperties: false
+    IndustryCode:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+      additionalProperties: false
+    BulkIndicatorUpdateRequest:
+      type: object
+      properties:
+        indicators:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/IndicatorUpdateRequest'
+          nullable: true
+      additionalProperties: false
+      example:
+        indicators:
+          indicator1:
+            provider: 18A87A77-8CB8-4637-A5C3-004089CE0F11
+            providerId: ABC
+            notes: Some notes
+            description: A short description
+            deleteExistingDataRecords: false
+            classification: Weather
+            name: Some Name
+            color: '#FF00000'
+            units: Some Units
+            seasonalAdjustment: false
+            aggregation: Average
+            citation: Some citation
+            path: Some path
+            periodAlignment: Beginning
+            interval: MONTH
+            industryCodes:
+            - type: SIC
+              code: '123'
+            tags:
+            - tag1
+            - tag2
+            data:
+            - value: 1.093
+              annotation: ''
+              date: '2022-10-01'
+              isForecasted: false
+            - Value: 1.163
+              Annotation: 'Note: Something'
+              Date: '2022-11-01'
+              IsForecasted: true
+          indicator2:
+            provider: DF56A04D-5D6D-41DB-B553-8374E4746010
+            providerId: CDE
+            notes: Some different notes
+            description: Description for my indicator
+            deleteExistingDataRecords: false
+            classification: Trade
+            name: Different Name
+            color: '#FF00000'
+            units: Different Units
+            seasonalAdjustment: false
+            aggregation: Sum
+            citation: Different citation
+            path: Different path
+            periodAlignment: End
+            interval: MONTH
+            industryCodes:
+            - type: Nace
+              code: AB
+            tags:
+            - Tag4
+            - Tag8
+            data:
+            - value: 10867.093
+              annotation: ''
+              date: '2020-08-01'
+              isForecasted: false
+            - value: 187564.163
+              annotation: Something happened here.
+              date: '2020-09-01'
+              isForecasted: true
+    IndicatorSearchResults:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Indicator'
+          nullable: true
+          readOnly: true
+        page:
+          type: integer
+          format: int32
+          readOnly: true
+        pageSize:
+          type: integer
+          format: int32
+          readOnly: true
+        totalResults:
+          type: integer
+          format: int64
+          readOnly: true
+      additionalProperties: false
+    IndicatorCreate:
+      type: object
+      properties:
+        indicator:
+          $ref: '#/components/schemas/IndicatorCreateRequest'
+      additionalProperties: false
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query

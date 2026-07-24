@@ -1,0 +1,42 @@
+openapi: 3.0.1
+info:
+  title: Board Foresight API - V1 Alert Test API
+  description: ''
+  version: v1
+security:
+- api key: []
+tags:
+- name: Test
+  description: ''
+paths:
+  /test:
+    get:
+      tags:
+      - Test
+      description: Echos a message string for testing purposes
+      parameters:
+      - name: Echo
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '429':
+          description: If the user has sent too many requests
+components:
+  securitySchemes:
+    api key:
+      type: apiKey
+      name: ApiKey
+      in: query
