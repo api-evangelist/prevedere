@@ -1,0 +1,34 @@
+# Prevedere / Board Foresight
+
+> Prevedere is an economic forecasting and predictive analytics platform (now delivered as Board Foresight, part of Board International) that correlates a company's internal metrics against thousands of external macroeconomic, industry, weather, and market indicators to forecast demand, revenue, and risk. The live Board Foresight API (V1) is hosted at api.prevedere.com and authenticates with an API key passed as the `ApiKey` query parameter.
+
+## APIs
+
+- [Board Foresight API (V1) — reference](https://api.prevedere.com/docs/): 62 operations across forecast models, indicators, scenarios, alerts, correlation discovery, and client-data integration.
+- [OpenAPI specification](https://api.prevedere.com/swagger/v1.0/swagger.json): OpenAPI 3.0.1, 60 paths, 115 schemas.
+
+## Specs & Artifacts
+
+- [OpenAPI (harvested)](openapi/prevedere-openapi-original.json)
+- [Authentication profile](authentication/prevedere-authentication.yml)
+- [API conventions](conventions/prevedere-conventions.yml)
+- [Error / problem types](errors/prevedere-problem-types.yml)
+- [Conformance](conformance/prevedere-conformance.yml)
+- [Data model](data-model/prevedere-data-model.yml)
+- [Lifecycle](lifecycle/prevedere-lifecycle.yml)
+- [MCP candidate server](mcp/prevedere-mcp.yml)
+- [Agent skills](skills/_index.yml)
+
+## Key concepts
+
+- **Forecast models** — predictive models with forecasts, statistics, risk, contribution, and health analysis (`/forecastmodels`, `/forecast/{ForecastModelId}`).
+- **Indicators** — economic/composite time series with search and correlation discovery (`/search`, `/indicator/{Provider}/{ProviderId}`, `/correlation/...`).
+- **Scenarios & alerts** — scenario modelling and alert definitions/history (`/scenarios`, `/alerts`, `/alertdefinitions`).
+- **Data integration** — import and validate client dimension data (`/importclientdata/...`, `/validateclientdata/...`).
+
+## Docs
+
+- [Documentation & API reference](https://api.prevedere.com/docs/)
+- [Pricing (Board)](https://www.board.com/pricing)
+- [Support (Board community)](https://community.board.com/categories/support)
+- [Status](https://status.board.com/)

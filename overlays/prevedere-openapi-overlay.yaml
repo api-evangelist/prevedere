@@ -1,0 +1,16 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Board Foresight (Prevedere)
+  version: 1.0.0
+extends: openapi/prevedere-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: prevedere
+    x-apievangelist-rating-note: apiKey (query) auth; page-number pagination; 429
+      rate-limit signalling on all ops; no RFC 9457.
+    x-apievangelist-enriched: '2026-07-20'
+- target: $.servers
+  update:
+  - url: https://api.prevedere.com
+    description: Board Foresight API V1 (production)

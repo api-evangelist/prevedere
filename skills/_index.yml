@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/prevedere-openapi-original.json
+skills:
+- file: prevedere-read-forecast.md
+  name: Read a Board Foresight forecast model and its projection
+  api: openapi/prevedere-openapi-original.json
+  operations:
+  - GET /forecastmodels
+  - GET /forecastmodel/{ForecastModelId}
+  - GET /forecast/{ForecastModelId}
+  - GET /forecast/statistics/{ForecastModelId}
+  - GET /forecast/risk/{ForecastModelId}
+- file: prevedere-discover-indicators.md
+  name: Discover leading economic indicators and correlations
+  api: openapi/prevedere-openapi-original.json
+  operations:
+  - GET /search
+  - GET /indicator/{Provider}/{ProviderId}
+  - GET /indicator/series/{Provider}/{ProviderId}
+  - GET /correlation/{FixedProvider}/{FixedProviderId}/{LeadingProvider}/{LeadingProviderId}/{Frequency}/{Calculation}
+- file: prevedere-monitor-scenarios-alerts.md
+  name: Monitor scenarios and alerts
+  api: openapi/prevedere-openapi-original.json
+  operations:
+  - GET /scenarios
+  - GET /scenario/{scenarioId}
+  - GET /alertdefinitions
+  - GET /alerts

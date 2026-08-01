@@ -1,27 +1,413 @@
 aid: prevedere
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/prevedere.png
 name: Prevedere
-description: 'Prevedere is a company surfaced as a portfolio company of norwest-venture-partners and added
-  to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Prevedere is an economic forecasting and predictive analytics platform that ingests thousands
+  of external macroeconomic, industry, weather, and market indicators to drive demand planning, financial
+  forecasting, and risk analysis. Its models correlate a company''s internal metrics against leading
+  external signals to project revenue, demand, and other business outcomes. Prevedere was acquired by Board
+  International and its capability is now delivered as Board Foresight; the live Board Foresight API (V1),
+  hosted at api.prevedere.com, exposes forecast models, indicators, scenarios, alerts, correlation
+  discovery, and client-data integration. This profile enriches the surviving API surface.'
 url: https://raw.githubusercontent.com/api-evangelist/prevedere/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - norwest-venture-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-acquired-by: board-international
+x-tier: enriched
+x-tier-reason: live-api-surface
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-- Unknown
-apis: []
+- Economic Forecasting
+- Predictive Analytics
+- Demand Planning
+- Financial Planning
+- Macroeconomic Data
+- Indicators
+- Time Series
+- Data Integration
+- Machine Learning
+apis:
+- aid: prevedere:prevedere-alert-api
+  name: Prevedere Alert API
+  description: The Alert API from Prevedere — 1 operation(s) for alert.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - Alert
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-alert-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-alertdefinition-api
+  name: Prevedere AlertDefinition API
+  description: The AlertDefinition API from Prevedere — 2 operation(s) for alertdefinition.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - AlertDefinition
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-alertdefinition-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-analysisjob-api
+  name: Prevedere AnalysisJob API
+  description: The AnalysisJob API from Prevedere — 2 operation(s) for analysisjob.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - AnalysisJob
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-analysisjob-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-componentcontributionoverridevalues-api
+  name: Prevedere ComponentContributionOverrideValues API
+  description: >-
+    The ComponentContributionOverrideValues API from Prevedere — 2 operation(s) for componentcontributionoverridevalues.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - ComponentContributionOverrideValues
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-componentcontributionoverridevalues-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-context-api
+  name: Prevedere Context API
+  description: The Context API from Prevedere — 1 operation(s) for context.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - Context
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-context-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-dataintegration-api
+  name: Prevedere DataIntegration API
+  description: The DataIntegration API from Prevedere — 3 operation(s) for dataintegration.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - DataIntegration
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-dataintegration-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-discoverjob-api
+  name: Prevedere DiscoverJob API
+  description: The DiscoverJob API from Prevedere — 2 operation(s) for discoverjob.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - DiscoverJob
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-discoverjob-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-enumeration-api
+  name: Prevedere Enumeration API
+  description: The Enumeration API from Prevedere — 6 operation(s) for enumeration.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - Enumeration
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-enumeration-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-favorites-api
+  name: Prevedere Favorites API
+  description: The Favorites API from Prevedere — 2 operation(s) for favorites.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - Favorites
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-favorites-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-forecastmodel-api
+  name: Prevedere ForecastModel API
+  description: The ForecastModel API from Prevedere — 16 operation(s) for forecastmodel.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - ForecastModel
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-forecastmodel-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-forecastmodelhistory-api
+  name: Prevedere ForecastModelHistory API
+  description: The ForecastModelHistory API from Prevedere — 1 operation(s) for forecastmodelhistory.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - ForecastModelHistory
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-forecastmodelhistory-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-forecastsummary-api
+  name: Prevedere ForecastSummary API
+  description: The ForecastSummary API from Prevedere — 2 operation(s) for forecastsummary.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - ForecastSummary
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-forecastsummary-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-indicator-api
+  name: Prevedere Indicator API
+  description: The Indicator API from Prevedere — 9 operation(s) for indicator.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - Indicator
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-indicator-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-provider-api
+  name: Prevedere Provider API
+  description: The Provider API from Prevedere — 1 operation(s) for provider.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - Provider
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-provider-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-scenario-api
+  name: Prevedere Scenario API
+  description: The Scenario API from Prevedere — 2 operation(s) for scenario.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - Scenario
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-scenario-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-tag-api
+  name: Prevedere Tag API
+  description: The Tag API from Prevedere — 1 operation(s) for tag.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - Tag
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-tag-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-test-api
+  name: Prevedere Test API
+  description: The Test API from Prevedere — 1 operation(s) for test.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - Test
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-test-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-usercontext-api
+  name: Prevedere UserContext API
+  description: The UserContext API from Prevedere — 2 operation(s) for usercontext.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - UserContext
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-usercontext-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-workbench-api
+  name: Prevedere Workbench API
+  description: >-
+    Workbenches are a powerful feature in the Board Foresight application that allow users to organize
+    and analyze data through indicators. They enable the creation of models by selecting primary and additional
+    indicators, which can be further adjusted and managed.
+
+
+    Using Workbenches endpoints you can
+
+    - Retrieve the workbench information for the given workbench ID
+
+    - Update or add an indicator to the existing workbench specified by the given ID
+
+    - Retrieve the workbench series information for the given workbench ID and categories
+
+    - Retrieves the list of accessible workbenches for the company
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - Workbench
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-workbench-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/prevedere-domain-security.yml
+- type: Authentication
+  url: authentication/prevedere-authentication.yml
 - type: Website
   url: https://prevedere.com
+- type: Documentation
+  url: https://api.prevedere.com/docs/
+- type: APIReference
+  url: https://api.prevedere.com/docs/
+- type: Pricing
+  url: https://www.board.com/pricing
+- type: Support
+  url: https://community.board.com/categories/support
+- type: StatusPage
+  url: https://status.board.com/
+- type: TermsOfService
+  url: https://www.board.com/legal-notice
+- type: PrivacyPolicy
+  url: https://www.board.com/privacy-policy
+- type: ErrorCatalog
+  url: errors/prevedere-problem-types.yml
+- type: Conventions
+  url: conventions/prevedere-conventions.yml
+- type: Conformance
+  url: conformance/prevedere-conformance.yml
+- type: DataModel
+  url: data-model/prevedere-data-model.yml
+- type: Lifecycle
+  url: lifecycle/prevedere-lifecycle.yml
+- type: MCPServer
+  url: mcp/prevedere-mcp.yml
+- type: LLMsTxt
+  url: llms/prevedere-llms.txt
+- type: Overlay
+  url: overlays/prevedere-openapi-overlay.yaml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1

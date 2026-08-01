@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: searched
+note: No .well-known discovery documents are served. api.prevedere.com returns 401
+  (gateway) on all .well-known paths; the prevedere.com apex 301-redirects to board.com,
+  whose root returns 404 for security.txt.
+hosts:
+- host: https://api.prevedere.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 401
+  - path: /.well-known/openid-configuration
+    status: 401
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+  - path: /.well-known/api-catalog
+    status: 401
+- host: https://www.board.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404

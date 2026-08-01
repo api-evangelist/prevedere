@@ -1,0 +1,197 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+note: No official Board Foresight MCP server found. Candidate tool list derived one-per-operation
+  from the OpenAPI; the spec declares no operationIds, so tools are keyed by method+path.
+server:
+  name: prevedere-board-foresight
+  transport: http
+tool_count: 62
+tools:
+- name: get_alerts
+  description: GET /alerts
+  source_operation: openapi/prevedere-openapi-original.json#GET /alerts
+- name: get_alertdefinitions
+  description: GET /alertdefinitions
+  source_operation: openapi/prevedere-openapi-original.json#GET /alertdefinitions
+- name: get_id
+  description: GET /{id}
+  source_operation: openapi/prevedere-openapi-original.json#GET /{id}
+- name: get_analysisjobs
+  description: GET /analysisjobs
+  source_operation: openapi/prevedere-openapi-original.json#GET /analysisjobs
+- name: get_analysisjob_analysisjobid_returndata
+  description: GET /analysisjob/{AnalysisJobId}/{ReturnData}
+  source_operation: openapi/prevedere-openapi-original.json#GET /analysisjob/{AnalysisJobId}/{ReturnData}
+- name: get_componentcontributionoverridevalues_forecastmodelid
+  description: Retrieves all Contribution Override Values for a given locked model
+  source_operation: openapi/prevedere-openapi-original.json#GET /componentcontributionoverridevalues/{forecastModelId}
+- name: delete_componentcontributionoverridevalues_forecastmodelid
+  description: Deletes all Component Contribution Override Values for a given locked
+    model
+  source_operation: openapi/prevedere-openapi-original.json#DELETE /componentcontributionoverridevalues/{forecastModelId}
+- name: post_componentcontributionoverridevalues
+  description: Creates Component Contribution Override Values for a given locked model
+  source_operation: openapi/prevedere-openapi-original.json#POST /componentcontributionoverridevalues
+- name: get_context
+  description: Retrieves current User Context (Company, Features, Roles, User)
+  source_operation: openapi/prevedere-openapi-original.json#GET /context
+- name: get_clientdimensions
+  description: GET /clientdimensions
+  source_operation: openapi/prevedere-openapi-original.json#GET /clientdimensions
+- name: post_importclientdata_clientdimensiongroupid_shoulddeleteexistingrecords
+  description: POST /importclientdata/{ClientDimensionGroupId}/{ShouldDeleteExistingRecords}
+  source_operation: openapi/prevedere-openapi-original.json#POST /importclientdata/{ClientDimensionGroupId}/{ShouldDeleteExistingRecords}
+- name: post_validateclientdata_clientdimensiongroupid
+  description: POST /validateclientdata/{ClientDimensionGroupId}
+  source_operation: openapi/prevedere-openapi-original.json#POST /validateclientdata/{ClientDimensionGroupId}
+- name: get_discover_jobs
+  description: GET /discover/jobs
+  source_operation: openapi/prevedere-openapi-original.json#GET /discover/jobs
+- name: get_discover_search_definitionid
+  description: Searches latest discover results for a given definition id
+  source_operation: openapi/prevedere-openapi-original.json#GET /discover/search/{definitionId}
+- name: get_aggregationmethods
+  description: GET /aggregationmethods
+  source_operation: openapi/prevedere-openapi-original.json#GET /aggregationmethods
+- name: get_calculations
+  description: GET /calculations
+  source_operation: openapi/prevedere-openapi-original.json#GET /calculations
+- name: get_frequencies
+  description: GET /frequencies
+  source_operation: openapi/prevedere-openapi-original.json#GET /frequencies
+- name: get_seasonalities
+  description: GET /seasonalities
+  source_operation: openapi/prevedere-openapi-original.json#GET /seasonalities
+- name: get_forecastmodeltypes
+  description: GET /forecastmodeltypes
+  source_operation: openapi/prevedere-openapi-original.json#GET /forecastmodeltypes
+- name: get_classifications
+  description: GET /classifications
+  source_operation: openapi/prevedere-openapi-original.json#GET /classifications
+- name: get_favorites
+  description: GET /favorites
+  source_operation: openapi/prevedere-openapi-original.json#GET /favorites
+- name: get_favorite_id
+  description: GET /favorite/{Id}
+  source_operation: openapi/prevedere-openapi-original.json#GET /favorite/{Id}
+- name: get_backtest
+  description: GET /backtest
+  source_operation: openapi/prevedere-openapi-original.json#GET /backtest
+- name: get_forecastmodel_forecastmodelid
+  description: Retrieves information for a single model given the ID
+  source_operation: openapi/prevedere-openapi-original.json#GET /forecastmodel/{ForecastModelId}
+- name: get_forecastmodels
+  description: Retrieves the list of accessible forecast models for the user
+  source_operation: openapi/prevedere-openapi-original.json#GET /forecastmodels
+- name: get_rawmodel_forecastmodelid
+  description: GET /rawmodel/{ForecastModelId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /rawmodel/{ForecastModelId}
+- name: get_rawmodel_forecastmodelid_useforecastfrequency
+  description: GET /rawmodel/{ForecastModelId}/{UseForecastFrequency}
+  source_operation: openapi/prevedere-openapi-original.json#GET /rawmodel/{ForecastModelId}/{UseForecastFrequency}
+- name: get_model_summary_forecastmodelid
+  description: GET /model/summary/{ForecastModelId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /model/summary/{ForecastModelId}
+- name: get_model_consistency_forecastmodelid
+  description: GET /model/consistency/{ForecastModelId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /model/consistency/{ForecastModelId}
+- name: get_forecast_forecastmodelid
+  description: GET /forecast/{ForecastModelId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /forecast/{ForecastModelId}
+- name: get_model_contribution_forecastmodelid
+  description: GET /model/contribution/{ForecastModelId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /model/contribution/{ForecastModelId}
+- name: post_model_modelhealth_forecastmodelid
+  description: Checks model health for the given model id
+  source_operation: openapi/prevedere-openapi-original.json#POST /model/modelhealth/{ForecastModelId}
+- name: get_model_impact_forecastmodelid
+  description: GET /model/impact/{ForecastModelId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /model/impact/{ForecastModelId}
+- name: get_forecast_risk_forecastmodelid
+  description: GET /forecast/risk/{ForecastModelId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /forecast/risk/{ForecastModelId}
+- name: get_forecast_riskgrowth_forecastmodelid
+  description: GET /forecast/riskgrowth/{ForecastModelId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /forecast/riskgrowth/{ForecastModelId}
+- name: get_forecast_statistics_forecastmodelid
+  description: GET /forecast/statistics/{ForecastModelId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /forecast/statistics/{ForecastModelId}
+- name: get_forecast_modelscore_forecastmodelid
+  description: GET /forecast/modelscore/{ForecastModelId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /forecast/modelscore/{ForecastModelId}
+- name: get_forecast_logcontribution_forecastmodelid
+  description: Retrieves a log forecast model contribution
+  source_operation: openapi/prevedere-openapi-original.json#GET /forecast/logcontribution/{ForecastModelId}
+- name: get_forecastmodelhistory_forecastmodelid
+  description: GET /forecastmodelhistory/{ForecastModelId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /forecastmodelhistory/{ForecastModelId}
+- name: get_summaries
+  description: GET /summaries
+  source_operation: openapi/prevedere-openapi-original.json#GET /summaries
+- name: get_forecast_summary_forecastsummaryid
+  description: GET /forecast/summary/{forecastSummaryId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /forecast/summary/{forecastSummaryId}
+- name: get_indicator_composite_definition_provider_providerid
+  description: Retrieves the definition of a composite indicator
+  source_operation: openapi/prevedere-openapi-original.json#GET /indicator/composite/definition/{Provider}/{ProviderId}
+- name: put_indicator_composite_definition_provider_providerid
+  description: Updates the definition of a composite indicator
+  source_operation: openapi/prevedere-openapi-original.json#PUT /indicator/composite/definition/{Provider}/{ProviderId}
+- name: post_indicator_composite_definition
+  description: Creates a composite indicator
+  source_operation: openapi/prevedere-openapi-original.json#POST /indicator/composite/definition
+- name: get_indicator_provider_providerid
+  description: GET /indicator/{Provider}/{ProviderId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /indicator/{Provider}/{ProviderId}
+- name: get_indicator_series_provider_providerid
+  description: GET /indicator/series/{Provider}/{ProviderId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /indicator/series/{Provider}/{ProviderId}
+- name: post_indicator_series_transform
+  description: POST /indicator/series/transform
+  source_operation: openapi/prevedere-openapi-original.json#POST /indicator/series/transform
+- name: get_correlation_fixedprovider_fixedproviderid_leadingprovider_leadingproviderid_frequency_calculation
+  description: GET /correlation/{FixedProvider}/{FixedProviderId}/{LeadingProvider}/{LeadingProviderId}/{Frequency}/{Calculation}
+  source_operation: openapi/prevedere-openapi-original.json#GET /correlation/{FixedProvider}/{FixedProviderId}/{LeadingProvider}/{LeadingProviderId}/{Frequency}/{Calculation}
+- name: get_search
+  description: GET /search
+  source_operation: openapi/prevedere-openapi-original.json#GET /search
+- name: post_indicator_create
+  description: POST /indicator/create
+  source_operation: openapi/prevedere-openapi-original.json#POST /indicator/create
+- name: put_indicator_update
+  description: PUT /indicator/update
+  source_operation: openapi/prevedere-openapi-original.json#PUT /indicator/update
+- name: get_provider
+  description: GET /provider
+  source_operation: openapi/prevedere-openapi-original.json#GET /provider
+- name: get_scenarios
+  description: GET /scenarios
+  source_operation: openapi/prevedere-openapi-original.json#GET /scenarios
+- name: get_scenario_scenarioid
+  description: GET /scenario/{scenarioId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /scenario/{scenarioId}
+- name: get_tag
+  description: GET /tag
+  source_operation: openapi/prevedere-openapi-original.json#GET /tag
+- name: get_test
+  description: GET /test
+  source_operation: openapi/prevedere-openapi-original.json#GET /test
+- name: get_company
+  description: Retrieves all companies for authenticated user
+  source_operation: openapi/prevedere-openapi-original.json#GET /company
+- name: put_company_companyid
+  description: PUT /company/{CompanyId}
+  source_operation: openapi/prevedere-openapi-original.json#PUT /company/{CompanyId}
+- name: get_workbench_workbenchid
+  description: GET /workbench/{WorkbenchId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /workbench/{WorkbenchId}
+- name: put_workbench_update
+  description: PUT /workbench/update
+  source_operation: openapi/prevedere-openapi-original.json#PUT /workbench/update
+- name: get_workbench_series_workbenchid
+  description: GET /workbench/series/{WorkbenchId}
+  source_operation: openapi/prevedere-openapi-original.json#GET /workbench/series/{WorkbenchId}
+- name: get_workbenches
+  description: GET /workbenches
+  source_operation: openapi/prevedere-openapi-original.json#GET /workbenches

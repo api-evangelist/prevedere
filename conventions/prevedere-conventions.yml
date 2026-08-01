@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/prevedere-openapi-original.json
+authentication:
+  style: api-key
+  location: query
+  parameter: ApiKey
+  ref: authentication/prevedere-authentication.yml
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or parameter is declared in the OpenAPI.
+pagination:
+  supported: true
+  style: page-number
+  params:
+  - Page
+  - PageSize
+  note: Page-number pagination via Page and PageSize query parameters on list endpoints
+    (e.g. /search, /forecastmodels, /summaries).
+rate_limiting:
+  signaled: true
+  note: Every operation declares a 429 Too Many Requests response, indicating server-side
+    rate limiting.
+  ref: errors/prevedere-problem-types.yml
+versioning:
+  scheme: uri-path-on-spec
+  current: v1
+  note: API is labelled V1; the OpenAPI is served at /swagger/v1.0/swagger.json. No
+    per-request version header is declared.
+  ref: lifecycle/prevedere-lifecycle.yml
+error_envelope:
+  format: application/json
+  rfc9457: false
+  ref: errors/prevedere-problem-types.yml
+content_type:
+  request: application/json
+  response: application/json

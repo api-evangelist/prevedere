@@ -1,0 +1,15 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/prevedere-openapi-original.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: api key
+  type: apiKey
+  in: query
+  parameter: ApiKey
+  sources:
+  - openapi/prevedere-openapi-original.json

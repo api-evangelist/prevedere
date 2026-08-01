@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/prevedere-openapi-original.json
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: OpenAPI 3.0.1 document published at api.prevedere.com/swagger/v1.0/swagger.json
+- id: apikey-auth
+  conforms: true
+  evidence: components.securitySchemes declares apiKey in query (ApiKey)
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 security scheme declared
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: no application/problem+json responses declared
+- id: pagination
+  conforms: true
+  evidence: Page/PageSize query parameters on list endpoints
+- id: rate-limiting
+  conforms: true
+  evidence: 429 Too Many Requests declared on every operation
+- id: json-api
+  conforms: false
+- id: fhir
+  conforms: false
+- id: scim
+  conforms: false

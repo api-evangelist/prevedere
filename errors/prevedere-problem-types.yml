@@ -1,0 +1,50 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/prevedere-openapi-original.json
+format: non-standard
+envelope: application/json error body (not RFC 9457 problem+json)
+note: Derived from OpenAPI 4xx/5xx response declarations. No application/problem+json
+  media types are declared; the 429 response is present on every operation, signalling
+  rate limiting.
+problems:
+- status: 400
+  title: Bad Request
+  description: If model is not locked
+  remediation: Check request parameters and body against the schema.
+  occurrences: 11
+- status: 401
+  title: Unauthorized
+  description: If the user isn't authenticated
+  remediation: Provide a valid ApiKey query parameter.
+  occurrences: 5
+- status: 403
+  title: Forbidden
+  description: Forbidden
+  remediation: The API key lacks permission for this resource or company context.
+  occurrences: 6
+- status: 404
+  title: Not Found
+  description: Not Found
+  remediation: Verify the resource id (e.g. ForecastModelId, Provider/ProviderId)
+    exists.
+  occurrences: 11
+- status: 410
+  title: Gone
+  description: Gone
+  remediation: The resource or endpoint is no longer available; migrate to its replacement.
+  occurrences: 5
+- status: 422
+  title: Unprocessable Entity
+  description: Forecast model is expired or is not a production model
+  remediation: Validation failed; correct the field values and resubmit.
+  occurrences: 18
+- status: 429
+  title: Too Many Requests
+  description: If the user has sent too many requests
+  remediation: Rate limit exceeded; back off and retry after the indicated interval.
+  occurrences: 62
+- status: 500
+  title: Internal Server Error
+  description: Internal Server Error
+  remediation: Server error; retry later or contact Board Foresight support.
+  occurrences: 2

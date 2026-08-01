@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/prevedere-openapi-original.json
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://api.prevedere.com/docs/
+status_page: https://status.board.com/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation policy or RFC 8594 Sunset header found. 5 operations
+    declare a 410 Gone response.
+  gone_operations:
+  - GET /analysisjobs
+  - GET /analysisjob/{AnalysisJobId}/{ReturnData}
+  - GET /backtest
+  - GET /summaries
+  - GET /forecast/summary/{forecastSummaryId}
+deprecated_operations:
+- GET /analysisjobs
+- GET /analysisjob/{AnalysisJobId}/{ReturnData}
+- GET /backtest
+- GET /summaries
+- GET /forecast/summary/{forecastSummaryId}

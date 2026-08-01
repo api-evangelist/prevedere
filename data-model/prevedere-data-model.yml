@@ -1,0 +1,622 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/prevedere-openapi-original.json
+note: Entity graph derived from OpenAPI component schemas ($ref links). 115 entities.
+entity_count: 115
+entities:
+- name: AggregationMethod
+- name: AlertDefinition
+  relationships:
+  - kind: has_one
+    target: Calculation
+    via: calculationType
+  - kind: has_one
+    target: Indicator
+    via: targetIndicator
+- name: AlertHistory
+- name: BaseIndicatorMetadataWithFrequencyRequest
+  relationships:
+  - kind: has_many
+    target: IndustryCode
+    via: industryCodes
+- name: BiasResult
+- name: BuilderMessage
+  relationships:
+  - kind: has_one
+    target: MessageType
+    via: type
+- name: BulkIndicatorUpdateRequest
+- name: Calculation
+- name: Classification
+- name: ClientDimensions
+- name: Coefficient
+- name: CoefficientInfo
+  relationships:
+  - kind: has_one
+    target: IndicatorKey
+    via: indicatorKey
+- name: Company
+- name: ComponentContribution
+- name: ComponentContributionFrequency
+- name: ComponentContributionOverrideValues
+  relationships:
+  - kind: has_many
+    target: ComponentContribution
+    via: contributionPeriods
+  - kind: has_one
+    target: Frequency
+    via: frequency
+- name: ComponentContributionOverrideValuesRequest
+  relationships:
+  - kind: has_many
+    target: ComponentContribution
+    via: contributionPeriods
+  - kind: has_one
+    target: ComponentContributionFrequency
+    via: frequency
+- name: ComponentInformation
+  relationships:
+  - kind: has_many
+    target: Point
+    via: values
+- name: CompositeDefinition
+  relationships:
+  - kind: has_many
+    target: CompositeIndicatorEntry
+    via: entries
+  - kind: has_one
+    target: CompositeMetadata
+    via: compositeMetadata
+- name: CompositeDefinitionCreateRequest
+  relationships:
+  - kind: has_many
+    target: CompositeEntryUpdateRequest
+    via: entries
+  - kind: has_one
+    target: CompositeMetadataCreateRequest
+    via: compositeMetadata
+- name: CompositeDefinitionUpdateRequest
+  relationships:
+  - kind: has_many
+    target: CompositeEntryUpdateRequest
+    via: entries
+  - kind: has_one
+    target: BaseIndicatorMetadataWithFrequencyRequest
+    via: compositeMetadata
+- name: CompositeDefinitionUpdateResponse
+  relationships:
+  - kind: has_many
+    target: ResponseMessage
+    via: messages
+  - kind: has_one
+    target: CompositeDefinition
+    via: compositeDefinition
+- name: CompositeEntryUpdateRequest
+- name: CompositeIndicatorEntry
+- name: CompositeMetadata
+  relationships:
+  - kind: has_many
+    target: IndustryCode
+    via: industryCodes
+- name: CompositeMetadataCreateRequest
+  relationships:
+  - kind: has_many
+    target: IndustryCode
+    via: industryCodes
+- name: Context
+  relationships:
+  - kind: has_many
+    target: Feature
+    via: features
+  - kind: has_one
+    target: Company
+    via: company
+  - kind: has_one
+    target: User
+    via: user
+- name: ContributionPeriod
+  relationships:
+  - kind: has_many
+    target: IndicatorContribution
+    via: components
+- name: ContributionResult
+  relationships:
+  - kind: has_many
+    target: IndicatorValues
+    via: componentContributions
+  - kind: has_many
+    target: Point
+    via: forecast
+- name: ControlChartErrors
+- name: ControlChartMeta
+- name: ControlChartPoint
+- name: ControlChartPrescription
+- name: ControlChartResult
+  relationships:
+  - kind: has_many
+    target: ControlChartPoint
+    via: controlChartPoints
+  - kind: has_many
+    target: ControlChartPrescription
+    via: controlChartInsights
+  - kind: has_one
+    target: ControlChartErrors
+    via: controlChartErrors
+  - kind: has_one
+    target: ControlChartMeta
+    via: controlChartMeta
+  - kind: has_one
+    target: ControlChartPrescription
+    via: controlChartPrescription
+- name: Correlation
+- name: CorrelationSet
+  relationships:
+  - kind: has_many
+    target: Correlation
+    via: data
+  - kind: has_one
+    target: Calculation
+    via: calculation
+- name: DiscoverCorrelationResult
+- name: DiscoverJob
+  relationships:
+  - kind: has_one
+    target: IndicatorKey
+    via: primaryIndicator
+- name: DiscoverResult
+  relationships:
+  - kind: has_one
+    target: DiscoverCorrelationResult
+    via: bestROffset
+  - kind: has_one
+    target: IndicatorKey
+    via: indicatorKey
+- name: DiscoverSearchResponse
+  relationships:
+  - kind: has_many
+    target: DiscoverResult
+    via: results
+- name: DisplayInformation
+- name: DoubleEditable
+- name: EfficiencyResult
+- name: Favorite
+  relationships:
+  - kind: has_many
+    target: Indicator
+    via: indicators
+  - kind: has_one
+    target: FavoriteInfo
+    via: info
+- name: FavoriteInfo
+- name: Feature
+- name: FitLine
+  relationships:
+  - kind: has_many
+    target: Point
+    via: points
+- name: ForecastAccuracyResult
+- name: ForecastModelCategoryInfo
+  relationships:
+  - kind: has_many
+    target: IndicatorKey
+    via: indicators
+- name: ForecastModelComponentInfo
+  relationships:
+  - kind: has_many
+    target: BuilderMessage
+    via: messages
+  - kind: has_many
+    target: ForecastModelCategoryInfo
+    via: categories
+  - kind: has_many
+    target: IndicatorEntry
+    via: indicators
+  - kind: has_many
+    target: SegmentBiasInfo
+    via: biasInfo
+  - kind: has_one
+    target: LockedModelInfo
+    via: lockedModel
+- name: ForecastModelConsistencyInfo
+  relationships:
+  - kind: has_many
+    target: GroupedPeriodError
+    via: errors
+- name: ForecastModelEntry
+  relationships:
+  - kind: has_many
+    target: Transformation
+    via: transformations
+  - kind: has_one
+    target: IndicatorKey
+    via: indicator
+- name: ForecastModelHealth
+  relationships:
+  - kind: has_many
+    target: ControlChartPoint
+    via: referenceTable
+- name: ForecastModelHistory
+  relationships:
+  - kind: has_one
+    target: ForecastModelIteration
+    via: forecastModelIteration
+- name: ForecastModelInfo
+  relationships:
+  - kind: has_many
+    target: ForecastModelEntry
+    via: entries
+  - kind: has_one
+    target: Calculation
+    via: calculation
+  - kind: has_one
+    target: ForecastModelType
+    via: type
+  - kind: has_one
+    target: Frequency
+    via: frequency
+  - kind: has_one
+    target: Indicator
+    via: indicator
+  - kind: has_one
+    target: LockedModelInfo
+    via: lockedModel
+- name: ForecastModelIteration
+  relationships:
+  - kind: has_many
+    target: ComponentInformation
+    via: components
+  - kind: has_many
+    target: Point
+    via: fitAndForecast
+  - kind: has_many
+    target: Point
+    via: primaryValues
+  - kind: has_many
+    target: SegmentInfo
+    via: segments
+  - kind: has_one
+    target: Calculation
+    via: forecastModelCalculation
+  - kind: has_one
+    target: ContributionResult
+    via: contributionResult
+  - kind: has_one
+    target: ForecastModelType
+    via: forecastModelType
+- name: ForecastModelSummaryInfo
+- name: ForecastModelType
+- name: ForecastResult
+  relationships:
+  - kind: has_many
+    target: Point
+    via: actuals
+  - kind: has_many
+    target: Point
+    via: actualsInModelCalculation
+  - kind: has_many
+    target: Point
+    via: actualsWithForecast
+  - kind: has_many
+    target: Point
+    via: forecastInModelCalculation
+  - kind: has_many
+    target: Point
+    via: forecasts
+  - kind: has_many
+    target: Point
+    via: justForecasts
+- name: Frequency
+- name: GroupedPeriodError
+  relationships:
+  - kind: has_one
+    target: WhiskerResult
+    via: aggregateErrorWhisker
+  - kind: has_one
+    target: WhiskerResult
+    via: aggregateErrorWhiskerModeled
+  - kind: has_one
+    target: WhiskerResult
+    via: singlePeriodErrorWhisker
+  - kind: has_one
+    target: WhiskerResult
+    via: singlePeriodErrorWhiskerModeled
+- name: Indicator
+  relationships:
+  - kind: has_many
+    target: IndicatorDataSource
+    via: dataSources
+  - kind: has_many
+    target: IndustryCode
+    via: industryCodes
+  - kind: has_one
+    target: AggregationMethod
+    via: aggregate
+  - kind: has_one
+    target: Calculation
+    via: calculation
+  - kind: has_one
+    target: Classification
+    via: classification
+  - kind: has_one
+    target: DisplayInformation
+    via: displayInformation
+  - kind: has_one
+    target: Frequency
+    via: frequency
+  - kind: has_one
+    target: PeriodAlignment
+    via: periodAlignment
+  - kind: has_one
+    target: Provider
+    via: provider
+  - kind: has_one
+    target: ProviderAccess
+    via: accessibility
+  - kind: has_one
+    target: Seasonality
+    via: seasonality
+- name: IndicatorContribution
+- name: IndicatorCorrelation
+- name: IndicatorCreate
+  relationships:
+  - kind: has_one
+    target: IndicatorCreateRequest
+    via: indicator
+- name: IndicatorCreateRequest
+  relationships:
+  - kind: has_many
+    target: IndustryCode
+    via: industryCodes
+  - kind: has_many
+    target: RequestPoint
+    via: data
+- name: IndicatorDataSource
+  relationships:
+  - kind: has_one
+    target: IndicatorType
+    via: dataSourceType
+- name: IndicatorEntry
+  relationships:
+  - kind: has_many
+    target: Point
+    via: values
+  - kind: has_many
+    target: Transformation
+    via: transformations
+  - kind: has_one
+    target: Indicator
+    via: indicator
+- name: IndicatorKey
+- name: IndicatorSearchResults
+  relationships:
+  - kind: has_many
+    target: Indicator
+    via: results
+- name: IndicatorTransformation
+  relationships:
+  - kind: has_many
+    target: Transformation
+    via: transformations
+- name: IndicatorType
+- name: IndicatorUpdateRequest
+  relationships:
+  - kind: has_many
+    target: IndustryCode
+    via: industryCodes
+  - kind: has_many
+    target: RequestPoint
+    via: data
+- name: IndicatorValue
+  relationships:
+  - kind: has_one
+    target: IndicatorKey
+    via: indicatorKey
+- name: IndicatorValues
+  relationships:
+  - kind: has_many
+    target: Point
+    via: values
+  - kind: has_one
+    target: Indicator
+    via: indicator
+- name: IndustryCode
+- name: LockedModelInfo
+- name: MessageType
+- name: ModelHealthResponse
+  relationships:
+  - kind: has_one
+    target: ControlChartResult
+    via: result
+- name: ModelScore
+  relationships:
+  - kind: has_many
+    target: SegmentScore
+    via: segmentScores
+- name: ModelState
+- name: Outlier
+- name: PeriodAlignment
+- name: Point
+- name: ProblemDetails
+- name: Provider
+- name: ProviderAccess
+- name: RelativeImpactInfo
+  relationships:
+  - kind: has_many
+    target: IndicatorValue
+    via: relativeImpact
+- name: RequestPoint
+- name: ResponseMessage
+- name: RiskGrowthResult
+  relationships:
+  - kind: has_many
+    target: IndicatorValues
+    via: components
+  - kind: has_many
+    target: Point
+    via: forecast
+  - kind: has_many
+    target: Point
+    via: risk
+  - kind: has_many
+    target: Point
+    via: target
+- name: RiskResult
+  relationships:
+  - kind: has_many
+    target: IndicatorValues
+    via: components
+  - kind: has_many
+    target: Point
+    via: forecast
+  - kind: has_many
+    target: Point
+    via: risk
+  - kind: has_many
+    target: Point
+    via: target
+- name: ScenarioCoefficient
+  relationships:
+  - kind: has_many
+    target: DoubleEditable
+    via: coefficients
+- name: ScenarioForecast
+  relationships:
+  - kind: has_many
+    target: ScenarioCoefficient
+    via: scenarioCoefficients
+  - kind: has_many
+    target: ScenarioForecastPoints
+    via: scenarioForecastPoints
+  - kind: has_one
+    target: ContributionResult
+    via: contributionResult
+  - kind: has_one
+    target: ForecastModelInfo
+    via: forecastModel
+  - kind: has_one
+    target: ForecastResult
+    via: forecastResult
+  - kind: has_one
+    target: VolumeDecompResult
+    via: volumeDecompResult
+- name: ScenarioForecastListing
+- name: ScenarioForecastPoints
+  relationships:
+  - kind: has_many
+    target: Point
+    via: points
+- name: ScenarioListing
+  relationships:
+  - kind: has_many
+    target: ScenarioForecastListing
+    via: scenarioForecasts
+- name: ScenarioLite
+  relationships:
+  - kind: has_many
+    target: Point
+    via: points
+  - kind: has_many
+    target: ScenarioForecast
+    via: scenarioForecasts
+- name: Seasonality
+- name: SegmentBiasInfo
+- name: SegmentInfo
+  relationships:
+  - kind: has_many
+    target: CoefficientInfo
+    via: coefficients
+- name: SegmentScore
+  relationships:
+  - kind: has_one
+    target: BiasResult
+    via: biasResult
+  - kind: has_one
+    target: EfficiencyResult
+    via: efficiencyResult
+  - kind: has_one
+    target: ForecastAccuracyResult
+    via: forecastAccuracyResult
+- name: StatisticsResult
+  relationships:
+  - kind: has_many
+    target: Point
+    via: rawResiduals
+  - kind: has_many
+    target: Point
+    via: residualsInModelCalculation
+  - kind: has_one
+    target: FitLine
+    via: modelCalculationResidualFitLine
+  - kind: has_one
+    target: FitLine
+    via: rawResidualFitLine
+- name: Transformation
+- name: UpdateWorkbenchIndicatorRequest
+  relationships:
+  - kind: has_one
+    target: DisplayInformation
+    via: displayInformation
+- name: User
+- name: VolumeDecompResult
+  relationships:
+  - kind: has_many
+    target: IndicatorEntry
+    via: entries
+- name: WhiskerResult
+  relationships:
+  - kind: has_many
+    target: Outlier
+    via: outliers
+- name: Workbench
+  relationships:
+  - kind: has_many
+    target: WorkbenchCategoryInfo
+    via: categories
+  - kind: has_many
+    target: WorkbenchIndicator
+    via: indicators
+  - kind: has_one
+    target: Indicator
+    via: primaryIndicator
+- name: WorkbenchCategoryInfo
+  relationships:
+  - kind: has_many
+    target: IndicatorKey
+    via: indicators
+- name: WorkbenchIndicator
+  relationships:
+  - kind: has_many
+    target: Transformation
+    via: transformations
+  - kind: has_one
+    target: Indicator
+    via: indicator
+  - kind: has_one
+    target: IndicatorCorrelation
+    via: correlation
+- name: WorkbenchIndicatorSeries
+  relationships:
+  - kind: has_many
+    target: Point
+    via: points
+  - kind: has_many
+    target: Transformation
+    via: transformations
+- name: WorkbenchInfo
+  relationships:
+  - kind: has_one
+    target: Frequency
+    via: frequency
+- name: WorkbenchInfoSearchResults
+  relationships:
+  - kind: has_many
+    target: WorkbenchInfo
+    via: results
+- name: WorkbenchSeries
+  relationships:
+  - kind: has_many
+    target: WorkbenchIndicatorSeries
+    via: workbenchIndicators
+  - kind: has_one
+    target: WorkbenchIndicatorSeries
+    via: primaryIndicator
