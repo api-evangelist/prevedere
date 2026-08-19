@@ -1,0 +1,294 @@
+{
+  "item": [
+    {
+      "id": "e3ccfbf3-6dfe-4e07-913d-e4973f8a32d1",
+      "name": "Favorites",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "827611e7-df8b-498a-a209-b232a306c666",
+          "name": "Retrieves all the favorites-lists for the company",
+          "request": {
+            "name": "Retrieves all the favorites-lists for the company",
+            "description": {
+              "content": "Retrieves all the favorites-lists for the company",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "favorites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2408440-6e82-468e-ab42-d154a79245e0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "favorites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"b600a271-3a9e-372e-a9ef-b9b5c56b216f\",\n    \"owner\": \"string\",\n    \"label\": \"string\",\n    \"created\": \"2005-10-05T01:48:38.467Z\",\n    \"isPublic\": true,\n    \"isPrevedere\": true,\n    \"count\": 635\n  },\n  {\n    \"id\": \"d98e836e-8a04-ef90-dd7d-8883367fc183\",\n    \"owner\": \"string\",\n    \"label\": \"string\",\n    \"created\": \"1981-06-24T04:21:42.702Z\",\n    \"isPublic\": false,\n    \"isPrevedere\": false,\n    \"count\": 9618\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffd0c290-7d60-4147-b558-5c9d2cb09842",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "favorites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64e27720-2046-4229-a7c1-071828f65352",
+          "name": "Retrieves the specified favorite",
+          "request": {
+            "name": "Retrieves the specified favorite",
+            "description": {
+              "content": "Retrieves the specified favorite",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "favorite",
+                ":Id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "Id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40f6b25b-a880-4924-912a-26d8be79ecc6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "favorite",
+                    ":Id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "Id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"info\": {\n    \"id\": \"152cbb36-0c0f-20e1-9778-da79d2ac165d\",\n    \"owner\": \"string\",\n    \"label\": \"string\",\n    \"created\": \"2015-11-05T14:59:06.311Z\",\n    \"isPublic\": true,\n    \"isPrevedere\": false,\n    \"count\": 7487\n  },\n  \"indicators\": [\n    {\n      \"id\": \"e3465257-d21e-2482-1404-e4f23efacef7\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"aggregate\": 5,\n      \"calculation\": 5,\n      \"color\": \"string\",\n      \"displayInformation\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"color\": \"string\",\n        \"category\": \"string\"\n      },\n      \"count\": 7469,\n      \"created\": \"2021-12-24T19:06:57.311Z\",\n      \"startTime\": \"2003-12-28T11:59:50.228Z\",\n      \"endTime\": \"1954-06-08T06:42:42.244Z\",\n      \"transformedStartTime\": \"2020-01-25T16:53:31.044Z\",\n      \"transformedEndTime\": \"1964-06-21T20:00:38.426Z\",\n      \"frequency\": 4,\n      \"deprecated\": false,\n      \"deprecationReason\": \"string\",\n      \"lastModified\": \"2005-12-16T05:57:18.713Z\",\n      \"provider\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"id\": \"2ad2c6b4-aadb-320a-add9-a742deffbcee\",\n        \"source\": \"string\"\n      },\n      \"providerId\": \"string\",\n      \"seasonality\": 1,\n      \"source\": \"string\",\n      \"classification\": 9,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"units\": \"string\",\n      \"accessibility\": 1,\n      \"periodAlignment\": 1,\n      \"path\": \"string\",\n      \"notes\": \"string\",\n      \"citation\": \"string\",\n      \"dataSources\": [\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 3\n        },\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 4\n        }\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"hasZeroVariance\": false,\n      \"interval\": \"string\",\n      \"countryCode\": \"string\"\n    },\n    {\n      \"id\": \"44ff2326-d5c4-3024-089e-2b84d7873136\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"aggregate\": 3,\n      \"calculation\": 2,\n      \"color\": \"string\",\n      \"displayInformation\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"color\": \"string\",\n        \"category\": \"string\"\n      },\n      \"count\": 1868,\n      \"created\": \"2014-06-02T21:17:38.547Z\",\n      \"startTime\": \"1984-07-11T18:06:25.888Z\",\n      \"endTime\": \"1959-10-05T11:09:45.439Z\",\n      \"transformedStartTime\": \"2003-11-22T08:41:37.507Z\",\n      \"transformedEndTime\": \"1975-06-01T18:52:34.145Z\",\n      \"frequency\": 0,\n      \"deprecated\": false,\n      \"deprecationReason\": \"string\",\n      \"lastModified\": \"1958-05-02T05:42:30.597Z\",\n      \"provider\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"id\": \"50cff429-c566-acb4-25dc-8bce8004f899\",\n        \"source\": \"string\"\n      },\n      \"providerId\": \"string\",\n      \"seasonality\": 999,\n      \"source\": \"string\",\n      \"classification\": 0,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"units\": \"string\",\n      \"accessibility\": 0,\n      \"periodAlignment\": 2,\n      \"path\": \"string\",\n      \"notes\": \"string\",\n      \"citation\": \"string\",\n      \"dataSources\": [\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 6\n        },\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 2\n        }\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"hasZeroVariance\": false,\n      \"interval\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d82f1d8a-091a-4bfc-a62a-41e4713024e9",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "favorite",
+                    ":Id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "Id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d9f44688-87d9-446c-bfba-328fbfe4f613",
+    "name": "Board Foresight API - V1 Alert Favorites API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

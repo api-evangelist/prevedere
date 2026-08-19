@@ -1,0 +1,2078 @@
+{
+  "item": [
+    {
+      "id": "17bdfe6c-cbb4-4c66-8ea7-ef05eef64a17",
+      "name": "Indicator",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7eff77a7-d2e6-474e-a1dd-0739b1f835e9",
+          "name": "Retrieves the definition of a composite indicator",
+          "request": {
+            "name": "Retrieves the definition of a composite indicator",
+            "description": {
+              "content": "Retrieves the definition for a given composite indicator in the system",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                "composite",
+                "definition",
+                ":Provider",
+                ":ProviderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "Provider",
+                  "description": "(Required) Unique Identifier for Provider"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ProviderId",
+                  "description": "(Required) Identifier for specific indicator"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6939fa8-2256-426d-89ea-7de3d57ca0e4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "composite",
+                    "definition",
+                    ":Provider",
+                    ":ProviderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Provider",
+                      "description": "(Required) Unique Identifier for Provider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ProviderId",
+                      "description": "(Required) Identifier for specific indicator"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"provider\": \"string\",\n      \"providerId\": \"string\",\n      \"offset\": 8677,\n      \"calculation\": \"string\",\n      \"variableName\": \"string\"\n    },\n    {\n      \"provider\": \"string\",\n      \"providerId\": \"string\",\n      \"offset\": 1711,\n      \"calculation\": \"string\",\n      \"variableName\": \"string\"\n    }\n  ],\n  \"formula\": \"string\",\n  \"startDate\": \"2005-06-20T10:43:13.574Z\",\n  \"compositeMetadata\": {\n    \"provider\": \"string\",\n    \"providerId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"notes\": \"string\",\n    \"units\": \"string\",\n    \"citation\": \"string\",\n    \"path\": \"string\",\n    \"color\": \"string\",\n    \"aggregation\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"string\",\n        \"code\": \"string\"\n      },\n      {\n        \"type\": \"string\",\n        \"code\": \"string\"\n      }\n    ],\n    \"classification\": \"string\",\n    \"seasonalAdjustment\": \"string\",\n    \"periodAlignment\": \"string\",\n    \"interval\": \"string\",\n    \"frequency\": \"string\",\n    \"calculation\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1db9c14c-4cb5-49bd-bc60-54ac9316bd36",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "composite",
+                    "definition",
+                    ":Provider",
+                    ":ProviderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Provider",
+                      "description": "(Required) Unique Identifier for Provider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ProviderId",
+                      "description": "(Required) Identifier for specific indicator"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aecce6a3-a083-44b2-8093-23eba6a3bb03",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "composite",
+                    "definition",
+                    ":Provider",
+                    ":ProviderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Provider",
+                      "description": "(Required) Unique Identifier for Provider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ProviderId",
+                      "description": "(Required) Identifier for specific indicator"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8c8b21a-eef6-4e7b-ab68-ed9dd56b7219",
+          "name": "Updates the definition of a composite indicator",
+          "request": {
+            "name": "Updates the definition of a composite indicator",
+            "description": {
+              "content": "updates the definition for a given composite indicator in the system",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                "composite",
+                "definition",
+                ":Provider",
+                ":ProviderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "Provider",
+                  "description": "(Required) Unique Identifier for Provider"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ProviderId",
+                  "description": "(Required) Identifier for specific indicator"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entries\": [\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    },\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    }\n  ],\n  \"formula\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"compositeMetadata\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"frequency\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6bc2f516-ded9-4019-a55f-70269112bb78",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "composite",
+                    "definition",
+                    ":Provider",
+                    ":ProviderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Provider",
+                      "description": "(Required) Unique Identifier for Provider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ProviderId",
+                      "description": "(Required) Identifier for specific indicator"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    },\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    }\n  ],\n  \"formula\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"compositeMetadata\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"frequency\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"compositeDefinition\": {\n    \"entries\": [\n      {\n        \"provider\": \"string\",\n        \"providerId\": \"string\",\n        \"offset\": 6801,\n        \"calculation\": \"string\",\n        \"variableName\": \"string\"\n      },\n      {\n        \"provider\": \"string\",\n        \"providerId\": \"string\",\n        \"offset\": 4987,\n        \"calculation\": \"string\",\n        \"variableName\": \"string\"\n      }\n    ],\n    \"formula\": \"string\",\n    \"startDate\": \"1950-05-02T00:21:17.975Z\",\n    \"compositeMetadata\": {\n      \"provider\": \"string\",\n      \"providerId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"notes\": \"string\",\n      \"units\": \"string\",\n      \"citation\": \"string\",\n      \"path\": \"string\",\n      \"color\": \"string\",\n      \"aggregation\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"classification\": \"string\",\n      \"seasonalAdjustment\": \"string\",\n      \"periodAlignment\": \"string\",\n      \"interval\": \"string\",\n      \"frequency\": \"string\",\n      \"calculation\": \"string\"\n    }\n  },\n  \"messages\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c48ad56c-da9d-4ecd-a1fb-d7aa892a241f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "composite",
+                    "definition",
+                    ":Provider",
+                    ":ProviderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Provider",
+                      "description": "(Required) Unique Identifier for Provider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ProviderId",
+                      "description": "(Required) Identifier for specific indicator"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    },\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    }\n  ],\n  \"formula\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"compositeMetadata\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"frequency\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5087d111-cded-4369-b3aa-831cdd245e71",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "composite",
+                    "definition",
+                    ":Provider",
+                    ":ProviderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Provider",
+                      "description": "(Required) Unique Identifier for Provider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ProviderId",
+                      "description": "(Required) Identifier for specific indicator"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    },\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    }\n  ],\n  \"formula\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"compositeMetadata\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"frequency\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6e715c2-851d-4f53-859e-dbcb1cc3759e",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "composite",
+                    "definition",
+                    ":Provider",
+                    ":ProviderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Provider",
+                      "description": "(Required) Unique Identifier for Provider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ProviderId",
+                      "description": "(Required) Identifier for specific indicator"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    },\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    }\n  ],\n  \"formula\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"compositeMetadata\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"frequency\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed25c886-5155-49ab-9135-c4e4cc53d28c",
+          "name": "Creates a composite indicator",
+          "request": {
+            "name": "Creates a composite indicator",
+            "description": {
+              "content": "creates a composite indicator",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                "composite",
+                "definition"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entries\": [\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    },\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    }\n  ],\n  \"formula\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"compositeMetadata\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"calculation\": \"<string>\",\n    \"projectId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2c96b57-3877-43da-805f-34d3296f2b91",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "composite",
+                    "definition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    },\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    }\n  ],\n  \"formula\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"compositeMetadata\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"calculation\": \"<string>\",\n    \"projectId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"provider\": \"string\",\n      \"providerId\": \"string\",\n      \"offset\": 3807,\n      \"calculation\": \"string\",\n      \"variableName\": \"string\"\n    },\n    {\n      \"provider\": \"string\",\n      \"providerId\": \"string\",\n      \"offset\": 8666,\n      \"calculation\": \"string\",\n      \"variableName\": \"string\"\n    }\n  ],\n  \"formula\": \"string\",\n  \"startDate\": \"1958-01-05T12:08:22.540Z\",\n  \"compositeMetadata\": {\n    \"provider\": \"string\",\n    \"providerId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"notes\": \"string\",\n    \"units\": \"string\",\n    \"citation\": \"string\",\n    \"path\": \"string\",\n    \"color\": \"string\",\n    \"aggregation\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"string\",\n    \"seasonalAdjustment\": \"string\",\n    \"periodAlignment\": \"string\",\n    \"interval\": \"string\",\n    \"frequency\": \"string\",\n    \"calculation\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a57a5e9-7e34-49af-9ae4-0e93a56c5297",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "composite",
+                    "definition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    },\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    }\n  ],\n  \"formula\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"compositeMetadata\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"calculation\": \"<string>\",\n    \"projectId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24f9dcd0-b665-4fca-92df-2bcb1ff8a110",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "composite",
+                    "definition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entries\": [\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    },\n    {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"offset\": \"<integer>\",\n      \"calculation\": \"<string>\"\n    }\n  ],\n  \"formula\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"compositeMetadata\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"calculation\": \"<string>\",\n    \"projectId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86a49e88-8914-414b-bbff-ae0d3b721ccb",
+          "name": "Retrieves metadata for a given indicator in the system",
+          "request": {
+            "name": "Retrieves metadata for a given indicator in the system",
+            "description": {
+              "content": "Retrieves metadata for a given indicator in the system",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                ":Provider",
+                ":ProviderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "Provider",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ProviderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47f70c52-b5ac-4565-a593-2afaba0ff7f8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    ":Provider",
+                    ":ProviderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Provider",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ProviderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"6276d78e-79ae-324e-2e96-6657c9049fcf\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"aggregate\": 1,\n  \"calculation\": 7,\n  \"color\": \"string\",\n  \"displayInformation\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"color\": \"string\",\n    \"category\": \"string\"\n  },\n  \"count\": 4881,\n  \"created\": \"1999-09-05T15:29:57.407Z\",\n  \"startTime\": \"2012-08-11T04:45:38.636Z\",\n  \"endTime\": \"1992-10-13T22:27:39.569Z\",\n  \"transformedStartTime\": \"2012-05-27T20:25:26.069Z\",\n  \"transformedEndTime\": \"1952-10-03T23:01:21.704Z\",\n  \"frequency\": 2,\n  \"deprecated\": true,\n  \"deprecationReason\": \"string\",\n  \"lastModified\": \"2025-12-06T21:05:43.366Z\",\n  \"provider\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"id\": \"fbabed31-d0ea-7672-cab0-d497b7321834\",\n    \"source\": \"string\"\n  },\n  \"providerId\": \"string\",\n  \"seasonality\": 1,\n  \"source\": \"string\",\n  \"classification\": 7,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"type\": \"string\",\n  \"units\": \"string\",\n  \"accessibility\": 2,\n  \"periodAlignment\": 1,\n  \"path\": \"string\",\n  \"notes\": \"string\",\n  \"citation\": \"string\",\n  \"dataSources\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"dataSourceType\": 3\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"dataSourceType\": 7\n    }\n  ],\n  \"industryCodes\": [\n    {\n      \"type\": \"<string>\",\n      \"code\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"code\": \"<string>\"\n    }\n  ],\n  \"hasZeroVariance\": false,\n  \"interval\": \"string\",\n  \"countryCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17eba000-6af3-40c2-857b-6ff96607249d",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    ":Provider",
+                    ":ProviderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Provider",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ProviderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89026066-6fe0-4588-9fb2-42c2cda54178",
+          "name": "Retrieves time-series data for a given indicator in the system",
+          "request": {
+            "name": "Retrieves time-series data for a given indicator in the system",
+            "description": {
+              "content": "Retrieves time-series data for a given indicator in the system",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                "series",
+                ":Provider",
+                ":ProviderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Calculation",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Frequency",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "StartDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "EndDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "Provider",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ProviderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2be23446-0226-4911-9df4-0eacabf8976d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "series",
+                    ":Provider",
+                    ":ProviderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Calculation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "StartDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EndDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Provider",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ProviderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"value\": 4251.594977506536,\n    \"date\": \"1975-05-27T18:23:54.720Z\",\n    \"annotation\": \"string\",\n    \"manuallyAdjusted\": false,\n    \"isForecasted\": false\n  },\n  {\n    \"value\": 8909.16092601027,\n    \"date\": \"1997-12-22T17:37:31.874Z\",\n    \"annotation\": \"string\",\n    \"manuallyAdjusted\": false,\n    \"isForecasted\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe45508c-f4d7-4349-9606-42f4afdcaa7d",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "series",
+                    ":Provider",
+                    ":ProviderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Calculation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "StartDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EndDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Provider",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ProviderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e068e5e-4c4b-4d6e-83ee-dfecba4088d0",
+          "name": "Retrieves time-series data for a given indicator in the system with transformations applied",
+          "request": {
+            "name": "Retrieves time-series data for a given indicator in the system with transformations applied",
+            "description": {
+              "content": "Retrieves time-series data for a given indicator in the system with transformations applied",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                "series",
+                "transform"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"provider\": \"<string>\",\n  \"providerId\": \"<string>\",\n  \"startDate\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"transformations\": [\n    {\n      \"order\": \"<integer>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"order\": \"<integer>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"offset\": \"<integer>\",\n  \"isLogged\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7002dddc-767e-403b-85cc-f9de84ee60c6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "series",
+                    "transform"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"<string>\",\n  \"providerId\": \"<string>\",\n  \"startDate\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"transformations\": [\n    {\n      \"order\": \"<integer>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"order\": \"<integer>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"offset\": \"<integer>\",\n  \"isLogged\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"value\": 4251.594977506536,\n    \"date\": \"1975-05-27T18:23:54.720Z\",\n    \"annotation\": \"string\",\n    \"manuallyAdjusted\": false,\n    \"isForecasted\": false\n  },\n  {\n    \"value\": 8909.16092601027,\n    \"date\": \"1997-12-22T17:37:31.874Z\",\n    \"annotation\": \"string\",\n    \"manuallyAdjusted\": false,\n    \"isForecasted\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa4baeab-2f85-4968-a3ee-e7c75fc806e2",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "series",
+                    "transform"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"<string>\",\n  \"providerId\": \"<string>\",\n  \"startDate\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"transformations\": [\n    {\n      \"order\": \"<integer>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"order\": \"<integer>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"offset\": \"<integer>\",\n  \"isLogged\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dace532-ce45-4e26-bc69-08f789bfdca2",
+          "name": "Generates correlation data by comparing two indicators",
+          "request": {
+            "name": "Generates correlation data by comparing two indicators",
+            "description": {
+              "content": "Generates correlation data by comparing two indicators",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "correlation",
+                ":FixedProvider",
+                ":FixedProviderId",
+                ":LeadingProvider",
+                ":LeadingProviderId",
+                ":Frequency",
+                ":Calculation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "FixedProvider",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "FixedProviderId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "LeadingProvider",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "LeadingProviderId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "Frequency",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "Calculation",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fdbb0a54-bef3-4e88-a65e-465bb2297a72",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "correlation",
+                    ":FixedProvider",
+                    ":FixedProviderId",
+                    ":LeadingProvider",
+                    ":LeadingProviderId",
+                    ":Frequency",
+                    ":Calculation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "FixedProvider",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "FixedProviderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "LeadingProvider",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "LeadingProviderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Frequency",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Calculation",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"calculation\": 3,\n  \"maxDataPointOverlap\": 7120,\n  \"minDataPointOverlap\": 982,\n  \"bestCorrelationCoefficient\": 1214.3704902421148,\n  \"bestRSquared\": 1858.4257828269767,\n  \"bestProcyclic\": 7583.945434967959,\n  \"bestCountercyclic\": 3556.2437965364056,\n  \"data\": [\n    {\n      \"counterCyclic\": 1191.3349475496116,\n      \"periodShift\": 3268,\n      \"proCyclic\": 9323.858825379584,\n      \"correlationCoefficient\": 1475.5770296989767,\n      \"rSquared\": 5552.58706709346,\n      \"numberOfDataPoints\": 753,\n      \"notes\": \"string\"\n    },\n    {\n      \"counterCyclic\": 8855.657800999406,\n      \"periodShift\": 7151,\n      \"proCyclic\": 4566.867493138688,\n      \"correlationCoefficient\": 4362.311427666752,\n      \"rSquared\": 9302.835434859433,\n      \"numberOfDataPoints\": 4882,\n      \"notes\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e614da7-4761-471c-954b-df01de3ae162",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "correlation",
+                    ":FixedProvider",
+                    ":FixedProviderId",
+                    ":LeadingProvider",
+                    ":LeadingProviderId",
+                    ":Frequency",
+                    ":Calculation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "FixedProvider",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "FixedProviderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "LeadingProvider",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "LeadingProviderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Frequency",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Calculation",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff2c4b78-2f2b-4d4a-b274-a7df72bd256c",
+          "name": "retrieves indicators based on search criteria",
+          "request": {
+            "name": "retrieves indicators based on search criteria",
+            "description": {
+              "content": "retrieves indicators based on search criteria",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Frequency",
+                  "value": "<string>",
+                  "description": "A frequency value to filter search results by. <seealso cref=\"T:Prevedere.Analytics.Domain.Enum.Frequency\" />"
+                },
+                {
+                  "disabled": false,
+                  "key": "Calculation",
+                  "value": "<string>",
+                  "description": "A calculation value to filter search results by. <seealso cref=\"T:Prevedere.Analytics.Domain.Enum.Calculation\" />"
+                },
+                {
+                  "disabled": false,
+                  "key": "Seasonality",
+                  "value": "<string>",
+                  "description": "A seasonality value to filter search results by. <seealso cref=\"T:Prevedere.Analytics.Domain.Enum.Seasonality\" />"
+                },
+                {
+                  "disabled": false,
+                  "key": "Internal",
+                  "value": "<boolean>",
+                  "description": "A flag for returning internal company data sets"
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludeForecasted",
+                  "value": "<boolean>",
+                  "description": "A flag for returning forecasted indicators in the search results."
+                },
+                {
+                  "disabled": false,
+                  "key": "Query",
+                  "value": "*",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Page",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "25"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "479428ce-e3ba-41f7-850a-cf8f071b7e5d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Calculation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Seasonality",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Internal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeForecasted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Query",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"abeba4a5-99ec-afe9-1088-4147a4873bd0\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"aggregate\": 2,\n      \"calculation\": 3,\n      \"color\": \"string\",\n      \"displayInformation\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"color\": \"string\",\n        \"category\": \"string\"\n      },\n      \"count\": 7031,\n      \"created\": \"1986-07-24T08:02:21.934Z\",\n      \"startTime\": \"1949-02-22T02:57:24.479Z\",\n      \"endTime\": \"2014-12-24T19:56:58.805Z\",\n      \"transformedStartTime\": \"2020-08-21T02:44:13.527Z\",\n      \"transformedEndTime\": \"2016-07-17T11:08:47.266Z\",\n      \"frequency\": 2,\n      \"deprecated\": false,\n      \"deprecationReason\": \"string\",\n      \"lastModified\": \"1967-09-03T20:24:09.862Z\",\n      \"provider\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"id\": \"e90a0ad4-dd0a-3a1d-83e0-540da47c3952\",\n        \"source\": \"string\"\n      },\n      \"providerId\": \"string\",\n      \"seasonality\": 0,\n      \"source\": \"string\",\n      \"classification\": 1,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"units\": \"string\",\n      \"accessibility\": 1,\n      \"periodAlignment\": 0,\n      \"path\": \"string\",\n      \"notes\": \"string\",\n      \"citation\": \"string\",\n      \"dataSources\": [\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 3\n        },\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 1\n        }\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"hasZeroVariance\": false,\n      \"interval\": \"string\",\n      \"countryCode\": \"string\"\n    },\n    {\n      \"id\": \"1a22a7e9-8861-aa54-3ce2-489e3df7f77b\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"aggregate\": 6,\n      \"calculation\": 4,\n      \"color\": \"string\",\n      \"displayInformation\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"color\": \"string\",\n        \"category\": \"string\"\n      },\n      \"count\": 8602,\n      \"created\": \"1948-01-04T10:35:57.636Z\",\n      \"startTime\": \"2009-04-05T20:01:05.344Z\",\n      \"endTime\": \"1991-02-18T04:28:11.588Z\",\n      \"transformedStartTime\": \"1950-06-20T22:16:56.433Z\",\n      \"transformedEndTime\": \"1984-12-24T04:41:04.735Z\",\n      \"frequency\": 4,\n      \"deprecated\": true,\n      \"deprecationReason\": \"string\",\n      \"lastModified\": \"2002-05-06T20:46:26.649Z\",\n      \"provider\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"id\": \"24611ca8-04b2-a63d-6642-38c38f2b5525\",\n        \"source\": \"string\"\n      },\n      \"providerId\": \"string\",\n      \"seasonality\": 999,\n      \"source\": \"string\",\n      \"classification\": 0,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"units\": \"string\",\n      \"accessibility\": 1,\n      \"periodAlignment\": 2,\n      \"path\": \"string\",\n      \"notes\": \"string\",\n      \"citation\": \"string\",\n      \"dataSources\": [\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 1\n        },\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 1\n        }\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"hasZeroVariance\": true,\n      \"interval\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  ],\n  \"page\": 6833,\n  \"pageSize\": 561,\n  \"totalResults\": 5911\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c0df64f-1e96-45cb-a99f-198a53d992c8",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Calculation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Seasonality",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Internal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeForecasted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Query",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce136c7a-a63c-4128-8381-6361a06171cc",
+          "name": "creates a new indicator.",
+          "request": {
+            "name": "creates a new indicator.",
+            "description": {
+              "content": "creates a new indicator.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"indicator\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"data\": [\n      {\n        \"value\": \"<double>\",\n        \"annotation\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"isForecasted\": \"<boolean>\"\n      },\n      {\n        \"value\": \"<double>\",\n        \"annotation\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"isForecasted\": \"<boolean>\"\n      }\n    ],\n    \"calculation\": \"<string>\",\n    \"projectId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1191dd96-237e-4b2d-b101-ef4416f4fd35",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"indicator\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"data\": [\n      {\n        \"value\": \"<double>\",\n        \"annotation\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"isForecasted\": \"<boolean>\"\n      },\n      {\n        \"value\": \"<double>\",\n        \"annotation\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"isForecasted\": \"<boolean>\"\n      }\n    ],\n    \"calculation\": \"<string>\",\n    \"projectId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"866f6a50-3eea-867c-ef35-865d88292893\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"aggregate\": 1,\n  \"calculation\": 3,\n  \"color\": \"string\",\n  \"displayInformation\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"color\": \"string\",\n    \"category\": \"string\"\n  },\n  \"count\": 9938,\n  \"created\": \"2025-08-29T16:08:06.385Z\",\n  \"startTime\": \"1992-02-19T14:03:06.103Z\",\n  \"endTime\": \"2003-02-24T03:23:44.182Z\",\n  \"transformedStartTime\": \"1999-10-11T14:45:23.131Z\",\n  \"transformedEndTime\": \"1971-08-17T06:28:49.055Z\",\n  \"frequency\": 1000,\n  \"deprecated\": true,\n  \"deprecationReason\": \"string\",\n  \"lastModified\": \"1982-08-04T21:24:02.762Z\",\n  \"provider\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"id\": \"9a751757-c051-d5c6-0c3b-6404f8787f12\",\n    \"source\": \"string\"\n  },\n  \"providerId\": \"string\",\n  \"seasonality\": 1,\n  \"source\": \"string\",\n  \"classification\": 2,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"type\": \"string\",\n  \"units\": \"string\",\n  \"accessibility\": 0,\n  \"periodAlignment\": 2,\n  \"path\": \"string\",\n  \"notes\": \"string\",\n  \"citation\": \"string\",\n  \"dataSources\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"dataSourceType\": 3\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"dataSourceType\": 0\n    }\n  ],\n  \"industryCodes\": [\n    {\n      \"type\": \"<string>\",\n      \"code\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"code\": \"<string>\"\n    }\n  ],\n  \"hasZeroVariance\": true,\n  \"interval\": \"string\",\n  \"countryCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59ca0b1f-e55d-4b4a-a9cb-96d54a47d4a7",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"indicator\": {\n    \"provider\": \"<string>\",\n    \"providerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"units\": \"<string>\",\n    \"citation\": \"<string>\",\n    \"path\": \"<string>\",\n    \"color\": \"<string>\",\n    \"aggregation\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"code\": \"<string>\"\n      }\n    ],\n    \"classification\": \"<string>\",\n    \"seasonalAdjustment\": \"<string>\",\n    \"periodAlignment\": \"<string>\",\n    \"interval\": \"<string>\",\n    \"data\": [\n      {\n        \"value\": \"<double>\",\n        \"annotation\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"isForecasted\": \"<boolean>\"\n      },\n      {\n        \"value\": \"<double>\",\n        \"annotation\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"isForecasted\": \"<boolean>\"\n      }\n    ],\n    \"calculation\": \"<string>\",\n    \"projectId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa282167-a6ad-43b0-8b40-d41871ca2111",
+          "name": "updates one or more indicators.",
+          "request": {
+            "name": "updates one or more indicators.",
+            "description": {
+              "content": "updates one or more indicators.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"indicators\": {\n    \"key_0\": {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"units\": \"<string>\",\n      \"citation\": \"<string>\",\n      \"path\": \"<string>\",\n      \"color\": \"<string>\",\n      \"aggregation\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"classification\": \"<string>\",\n      \"seasonalAdjustment\": \"<string>\",\n      \"periodAlignment\": \"<string>\",\n      \"interval\": \"<string>\",\n      \"data\": [\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        },\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        }\n      ],\n      \"deleteExistingDataRecords\": \"<boolean>\"\n    },\n    \"key_1\": {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"units\": \"<string>\",\n      \"citation\": \"<string>\",\n      \"path\": \"<string>\",\n      \"color\": \"<string>\",\n      \"aggregation\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"classification\": \"<string>\",\n      \"seasonalAdjustment\": \"<string>\",\n      \"periodAlignment\": \"<string>\",\n      \"interval\": \"<string>\",\n      \"data\": [\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        },\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        }\n      ],\n      \"deleteExistingDataRecords\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb1d3be8-f1c2-49a6-87ed-efedc6618f5f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"indicators\": {\n    \"key_0\": {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"units\": \"<string>\",\n      \"citation\": \"<string>\",\n      \"path\": \"<string>\",\n      \"color\": \"<string>\",\n      \"aggregation\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"classification\": \"<string>\",\n      \"seasonalAdjustment\": \"<string>\",\n      \"periodAlignment\": \"<string>\",\n      \"interval\": \"<string>\",\n      \"data\": [\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        },\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        }\n      ],\n      \"deleteExistingDataRecords\": \"<boolean>\"\n    },\n    \"key_1\": {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"units\": \"<string>\",\n      \"citation\": \"<string>\",\n      \"path\": \"<string>\",\n      \"color\": \"<string>\",\n      \"aggregation\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"classification\": \"<string>\",\n      \"seasonalAdjustment\": \"<string>\",\n      \"periodAlignment\": \"<string>\",\n      \"interval\": \"<string>\",\n      \"data\": [\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        },\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        }\n      ],\n      \"deleteExistingDataRecords\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fcc44cbe-ede7-4d9f-9652-f9b9c7a3540d",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"indicators\": {\n    \"key_0\": {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"units\": \"<string>\",\n      \"citation\": \"<string>\",\n      \"path\": \"<string>\",\n      \"color\": \"<string>\",\n      \"aggregation\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"classification\": \"<string>\",\n      \"seasonalAdjustment\": \"<string>\",\n      \"periodAlignment\": \"<string>\",\n      \"interval\": \"<string>\",\n      \"data\": [\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        },\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        }\n      ],\n      \"deleteExistingDataRecords\": \"<boolean>\"\n    },\n    \"key_1\": {\n      \"provider\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"units\": \"<string>\",\n      \"citation\": \"<string>\",\n      \"path\": \"<string>\",\n      \"color\": \"<string>\",\n      \"aggregation\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"classification\": \"<string>\",\n      \"seasonalAdjustment\": \"<string>\",\n      \"periodAlignment\": \"<string>\",\n      \"interval\": \"<string>\",\n      \"data\": [\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        },\n        {\n          \"value\": \"<double>\",\n          \"annotation\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"isForecasted\": \"<boolean>\"\n        }\n      ],\n      \"deleteExistingDataRecords\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9d00fb79-2e7d-4d6c-a643-a19cf9bce11e",
+    "name": "Board Foresight API - V1 Alert Indicator API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

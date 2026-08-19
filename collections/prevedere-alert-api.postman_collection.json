@@ -1,0 +1,172 @@
+{
+  "item": [
+    {
+      "id": "fab0753a-77d4-44a0-9850-2e25eff245c5",
+      "name": "Alert",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7f96986-e2fe-4309-8e76-ba3e4e15da5d",
+          "name": "Retrieves alert history",
+          "request": {
+            "name": "Retrieves alert history",
+            "description": {
+              "content": "Retrieves alert history",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "LookbackDays",
+                  "value": "90"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07166daf-d5a5-4672-827d-9b0656965d18",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "LookbackDays",
+                      "value": "90"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ad820d27-e985-825f-dd6c-2a4ced07355a\",\n    \"companyId\": \"40a72e90-32c5-f41e-6aab-6bfe21a084a3\",\n    \"alertDate\": \"1979-07-21T15:04:47.310Z\",\n    \"value\": 2304.7802361742097,\n    \"time\": \"2021-09-12T19:41:48.701Z\",\n    \"alertMessage\": \"string\",\n    \"alertDefinitionId\": \"b3ca3d42-a6fe-e6ab-8c4d-7c48ff623dae\",\n    \"targetIndicatorProvider\": \"da3972c3-9ef4-c549-3f24-096bacd27cb8\",\n    \"targetIndicatorProviderId\": \"string\",\n    \"targetForecastModelId\": \"08c997d2-8525-e63d-7ee9-48deb4bb8d6e\",\n    \"containingEntityType\": \"string\",\n    \"containingEntityId\": \"46ca6c6f-226c-d801-1ec1-5bc97aeceedf\",\n    \"contextMessages\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"2a3fe1ec-206a-30f7-ebf7-cb4034772c3b\",\n    \"companyId\": \"e0f2126a-f590-838f-4226-9bf5f3f402a1\",\n    \"alertDate\": \"2010-01-06T20:48:20.563Z\",\n    \"value\": 662.6317212946286,\n    \"time\": \"2003-08-05T20:09:59.925Z\",\n    \"alertMessage\": \"string\",\n    \"alertDefinitionId\": \"ca5ab7e6-1555-70e5-57db-afb7600577a8\",\n    \"targetIndicatorProvider\": \"c99c4ef0-c16a-7ff0-750e-ead28f15bd01\",\n    \"targetIndicatorProviderId\": \"string\",\n    \"targetForecastModelId\": \"d9838dc4-1379-e33b-0aa1-8f7662a1261a\",\n    \"containingEntityType\": \"string\",\n    \"containingEntityId\": \"e3334f43-edec-8d68-3c3e-7d7d54515fa1\",\n    \"contextMessages\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f24cb9e5-5294-4e50-894d-654e882978f1",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "LookbackDays",
+                      "value": "90"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "11a78bd8-2bfe-4655-8f75-ece8df011f5d",
+    "name": "Board Foresight API - V1 Alert API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

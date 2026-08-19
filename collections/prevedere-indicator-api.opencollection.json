@@ -1,0 +1,312 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Board Foresight API - V1 Alert Indicator API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiKey",
+      "value": "{{ApiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Indicator",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the definition of a composite indicator",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/indicator/composite/definition/:Provider/:ProviderId",
+            "params": [
+              {
+                "name": "Provider",
+                "value": "",
+                "type": "path",
+                "description": "Unique Identifier for Provider"
+              },
+              {
+                "name": "ProviderId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier for specific indicator"
+              }
+            ]
+          },
+          "docs": "Retrieves the definition for a given composite indicator in the system"
+        },
+        {
+          "info": {
+            "name": "Updates the definition of a composite indicator",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/indicator/composite/definition/:Provider/:ProviderId",
+            "params": [
+              {
+                "name": "Provider",
+                "value": "",
+                "type": "path",
+                "description": "Unique Identifier for Provider"
+              },
+              {
+                "name": "ProviderId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier for specific indicator"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "updates the definition for a given composite indicator in the system"
+        },
+        {
+          "info": {
+            "name": "Creates a composite indicator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicator/composite/definition",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "creates a composite indicator"
+        },
+        {
+          "info": {
+            "name": "GET /indicator/{Provider}/{ProviderId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/indicator/:Provider/:ProviderId",
+            "params": [
+              {
+                "name": "Provider",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ProviderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves metadata for a given indicator in the system"
+        },
+        {
+          "info": {
+            "name": "GET /indicator/series/{Provider}/{ProviderId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/indicator/series/:Provider/:ProviderId",
+            "params": [
+              {
+                "name": "Provider",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ProviderId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "Calculation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Frequency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "StartDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "EndDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves time-series data for a given indicator in the system"
+        },
+        {
+          "info": {
+            "name": "POST /indicator/series/transform",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicator/series/transform",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves time-series data for a given indicator in the system with transformations applied"
+        },
+        {
+          "info": {
+            "name": "GET /correlation/{FixedProvider}/{FixedProviderId}/{LeadingProvider}/{LeadingProviderId}/{Frequency}/{Calculation}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/correlation/:FixedProvider/:FixedProviderId/:LeadingProvider/:LeadingProviderId/:Frequency/:Calculation",
+            "params": [
+              {
+                "name": "FixedProvider",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "FixedProviderId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "LeadingProvider",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "LeadingProviderId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "Frequency",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "Calculation",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Generates correlation data by comparing two indicators"
+        },
+        {
+          "info": {
+            "name": "GET /search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search",
+            "params": [
+              {
+                "name": "Frequency",
+                "value": "",
+                "type": "query",
+                "description": "A frequency value to filter search results by. <seealso cref=\"T:Prevedere.Analytics.Domain.Enum.Frequency\" />"
+              },
+              {
+                "name": "Calculation",
+                "value": "",
+                "type": "query",
+                "description": "A calculation value to filter search results by. <seealso cref=\"T:Prevedere.Analytics.Domain.Enum.Calculation\" />"
+              },
+              {
+                "name": "Seasonality",
+                "value": "",
+                "type": "query",
+                "description": "A seasonality value to filter search results by. <seealso cref=\"T:Prevedere.Analytics.Domain.Enum.Seasonality\" />"
+              },
+              {
+                "name": "Internal",
+                "value": "",
+                "type": "query",
+                "description": "A flag for returning internal company data sets"
+              },
+              {
+                "name": "IncludeForecasted",
+                "value": "",
+                "type": "query",
+                "description": "A flag for returning forecasted indicators in the search results."
+              },
+              {
+                "name": "Query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "retrieves indicators based on search criteria"
+        },
+        {
+          "info": {
+            "name": "POST /indicator/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicator/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "creates a new indicator."
+        },
+        {
+          "info": {
+            "name": "PUT /indicator/update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/indicator/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "updates one or more indicators."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

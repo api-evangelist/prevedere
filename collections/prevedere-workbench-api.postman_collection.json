@@ -1,0 +1,968 @@
+{
+  "item": [
+    {
+      "id": "93c859cf-2b77-429c-a694-e75b5d99172e",
+      "name": "Workbench",
+      "description": {
+        "content": "Workbenches are a powerful feature in the Board Foresight application that allow users to organize and analyze data through indicators. They enable the creation of models by selecting primary and additional indicators, which can be further adjusted and managed.\n\nUsing Workbenches endpoints you can\n- Retrieve the workbench information for the given workbench ID\n- Update or add an indicator to the existing workbench specified by the given ID\n- Retrieve the workbench series information for the given workbench ID and categories\n- Retrieves the list of accessible workbenches for the company",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3575380a-e7e4-478e-acf3-9fedd29047a5",
+          "name": "Retrieve the workbench information for the given workbench id",
+          "request": {
+            "name": "Retrieve the workbench information for the given workbench id",
+            "description": {
+              "content": "Retrieve the workbench information for the given workbench id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workbench",
+                ":WorkbenchId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "WorkbenchId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b01edaa2-882d-409c-b54b-f02deccace89",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbench",
+                    ":WorkbenchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "WorkbenchId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5d64e4c1-4271-ce64-6bcd-58db3ff62075\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"created\": \"1962-11-11T06:27:58.224Z\",\n  \"owner\": \"string\",\n  \"lastModified\": \"2016-08-22T20:17:43.247Z\",\n  \"frequency\": \"string\",\n  \"calculation\": \"string\",\n  \"primaryIndicator\": {\n    \"id\": \"7ae55af0-4730-1d8d-df90-a99c7b976449\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"aggregate\": 1,\n    \"calculation\": 3,\n    \"color\": \"string\",\n    \"displayInformation\": {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"color\": \"string\",\n      \"category\": \"string\"\n    },\n    \"count\": 3232,\n    \"created\": \"2000-03-15T18:51:08.258Z\",\n    \"startTime\": \"2017-10-18T20:35:20.321Z\",\n    \"endTime\": \"2017-07-14T16:37:01.775Z\",\n    \"transformedStartTime\": \"1990-06-11T19:47:38.999Z\",\n    \"transformedEndTime\": \"2013-09-26T22:59:09.311Z\",\n    \"frequency\": 2,\n    \"deprecated\": true,\n    \"deprecationReason\": \"string\",\n    \"lastModified\": \"2020-12-04T03:16:58.080Z\",\n    \"provider\": {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"id\": \"9e6d8a5d-381d-e9e5-0ddf-718ee7fdf41b\",\n      \"source\": \"string\"\n    },\n    \"providerId\": \"string\",\n    \"seasonality\": 1,\n    \"source\": \"string\",\n    \"classification\": 9,\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"type\": \"string\",\n    \"units\": \"string\",\n    \"accessibility\": 1,\n    \"periodAlignment\": 0,\n    \"path\": \"string\",\n    \"notes\": \"string\",\n    \"citation\": \"string\",\n    \"dataSources\": [\n      {\n        \"name\": \"string\",\n        \"url\": \"string\",\n        \"dataSourceType\": 5\n      },\n      {\n        \"name\": \"string\",\n        \"url\": \"string\",\n        \"dataSourceType\": 5\n      }\n    ],\n    \"industryCodes\": [\n      {\n        \"type\": \"string\",\n        \"code\": \"string\"\n      },\n      {\n        \"type\": \"string\",\n        \"code\": \"string\"\n      }\n    ],\n    \"hasZeroVariance\": false,\n    \"interval\": \"string\",\n    \"countryCode\": \"string\"\n  },\n  \"indicators\": [\n    {\n      \"indicator\": {\n        \"id\": \"76f352af-bf2b-8394-9725-61062073eedc\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"aggregate\": 4,\n        \"calculation\": 6,\n        \"color\": \"string\",\n        \"displayInformation\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"color\": \"string\",\n          \"category\": \"string\"\n        },\n        \"count\": 2963,\n        \"created\": \"1989-11-22T21:43:24.391Z\",\n        \"startTime\": \"2005-09-16T08:32:37.564Z\",\n        \"endTime\": \"1946-12-08T09:57:30.574Z\",\n        \"transformedStartTime\": \"1952-05-14T07:08:13.007Z\",\n        \"transformedEndTime\": \"2026-07-10T11:36:03.433Z\",\n        \"frequency\": 365,\n        \"deprecated\": true,\n        \"deprecationReason\": \"string\",\n        \"lastModified\": \"1957-11-03T19:57:16.954Z\",\n        \"provider\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"id\": \"9b665400-f6d9-31e4-eb09-5f76c5c893d5\",\n          \"source\": \"string\"\n        },\n        \"providerId\": \"string\",\n        \"seasonality\": 999,\n        \"source\": \"string\",\n        \"classification\": 9,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\",\n        \"units\": \"string\",\n        \"accessibility\": 2,\n        \"periodAlignment\": 2,\n        \"path\": \"string\",\n        \"notes\": \"string\",\n        \"citation\": \"string\",\n        \"dataSources\": [\n          {\n            \"name\": \"string\",\n            \"url\": \"string\",\n            \"dataSourceType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"string\",\n            \"url\": \"string\",\n            \"dataSourceType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"industryCodes\": [\n          {\n            \"type\": \"string\",\n            \"code\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"code\": \"string\"\n          }\n        ],\n        \"hasZeroVariance\": true,\n        \"interval\": \"string\",\n        \"countryCode\": \"string\"\n      },\n      \"offset\": 2407,\n      \"sort\": 3006,\n      \"locked\": false,\n      \"visible\": false,\n      \"isLoggable\": false,\n      \"incompatible\": false,\n      \"correlation\": {\n        \"correlationCoefficient\": 5671.487813086731,\n        \"rSquared\": 3135.8232399595486,\n        \"proCyclic\": 8805.425909306685,\n        \"counterCyclic\": 8560.623663548045\n      },\n      \"expectedSign\": \"string\",\n      \"transformations\": [\n        {\n          \"order\": 5915,\n          \"required\": true\n        },\n        {\n          \"order\": 7453,\n          \"required\": true\n        }\n      ]\n    },\n    {\n      \"indicator\": {\n        \"id\": \"c58b9a63-5c1c-4859-e50c-c6c7fdf09e6c\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"aggregate\": 2,\n        \"calculation\": 7,\n        \"color\": \"string\",\n        \"displayInformation\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"color\": \"string\",\n          \"category\": \"string\"\n        },\n        \"count\": 8353,\n        \"created\": \"1976-02-14T12:45:37.410Z\",\n        \"startTime\": \"2022-10-30T16:22:45.557Z\",\n        \"endTime\": \"1958-07-05T16:34:14.495Z\",\n        \"transformedStartTime\": \"2026-07-03T03:45:34.467Z\",\n        \"transformedEndTime\": \"1946-09-27T13:49:26.091Z\",\n        \"frequency\": 2,\n        \"deprecated\": false,\n        \"deprecationReason\": \"string\",\n        \"lastModified\": \"1967-11-03T17:08:46.145Z\",\n        \"provider\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"id\": \"e2fec92f-030f-3344-f5c4-ed224c6828ac\",\n          \"source\": \"string\"\n        },\n        \"providerId\": \"string\",\n        \"seasonality\": 0,\n        \"source\": \"string\",\n        \"classification\": 3,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\",\n        \"units\": \"string\",\n        \"accessibility\": 1,\n        \"periodAlignment\": 1,\n        \"path\": \"string\",\n        \"notes\": \"string\",\n        \"citation\": \"string\",\n        \"dataSources\": [\n          {\n            \"name\": \"string\",\n            \"url\": \"string\",\n            \"dataSourceType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"string\",\n            \"url\": \"string\",\n            \"dataSourceType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"industryCodes\": [\n          {\n            \"type\": \"string\",\n            \"code\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"code\": \"string\"\n          }\n        ],\n        \"hasZeroVariance\": false,\n        \"interval\": \"string\",\n        \"countryCode\": \"string\"\n      },\n      \"offset\": 7919,\n      \"sort\": 8000,\n      \"locked\": false,\n      \"visible\": false,\n      \"isLoggable\": false,\n      \"incompatible\": false,\n      \"correlation\": {\n        \"correlationCoefficient\": 4360.8523402919645,\n        \"rSquared\": 2213.636302272314,\n        \"proCyclic\": 4946.954902394025,\n        \"counterCyclic\": 6911.206316807466\n      },\n      \"expectedSign\": \"string\",\n      \"transformations\": [\n        {\n          \"order\": 2027,\n          \"required\": false\n        },\n        {\n          \"order\": 3994,\n          \"required\": false\n        }\n      ]\n    }\n  ],\n  \"categories\": [\n    {\n      \"id\": \"cea2316f-0e2b-7148-5c27-3746264b7f60\",\n      \"name\": \"string\",\n      \"sort\": 3127,\n      \"note\": \"string\",\n      \"indicators\": [\n        {\n          \"provider\": \"78c3ceb1-2a58-5e07-87c3-d05599f385fc\",\n          \"providerId\": \"string\"\n        },\n        {\n          \"provider\": \"5457f526-bf89-1909-2fb6-000b4c3270a1\",\n          \"providerId\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"1db6ed2c-89ad-9d30-896d-c269b8594067\",\n      \"name\": \"string\",\n      \"sort\": 1009,\n      \"note\": \"string\",\n      \"indicators\": [\n        {\n          \"provider\": \"27a7bf57-b253-f5dc-aff0-cf0a4525e979\",\n          \"providerId\": \"string\"\n        },\n        {\n          \"provider\": \"228af42f-2d8d-a745-973d-3f210cded274\",\n          \"providerId\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"cutoffDate\": \"2010-02-21T00:39:34.658Z\",\n  \"calculatedStartDate\": \"1988-01-31T14:01:15.976Z\",\n  \"endDate\": \"1989-09-04T02:17:54.473Z\",\n  \"url\": \"string\",\n  \"notes\": \"string\",\n  \"notesLastModified\": \"1953-02-11T13:38:53.557Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "464ff1a9-efde-411e-8b5e-98960b71ae99",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbench",
+                    ":WorkbenchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "WorkbenchId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9591339-08a1-4d94-88f6-6890882a706b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbench",
+                    ":WorkbenchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "WorkbenchId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef7c1fcb-3515-4efc-b169-6f8087ad3045",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbench",
+                    ":WorkbenchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "WorkbenchId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01734960-1a47-416d-abc0-6552d96dde4b",
+          "name": "Update or add an indicator to the existing workbench specified by the given ID.",
+          "request": {
+            "name": "Update or add an indicator to the existing workbench specified by the given ID.",
+            "description": {
+              "content": "Update or add an indicator to the existing workbench specified by the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workbench",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"indicatorProvider\": \"<string>\",\n  \"indicatorProviderId\": \"<string>\",\n  \"workbenchId\": \"<string>\",\n  \"offset\": \"<integer>\",\n  \"expectedSign\": \"<string>\",\n  \"locked\": \"<boolean>\",\n  \"visible\": \"<boolean>\",\n  \"displayInformation\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"color\": \"<string>\",\n    \"category\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b71702dd-ae5d-4c12-8609-ebab4d86fc1c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbench",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"indicatorProvider\": \"<string>\",\n  \"indicatorProviderId\": \"<string>\",\n  \"workbenchId\": \"<string>\",\n  \"offset\": \"<integer>\",\n  \"expectedSign\": \"<string>\",\n  \"locked\": \"<boolean>\",\n  \"visible\": \"<boolean>\",\n  \"displayInformation\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"color\": \"<string>\",\n    \"category\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b89fa9b1-c7c2-43ac-9cfb-d476a1d1dbe2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbench",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"indicatorProvider\": \"<string>\",\n  \"indicatorProviderId\": \"<string>\",\n  \"workbenchId\": \"<string>\",\n  \"offset\": \"<integer>\",\n  \"expectedSign\": \"<string>\",\n  \"locked\": \"<boolean>\",\n  \"visible\": \"<boolean>\",\n  \"displayInformation\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"color\": \"<string>\",\n    \"category\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6067,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9224462e-c87b-4ddb-a734-aa991950f404",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbench",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"indicatorProvider\": \"<string>\",\n  \"indicatorProviderId\": \"<string>\",\n  \"workbenchId\": \"<string>\",\n  \"offset\": \"<integer>\",\n  \"expectedSign\": \"<string>\",\n  \"locked\": \"<boolean>\",\n  \"visible\": \"<boolean>\",\n  \"displayInformation\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"color\": \"<string>\",\n    \"category\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33d0d81c-f5b5-4b16-b506-0ba828f50dad",
+          "name": "Retrieve the workbench series information for the given workbench id and categories",
+          "request": {
+            "name": "Retrieve the workbench series information for the given workbench id and categories",
+            "description": {
+              "content": "Retrieve the workbench series information for the given workbench id and categories",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workbench",
+                "series",
+                ":WorkbenchId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeHidden",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryNames",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryNames",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryIds",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryIds",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "WorkbenchId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c239a150-b77d-4403-aafe-489688fcdd97",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbench",
+                    "series",
+                    ":WorkbenchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeHidden",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "categoryNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "categoryIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "WorkbenchId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"primaryIndicator\": {\n    \"provider\": \"3bce23d6-9624-7b9d-315c-7cc16466a64d\",\n    \"providerId\": \"string\",\n    \"name\": \"string\",\n    \"offset\": 5486,\n    \"incompatible\": false,\n    \"points\": [\n      {\n        \"value\": 8210.439859732809,\n        \"date\": \"1963-09-19T09:53:24.539Z\",\n        \"annotation\": \"string\",\n        \"manuallyAdjusted\": true,\n        \"isForecasted\": true\n      },\n      {\n        \"value\": 8925.03404689846,\n        \"date\": \"2007-09-10T02:07:24.091Z\",\n        \"annotation\": \"string\",\n        \"manuallyAdjusted\": true,\n        \"isForecasted\": true\n      }\n    ],\n    \"transformations\": [\n      {\n        \"order\": 5436,\n        \"required\": false\n      },\n      {\n        \"order\": 4008,\n        \"required\": false\n      }\n    ]\n  },\n  \"workbenchIndicators\": [\n    {\n      \"provider\": \"98408a3d-5e4c-7277-4c7d-8efd460fb5e9\",\n      \"providerId\": \"string\",\n      \"name\": \"string\",\n      \"offset\": 3187,\n      \"incompatible\": true,\n      \"points\": [\n        {\n          \"value\": 2632.7355265486417,\n          \"date\": \"2010-10-09T21:56:48.272Z\",\n          \"annotation\": \"string\",\n          \"manuallyAdjusted\": false,\n          \"isForecasted\": true\n        },\n        {\n          \"value\": 3902.9945122761046,\n          \"date\": \"1953-11-30T11:13:04.390Z\",\n          \"annotation\": \"string\",\n          \"manuallyAdjusted\": false,\n          \"isForecasted\": false\n        }\n      ],\n      \"transformations\": [\n        {\n          \"order\": 2902,\n          \"required\": false\n        },\n        {\n          \"order\": 7874,\n          \"required\": true\n        }\n      ]\n    },\n    {\n      \"provider\": \"130a9181-b093-f7b5-829d-e31eefe08eb1\",\n      \"providerId\": \"string\",\n      \"name\": \"string\",\n      \"offset\": 3453,\n      \"incompatible\": false,\n      \"points\": [\n        {\n          \"value\": 152.37917018635306,\n          \"date\": \"1971-02-18T19:36:24.914Z\",\n          \"annotation\": \"string\",\n          \"manuallyAdjusted\": false,\n          \"isForecasted\": false\n        },\n        {\n          \"value\": 2867.2603713814237,\n          \"date\": \"2006-03-07T20:47:06.246Z\",\n          \"annotation\": \"string\",\n          \"manuallyAdjusted\": true,\n          \"isForecasted\": true\n        }\n      ],\n      \"transformations\": [\n        {\n          \"order\": 1456,\n          \"required\": false\n        },\n        {\n          \"order\": 8238,\n          \"required\": false\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97a90929-3a7b-4653-893a-eee677cb23f0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbench",
+                    "series",
+                    ":WorkbenchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeHidden",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "categoryNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "categoryIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "WorkbenchId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "485ff0ed-39e1-43e3-a3e7-b6a4fbb822f4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbench",
+                    "series",
+                    ":WorkbenchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeHidden",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "categoryNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "categoryIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "WorkbenchId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3924fb12-ad07-4096-8a5d-133698fba0a5",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbench",
+                    "series",
+                    ":WorkbenchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeHidden",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "categoryNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categoryIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "categoryIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "WorkbenchId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c096e98f-3275-4976-9ef7-208c9072613d",
+          "name": "Retrieves the list of accessible workbenches for the company",
+          "request": {
+            "name": "Retrieves the list of accessible workbenches for the company",
+            "description": {
+              "content": "Retrieves the list of accessible workbenches for the company",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workbenches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Query",
+                  "value": "*",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Page",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "25"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0bd0d973-3275-4383-86a6-1199fea130e4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbenches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Query",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"22fd66a2-a971-690e-c4da-3e6ed2fe8ee0\",\n      \"companyId\": \"dff81a4a-b464-763e-b31c-1e9339e64547\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"created\": \"2021-05-02T21:50:49.875Z\",\n      \"lastModified\": \"1989-01-18T00:59:06.741Z\",\n      \"frequency\": 1000,\n      \"owner\": \"string\",\n      \"count\": 3699,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"efef9348-c157-2220-209c-a7839259a7ea\",\n      \"companyId\": \"741d5650-6fcd-86a6-1856-b72df648ffcb\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"created\": \"1961-09-14T01:19:06.300Z\",\n      \"lastModified\": \"2024-04-28T03:11:23.113Z\",\n      \"frequency\": 1,\n      \"owner\": \"string\",\n      \"count\": 9879,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"page\": 6617,\n  \"pageSize\": 6476,\n  \"totalResults\": 653\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6317ed8e-6ffa-402f-b3d0-b64d1b4883e4",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workbenches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Query",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b0238967-a08c-40c9-96ec-02dbbaf43bfc",
+    "name": "Board Foresight API - V1 Alert Workbench API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workbenches are a powerful feature in the Board Foresight application that allow users to organize and analyze data through indicators. They enable the creation of models by selecting primary and additional indicators, which can be further adjusted and managed.\n\nUsing Workbenches endpoints you can\n- Retrieve the workbench information for the given workbench ID\n- Update or add an indicator to the existing workbench specified by the given ID\n- Retrieve the workbench series information for the given workbench ID and categories\n- Retrieves the list of accessible workbenches for the company",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Board Foresight API - V1 Alert DiscoverJob API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiKey",
+      "value": "{{ApiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DiscoverJob",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /discover/jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/discover/jobs"
+          },
+          "docs": "Retrieves a list of v2 discover jobs"
+        },
+        {
+          "info": {
+            "name": "Searches latest discover results for a given definition id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/discover/search/:definitionId",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "Definition id for the discover job (found in app url for discover job or discover/jobs endpoint)"
+              },
+              {
+                "name": "Query",
+                "value": "",
+                "type": "query",
+                "description": "String query identical to the search box in the application, defaults to *"
+              },
+              {
+                "name": "Page",
+                "value": "",
+                "type": "query",
+                "description": "Desired page defaults to 0"
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Desired page size, maximum of 1000 defaults to 20"
+              },
+              {
+                "name": "Frequency",
+                "value": "",
+                "type": "query",
+                "description": "Setting this will return only indicators with a matching base Frequency, blank ignores the filter"
+              },
+              {
+                "name": "Seasonality",
+                "value": "",
+                "type": "query",
+                "description": "Setting this will return only indicators with matching Seasonality, blank ignores the filter"
+              },
+              {
+                "name": "InternalOnly",
+                "value": "",
+                "type": "query",
+                "description": "Setting this flag to true will only return internal indicators, default is false"
+              },
+              {
+                "name": "Classification",
+                "value": "",
+                "type": "query",
+                "description": "Setting this will return only indicators with matching Classification, blank ignores the filter"
+              },
+              {
+                "name": "MinimumOverlap",
+                "value": "",
+                "type": "query",
+                "description": "Minimum overlap percentage filter, Defaults to 100"
+              }
+            ]
+          },
+          "docs": "Searches latest discover results for a given definition id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

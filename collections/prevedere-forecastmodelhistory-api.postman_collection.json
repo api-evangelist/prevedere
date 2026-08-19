@@ -1,0 +1,228 @@
+{
+  "item": [
+    {
+      "id": "50fef98b-eb6e-445d-b7e8-02229d2ec3ed",
+      "name": "ForecastModelHistory",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3edc3374-91ad-46b0-aa4e-51efd8610309",
+          "name": "Retrieves the forecast model's history",
+          "request": {
+            "name": "Retrieves the forecast model's history",
+            "description": {
+              "content": "Retrieves the forecast model's history",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forecastmodelhistory",
+                ":ForecastModelId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "ForecastModelId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07a42243-2188-44f1-9bdc-a608f5b63e50",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecastmodelhistory",
+                    ":ForecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "ForecastModelId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"captureDate\": \"2019-04-30T08:12:16.658Z\",\n  \"forecastModelIteration\": {\n    \"forecastModelName\": \"string\",\n    \"forecastModelId\": \"7fd21e02-641a-a5ec-b60a-203f7b1e1f30\",\n    \"forecastModelType\": 4,\n    \"forecastModelCalculation\": 2,\n    \"executionTime\": \"1980-05-26T10:35:57.366Z\",\n    \"fitAndForecast\": [\n      {\n        \"value\": 5671.919815328132,\n        \"date\": \"1978-04-29T01:00:50.385Z\",\n        \"annotation\": \"string\",\n        \"manuallyAdjusted\": true,\n        \"isForecasted\": true\n      },\n      {\n        \"value\": 8793.644338366561,\n        \"date\": \"1975-08-01T15:14:23.202Z\",\n        \"annotation\": \"string\",\n        \"manuallyAdjusted\": true,\n        \"isForecasted\": false\n      }\n    ],\n    \"primaryValues\": [\n      {\n        \"value\": 9487.196271432349,\n        \"date\": \"1993-11-26T02:06:19.402Z\",\n        \"annotation\": \"string\",\n        \"manuallyAdjusted\": false,\n        \"isForecasted\": false\n      },\n      {\n        \"value\": 8998.248478654792,\n        \"date\": \"2016-10-04T04:52:53.029Z\",\n        \"annotation\": \"string\",\n        \"manuallyAdjusted\": true,\n        \"isForecasted\": false\n      }\n    ],\n    \"components\": [\n      {\n        \"deprecated\": false,\n        \"name\": \"string\",\n        \"provider\": \"5a752d8e-d9a7-1756-9485-c56ddf474b9f\",\n        \"providerId\": \"string\",\n        \"offset\": 2823,\n        \"values\": [\n          {\n            \"value\": 9012.703925810703,\n            \"date\": \"2023-06-18T03:04:55.078Z\",\n            \"annotation\": \"string\",\n            \"manuallyAdjusted\": false,\n            \"isForecasted\": true\n          },\n          {\n            \"value\": 2487.652549890271,\n            \"date\": \"1988-12-27T07:35:57.477Z\",\n            \"annotation\": \"string\",\n            \"manuallyAdjusted\": false,\n            \"isForecasted\": false\n          }\n        ]\n      },\n      {\n        \"deprecated\": false,\n        \"name\": \"string\",\n        \"provider\": \"c78bd1ca-4d04-865c-faef-a7ce9195cfcf\",\n        \"providerId\": \"string\",\n        \"offset\": 9995,\n        \"values\": [\n          {\n            \"value\": 305.0739662714652,\n            \"date\": \"1971-11-22T00:19:01.717Z\",\n            \"annotation\": \"string\",\n            \"manuallyAdjusted\": true,\n            \"isForecasted\": true\n          },\n          {\n            \"value\": 5954.429821284416,\n            \"date\": \"1998-12-06T18:00:44.082Z\",\n            \"annotation\": \"string\",\n            \"manuallyAdjusted\": false,\n            \"isForecasted\": false\n          }\n        ]\n      }\n    ],\n    \"segments\": [\n      {\n        \"segment\": 2282,\n        \"intercept\": 6455.146323545569,\n        \"coefficients\": [\n          {\n            \"indicatorKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 8568.116399166105\n          },\n          {\n            \"indicatorKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 8159.216105777605\n          }\n        ]\n      },\n      {\n        \"segment\": 2106,\n        \"intercept\": 5608.938850372854,\n        \"coefficients\": [\n          {\n            \"indicatorKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 5157.921996288072\n          },\n          {\n            \"indicatorKey\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 2153.1133581704407\n          }\n        ]\n      }\n    ],\n    \"contributionResult\": {\n      \"forecast\": [\n        {\n          \"value\": 5743.320738037929,\n          \"date\": \"1950-02-05T04:28:04.902Z\",\n          \"annotation\": \"string\",\n          \"manuallyAdjusted\": false,\n          \"isForecasted\": true\n        },\n        {\n          \"value\": 2022.1655140457008,\n          \"date\": \"2020-11-06T23:40:59.724Z\",\n          \"annotation\": \"string\",\n          \"manuallyAdjusted\": true,\n          \"isForecasted\": false\n        }\n      ],\n      \"componentContributions\": [\n        {\n          \"indicator\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"calculation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayInformation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformedStartTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformedEndTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frequency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deprecated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deprecationReason\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastModified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provider\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"providerId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"seasonality\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"classification\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"units\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"periodAlignment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"citation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dataSources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"industryCodes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasZeroVariance\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"interval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"countryCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"leadTime\": 7934,\n          \"values\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"indicator\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"calculation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayInformation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformedStartTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformedEndTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frequency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deprecated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deprecationReason\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastModified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provider\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"providerId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"seasonality\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"classification\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"units\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"periodAlignment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"citation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"dataSources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"industryCodes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasZeroVariance\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"interval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"countryCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"leadTime\": 7861,\n          \"values\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ee9ad45-aeb0-4e8b-b31a-55316f1bbade",
+              "name": "Model is expired or in a non-production state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecastmodelhistory",
+                    ":ForecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "ForecastModelId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5856f6dd-c45c-4446-8d7f-a3ec0894f0a6",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecastmodelhistory",
+                    ":ForecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "ForecastModelId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "47e43bc3-d23f-45a3-81c1-c7646b9045f2",
+    "name": "Board Foresight API - V1 Alert ForecastModelHistory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

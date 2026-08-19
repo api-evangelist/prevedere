@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Board Foresight API - V1 Alert AnalysisJob API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiKey",
+      "value": "{{ApiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AnalysisJob",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /analysisjobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/analysisjobs"
+          }
+        },
+        {
+          "info": {
+            "name": "GET /analysisjob/{AnalysisJobId}/{ReturnData}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/analysisjob/:AnalysisJobId/:ReturnData",
+            "params": [
+              {
+                "name": "AnalysisJobId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ReturnData",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

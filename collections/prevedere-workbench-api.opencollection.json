@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Board Foresight API - V1 Alert Workbench API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiKey",
+      "value": "{{ApiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workbench",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /workbench/{WorkbenchId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workbench/:WorkbenchId",
+            "params": [
+              {
+                "name": "WorkbenchId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the workbench information for the given workbench id"
+        },
+        {
+          "info": {
+            "name": "PUT /workbench/update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/workbench/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update or add an indicator to the existing workbench specified by the given ID."
+        },
+        {
+          "info": {
+            "name": "GET /workbench/series/{WorkbenchId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workbench/series/:WorkbenchId",
+            "params": [
+              {
+                "name": "WorkbenchId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeHidden",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "categoryNames",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "categoryIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the workbench series information for the given workbench id and categories"
+        },
+        {
+          "info": {
+            "name": "GET /workbenches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workbenches",
+            "params": [
+              {
+                "name": "Query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves the list of accessible workbenches for the company"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

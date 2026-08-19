@@ -1,0 +1,482 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Board Foresight API - V1 Alert ForecastModel API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiKey",
+      "value": "{{ApiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ForecastModel",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /backtest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/backtest",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "TargetHorizon",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Performs a backtest on the supplied model id"
+        },
+        {
+          "info": {
+            "name": "Retrieves information for a single model given the ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forecastmodel/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint is used to pull information about an individual model accessible to the API key.\r\n\r\n\r\nThe response includes model metadata, information about the dependent variable or Primary Indicator and independent or Explanatory Indicators including offsets and display values."
+        },
+        {
+          "info": {
+            "name": "Retrieves the list of accessible forecast models for the user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forecastmodels",
+            "params": [
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Provide of list of tags to filter by. Only models with at least one of the provided tags will be returned"
+              },
+              {
+                "name": "states",
+                "value": "",
+                "type": "query",
+                "description": "Provide a list of states to filter by. Only models with one of the provided states will be returned. \r\n            Hold CTRL or Command key to select multiple model states\r\n            \r\n\r\n            0 = Draft\r\n            \r\n\r\n            1 = Archive\r\n            \r\n\r\n            2 = Production"
+              },
+              {
+                "name": "generateSummary",
+                "value": "",
+                "type": "query",
+                "description": "If true, generates a brief summary of each model. This will increase the time for a response by 7 seconds per model."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of accessible forecast models for the user"
+        },
+        {
+          "info": {
+            "name": "GET /rawmodel/{ForecastModelId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rawmodel/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "UseForecastFrequency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ExcludeIndicators",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves the component data of a forecast model"
+        },
+        {
+          "info": {
+            "name": "GET /rawmodel/{ForecastModelId}/{UseForecastFrequency}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rawmodel/:ForecastModelId/:UseForecastFrequency",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "UseForecastFrequency",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ExcludeIndicators",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves the component data of a forecast model"
+        },
+        {
+          "info": {
+            "name": "GET /model/summary/{ForecastModelId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/model/summary/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the model commentary summary for a forecast model"
+        },
+        {
+          "info": {
+            "name": "GET /model/consistency/{ForecastModelId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/model/consistency/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "UseCalculation",
+                "value": "",
+                "type": "query",
+                "description": "When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves the consistency information for a forecast model"
+        },
+        {
+          "info": {
+            "name": "GET /forecast/{ForecastModelId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forecast/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "UseCalculation",
+                "value": "",
+                "type": "query",
+                "description": "When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves a forecast"
+        },
+        {
+          "info": {
+            "name": "GET /model/contribution/{ForecastModelId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/model/contribution/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "UseCalculation",
+                "value": "",
+                "type": "query",
+                "description": "When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves independent variable contribution information"
+        },
+        {
+          "info": {
+            "name": "Checks model health for the given model id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/model/modelhealth/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The forecast model id must be a locked model of the type segmented or multivariate"
+        },
+        {
+          "info": {
+            "name": "GET /model/impact/{ForecastModelId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/model/impact/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "UseCalculation",
+                "value": "",
+                "type": "query",
+                "description": "When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves a forecast"
+        },
+        {
+          "info": {
+            "name": "GET /forecast/risk/{ForecastModelId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forecast/risk/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "UseCalculation",
+                "value": "",
+                "type": "query",
+                "description": "When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves model risk"
+        },
+        {
+          "info": {
+            "name": "GET /forecast/riskgrowth/{ForecastModelId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forecast/riskgrowth/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "UseCalculation",
+                "value": "",
+                "type": "query",
+                "description": "When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves model risk growth"
+        },
+        {
+          "info": {
+            "name": "GET /forecast/statistics/{ForecastModelId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forecast/statistics/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "UseCalculation",
+                "value": "",
+                "type": "query",
+                "description": "When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves model statistics"
+        },
+        {
+          "info": {
+            "name": "GET /forecast/modelscore/{ForecastModelId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forecast/modelscore/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "UseCalculation",
+                "value": "",
+                "type": "query",
+                "description": "When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves model score"
+        },
+        {
+          "info": {
+            "name": "Retrieves a log forecast model contribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forecast/logcontribution/:ForecastModelId",
+            "params": [
+              {
+                "name": "FiscalYearStart",
+                "value": "",
+                "type": "query",
+                "description": "Fiscal year start specifies the fiscal year start month to aggregate values. The default start month is January."
+              },
+              {
+                "name": "PeriodOverPeriod",
+                "value": "",
+                "type": "query",
+                "description": "When set to true, this will change values to Period over Period lift basis for CCR calculation. The default is false."
+              },
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "AsOfDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "UseCalculation",
+                "value": "",
+                "type": "query",
+                "description": "When parameter value passed is 'true', this will return the forecast series with the model transformation. When parameter value passed is 'false' or no parameter value is passed, raw values are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves a log model contribution"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

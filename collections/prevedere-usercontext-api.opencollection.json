@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Board Foresight API - V1 Alert UserContext API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiKey",
+      "value": "{{ApiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UserContext",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all companies for authenticated user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/company"
+          },
+          "docs": "The company information associated with the user"
+        },
+        {
+          "info": {
+            "name": "PUT /company/{CompanyId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/company/:CompanyId",
+            "params": [
+              {
+                "name": "CompanyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Switch company context"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

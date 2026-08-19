@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Board Foresight API - V1 Alert Enumeration API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiKey",
+      "value": "{{ApiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Enumeration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /aggregationmethods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/aggregationmethods"
+          },
+          "docs": "The complete list of aggregation methods in the system."
+        },
+        {
+          "info": {
+            "name": "GET /calculations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/calculations"
+          },
+          "docs": "The complete list of calculations in the system."
+        },
+        {
+          "info": {
+            "name": "GET /frequencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/frequencies"
+          },
+          "docs": "The complete list of frequencies which may be applied to an Indicator in the system."
+        },
+        {
+          "info": {
+            "name": "GET /seasonalities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/seasonalities"
+          },
+          "docs": "The complete list of seasonalities which may be specified for an Indicator in the system."
+        },
+        {
+          "info": {
+            "name": "GET /forecastmodeltypes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forecastmodeltypes"
+          },
+          "docs": "The complete list of forecast model types which may be specified for a Forecast Model in the system."
+        },
+        {
+          "info": {
+            "name": "GET /classifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/classifications"
+          },
+          "docs": "The complete list of classifications which may be applied to an Indicator in the system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

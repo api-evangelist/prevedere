@@ -1,8 +1,8 @@
 generated: '2026-07-20'
 method: derived
 status: candidate
-note: No official Board Foresight MCP server found. Candidate tool list derived one-per-operation
-  from the OpenAPI; the spec declares no operationIds, so tools are keyed by method+path.
+note: No official Board Foresight MCP server found. Candidate tool list derived one-per-operation from
+  the OpenAPI; the spec declares no operationIds, so tools are keyed by method+path.
 server:
   name: prevedere-board-foresight
   transport: http
@@ -27,8 +27,7 @@ tools:
   description: Retrieves all Contribution Override Values for a given locked model
   source_operation: openapi/prevedere-openapi-original.json#GET /componentcontributionoverridevalues/{forecastModelId}
 - name: delete_componentcontributionoverridevalues_forecastmodelid
-  description: Deletes all Component Contribution Override Values for a given locked
-    model
+  description: Deletes all Component Contribution Override Values for a given locked model
   source_operation: openapi/prevedere-openapi-original.json#DELETE /componentcontributionoverridevalues/{forecastModelId}
 - name: post_componentcontributionoverridevalues
   description: Creates Component Contribution Override Values for a given locked model
@@ -195,3 +194,9 @@ tools:
 - name: get_workbenches
   description: GET /workbenches
   source_operation: openapi/prevedere-openapi-original.json#GET /workbenches
+deployment:
+  mode: none
+  verified: derived
+  tools: 62
+  checked: '2026-08-12'
+  source: catalog MCP census

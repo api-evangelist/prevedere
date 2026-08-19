@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Board Foresight API - V1 Alert ForecastModelHistory API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiKey",
+      "value": "{{ApiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ForecastModelHistory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /forecastmodelhistory/{ForecastModelId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forecastmodelhistory/:ForecastModelId",
+            "params": [
+              {
+                "name": "ForecastModelId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the forecast model's history"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

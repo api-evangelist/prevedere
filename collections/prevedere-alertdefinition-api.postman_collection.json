@@ -1,0 +1,321 @@
+{
+  "item": [
+    {
+      "id": "9e1407b5-2ab5-4001-b771-0666aa4c2168",
+      "name": "AlertDefinition",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3f9f5d16-b90c-4c04-b016-68897439ae79",
+          "name": "Retrieves all the alert definitions for the current company.",
+          "request": {
+            "name": "Retrieves all the alert definitions for the current company.",
+            "description": {
+              "content": "Retrieves all the alert definitions for the current company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alertdefinitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5c8b947-cdaf-48f6-91bd-2a37f6d50155",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alertdefinitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"type\": \"string\",\n    \"createDate\": \"1972-07-02T07:41:42.243Z\",\n    \"createdBy\": \"string\",\n    \"owner\": \"string\",\n    \"lastModifiedDate\": \"1951-08-17T05:02:24.414Z\",\n    \"targetIndicator\": {\n      \"id\": \"35a862cf-2a27-78bf-fcc4-726c1a17652d\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"aggregate\": 2,\n      \"calculation\": 7,\n      \"color\": \"string\",\n      \"displayInformation\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"color\": \"string\",\n        \"category\": \"string\"\n      },\n      \"count\": 2005,\n      \"created\": \"2010-03-25T18:16:34.018Z\",\n      \"startTime\": \"1982-09-05T19:32:34.076Z\",\n      \"endTime\": \"2017-01-06T00:29:58.449Z\",\n      \"transformedStartTime\": \"1986-03-02T18:53:23.839Z\",\n      \"transformedEndTime\": \"2024-11-27T22:40:13.402Z\",\n      \"frequency\": 2,\n      \"deprecated\": false,\n      \"deprecationReason\": \"string\",\n      \"lastModified\": \"2013-02-23T14:04:24.539Z\",\n      \"provider\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"id\": \"204cd136-591b-d88b-e8e5-8303fe661271\",\n        \"source\": \"string\"\n      },\n      \"providerId\": \"string\",\n      \"seasonality\": 0,\n      \"source\": \"string\",\n      \"classification\": 3,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"units\": \"string\",\n      \"accessibility\": 2,\n      \"periodAlignment\": 2,\n      \"path\": \"string\",\n      \"notes\": \"string\",\n      \"citation\": \"string\",\n      \"dataSources\": [\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 4\n        },\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 5\n        }\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"hasZeroVariance\": true,\n      \"interval\": \"string\",\n      \"countryCode\": \"string\"\n    },\n    \"targetForecastModelId\": \"7e76914d-c0dd-6d43-dec9-053578c02cc0\",\n    \"calculationType\": 5,\n    \"comparer\": \"string\",\n    \"threshold\": 3399.9532981308234,\n    \"timeframe\": 371,\n    \"companyId\": \"string\",\n    \"startDate\": \"1958-12-26T01:26:15.274Z\",\n    \"notificationEmails\": [\n      \"string\",\n      \"string\"\n    ],\n    \"notes\": \"string\",\n    \"containingEntityId\": \"93eb7741-a18f-b7c6-f0db-6ff38e69cd00\",\n    \"containingEntityType\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"type\": \"string\",\n    \"createDate\": \"2011-06-12T02:26:37.496Z\",\n    \"createdBy\": \"string\",\n    \"owner\": \"string\",\n    \"lastModifiedDate\": \"1974-11-14T15:11:08.928Z\",\n    \"targetIndicator\": {\n      \"id\": \"eca64a44-6910-35dc-520f-3d80b832404d\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"aggregate\": 3,\n      \"calculation\": 4,\n      \"color\": \"string\",\n      \"displayInformation\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"color\": \"string\",\n        \"category\": \"string\"\n      },\n      \"count\": 2670,\n      \"created\": \"1953-11-10T08:14:31.949Z\",\n      \"startTime\": \"1991-03-16T22:44:58.447Z\",\n      \"endTime\": \"2020-06-03T19:08:21.163Z\",\n      \"transformedStartTime\": \"1959-09-05T13:45:44.341Z\",\n      \"transformedEndTime\": \"1949-09-16T11:27:14.721Z\",\n      \"frequency\": 4,\n      \"deprecated\": true,\n      \"deprecationReason\": \"string\",\n      \"lastModified\": \"2020-08-24T03:25:05.125Z\",\n      \"provider\": {\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"id\": \"b449f659-434d-4ad9-baca-2f924a25767e\",\n        \"source\": \"string\"\n      },\n      \"providerId\": \"string\",\n      \"seasonality\": 0,\n      \"source\": \"string\",\n      \"classification\": 0,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"units\": \"string\",\n      \"accessibility\": 1,\n      \"periodAlignment\": 0,\n      \"path\": \"string\",\n      \"notes\": \"string\",\n      \"citation\": \"string\",\n      \"dataSources\": [\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 7\n        },\n        {\n          \"name\": \"string\",\n          \"url\": \"string\",\n          \"dataSourceType\": 0\n        }\n      ],\n      \"industryCodes\": [\n        {\n          \"type\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"hasZeroVariance\": false,\n      \"interval\": \"string\",\n      \"countryCode\": \"string\"\n    },\n    \"targetForecastModelId\": \"e188cf04-b676-5940-5a1b-38c9c27ccd98\",\n    \"calculationType\": 6,\n    \"comparer\": \"string\",\n    \"threshold\": 8968.698159510539,\n    \"timeframe\": 5275,\n    \"companyId\": \"string\",\n    \"startDate\": \"1997-05-21T21:32:55.343Z\",\n    \"notificationEmails\": [\n      \"string\",\n      \"string\"\n    ],\n    \"notes\": \"string\",\n    \"containingEntityId\": \"d2085813-0b21-9cd8-e326-46b2fd53012a\",\n    \"containingEntityType\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4597b24b-35d3-40d8-bfe5-7ef442bb1939",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alertdefinitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78de743d-605f-4658-932e-e59f5cb56a7e",
+          "name": "Retrieves the alert definition for the given alert definition ID.",
+          "request": {
+            "name": "Retrieves the alert definition for the given alert definition ID.",
+            "description": {
+              "content": "Retrieves the alert definition for the given alert definition ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95e4ae32-2690-4ed6-900e-b81207404c42",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e8d52d7b-dfec-42e5-a7e1-9f1e725e5ba4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5429e58f-83d6-4d15-a45d-8b52e62fdb70",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "181ba7b6-9724-46e7-9068-52c14dc32fc0",
+    "name": "Board Foresight API - V1 Alert AlertDefinition API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

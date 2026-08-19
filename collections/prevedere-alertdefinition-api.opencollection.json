@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Board Foresight API - V1 Alert AlertDefinition API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiKey",
+      "value": "{{ApiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AlertDefinition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /alertdefinitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/alertdefinitions"
+          },
+          "docs": "Retrieves all the alert definitions for the current company."
+        },
+        {
+          "info": {
+            "name": "GET /{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the alert definition for the given alert definition ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1036 @@
+{
+  "item": [
+    {
+      "id": "582a158e-9356-4d0b-8989-a3dd2e5823cc",
+      "name": "ComponentContributionOverrideValues",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "41898520-9144-4e19-acb6-d672df9c01b9",
+          "name": "Retrieves all Contribution Override Values for a given locked model",
+          "request": {
+            "name": "Retrieves all Contribution Override Values for a given locked model",
+            "description": {},
+            "url": {
+              "path": [
+                "componentcontributionoverridevalues",
+                ":forecastModelId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "forecastModelId",
+                  "description": "(Required) Forecast Model Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3476d94-486b-4b3a-8c41-746b8ced1908",
+              "name": "If Contribution Override Values were retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"forecastModelId\": \"c0c99b26-835e-33f3-271a-4a2f11adfb20\",\n    \"frequency\": 1,\n    \"entryId\": \"b8d45aeb-1a7e-48d3-8c4f-afd404b03d21\",\n    \"contributionPeriods\": [\n      {\n        \"date\": \"1951-03-07T08:39:44.475Z\",\n        \"value\": 4101.265517849014\n      },\n      {\n        \"date\": \"2008-09-26T16:37:21.971Z\",\n        \"value\": 2837.2768903827996\n      }\n    ]\n  },\n  {\n    \"forecastModelId\": \"da4fc9db-a140-7fe1-ab0c-5d4734fb8e65\",\n    \"frequency\": 4,\n    \"entryId\": \"f3d7ae1a-0605-9e04-eb49-0a33aa28225b\",\n    \"contributionPeriods\": [\n      {\n        \"date\": \"2021-07-11T20:29:53.487Z\",\n        \"value\": 769.8220702958291\n      },\n      {\n        \"date\": \"2016-03-01T20:53:36.700Z\",\n        \"value\": 6846.653029242391\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aae745eb-a3d0-44c6-b813-b502c569e736",
+              "name": "If model is not locked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1f481c4d-86bb-4f82-9e0a-f2efdef86d4c",
+              "name": "If the user isn't authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75ab132c-f1fa-4162-87bd-4392d3d50648",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f9dabfe0-c140-4a41-93ee-e87d39002244",
+              "name": "If model wasn't found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "529e4ca2-55c4-4ee1-bb77-90887cb5cfe4",
+              "name": "Forecast model is expired or is not a production model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eab5346b-359b-4792-9e63-7e7258037473",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b09f6d4-537d-4d48-b094-c2ba8994cf8b",
+          "name": "Deletes all Component Contribution Override Values for a given locked model",
+          "request": {
+            "name": "Deletes all Component Contribution Override Values for a given locked model",
+            "description": {},
+            "url": {
+              "path": [
+                "componentcontributionoverridevalues",
+                ":forecastModelId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "forecastModelId",
+                  "description": "(Required) Forecast Model Id"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8db4ebc3-7821-45df-87df-7a8b07bc323e",
+              "name": "If Contribution Override Values were deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "54af9e40-2aac-450d-b4fe-44f194f70cc8",
+              "name": "If model is not locked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "83e73e6a-b249-4115-9171-2f428f4a7cf6",
+              "name": "If the user isn't authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1135e08b-b048-4d73-9132-a7854ecbf515",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dd8703d3-4d23-4321-9839-a03a270724f4",
+              "name": "If model wasn't found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a756dbb8-d0b3-4d42-9935-ad4ab70b4b90",
+              "name": "Forecast model is expired or is not a production model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a57d0b07-fc8c-45d3-abba-908ddc0db698",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues",
+                    ":forecastModelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "forecastModelId",
+                      "description": "(Required) Forecast Model Id"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10afa273-282b-4d80-abe8-c3277e9ddb12",
+          "name": "Creates Component Contribution Override Values for a given locked model",
+          "request": {
+            "name": "Creates Component Contribution Override Values for a given locked model",
+            "description": {},
+            "url": {
+              "path": [
+                "componentcontributionoverridevalues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"forecastModelId\": \"<uuid>\",\n  \"frequency\": \"<integer>\",\n  \"entryId\": \"<uuid>\",\n  \"contributionPeriods\": [\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    },\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82ed8879-b3c7-45e0-8f8a-c6295aeee103",
+              "name": "If Contribution Override Values were retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forecastModelId\": \"<uuid>\",\n  \"frequency\": \"<integer>\",\n  \"entryId\": \"<uuid>\",\n  \"contributionPeriods\": [\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    },\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"forecastModelId\": \"e46bbd87-98a7-9b12-fba5-9e2f8f24a567\",\n  \"frequency\": 365,\n  \"entryId\": \"ef8681c9-306c-60b2-015a-0f62fe94995b\",\n  \"contributionPeriods\": [\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    },\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7aa9e384-4219-4333-bddc-1d8e3b58b5b4",
+              "name": "If the user isn't authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forecastModelId\": \"<uuid>\",\n  \"frequency\": \"<integer>\",\n  \"entryId\": \"<uuid>\",\n  \"contributionPeriods\": [\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    },\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5b57026e-fcfe-4f22-bd0d-154a23da579f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forecastModelId\": \"<uuid>\",\n  \"frequency\": \"<integer>\",\n  \"entryId\": \"<uuid>\",\n  \"contributionPeriods\": [\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    },\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "95e805da-c347-4249-81ef-265f5662d35f",
+              "name": "If model wasn't found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forecastModelId\": \"<uuid>\",\n  \"frequency\": \"<integer>\",\n  \"entryId\": \"<uuid>\",\n  \"contributionPeriods\": [\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    },\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "259afd99-ceeb-4f24-bcd0-22c862737c61",
+              "name": "Forecast model is expired or is not a production model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forecastModelId\": \"<uuid>\",\n  \"frequency\": \"<integer>\",\n  \"entryId\": \"<uuid>\",\n  \"contributionPeriods\": [\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    },\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c71febab-b0ca-4323-aaa4-a1ef57002b21",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "componentcontributionoverridevalues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forecastModelId\": \"<uuid>\",\n  \"frequency\": \"<integer>\",\n  \"entryId\": \"<uuid>\",\n  \"contributionPeriods\": [\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    },\n    {\n      \"date\": \"<dateTime>\",\n      \"value\": \"<double>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "58bbfb67-5516-488a-a91a-bb3c77c5566c",
+    "name": "Board Foresight API - V1 Alert ComponentContributionOverrideValues API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

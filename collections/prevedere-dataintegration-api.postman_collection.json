@@ -1,0 +1,486 @@
+{
+  "item": [
+    {
+      "id": "c9cf09f9-e389-42d1-9b09-820ffa7b3946",
+      "name": "DataIntegration",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fa77e156-863f-4f47-9f44-2f1958a08571",
+          "name": "The complete list of client dimension groups available for data import. Contains dimension and hierarchy information",
+          "request": {
+            "name": "The complete list of client dimension groups available for data import. Contains dimension and hierarchy information",
+            "description": {
+              "content": "The complete list of client dimension groups available for data import. Contains dimension and hierarchy information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clientdimensions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e560e4b-aa67-4f37-94cd-0d1b28e1f0c3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clientdimensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "03b7ecb2-ebcf-47c3-8bb1-9c29a2d58daf",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clientdimensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ce57c88-5338-4356-85e3-68ecff6ad26d",
+          "name": "Imports a client data file into the system.  The file should be posted as part of a 'multipart/form-data'-encoded request.  Only one file may be posted per request.\r\n        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to 'date', 'measure' and 'value' fields.",
+          "request": {
+            "name": "Imports a client data file into the system.  The file should be posted as part of a 'multipart/form-data'-encoded request.  Only one file may be posted per request.\r\n        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to 'date', 'measure' and 'value' fields.",
+            "description": {
+              "content": "Imports a client data file into the system.  The file should be posted as part of a 'multipart/form-data'-encoded request.  Only one file may be posted per request.\r\n        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to 'date', 'measure' and 'value' fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "importclientdata",
+                ":ClientDimensionGroupId",
+                ":ShouldDeleteExistingRecords"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ShouldReplaceRecordIfExists",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "InlineData",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<boolean>",
+                  "key": "ShouldDeleteExistingRecords",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ClientDimensionGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e303372-5140-4246-ab17-91f7b5e992c1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importclientdata",
+                    ":ClientDimensionGroupId",
+                    ":ShouldDeleteExistingRecords"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ShouldReplaceRecordIfExists",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "InlineData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<boolean>",
+                      "key": "ShouldDeleteExistingRecords",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ClientDimensionGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9cd1547b-6fce-4739-96a7-f958c5b782e5",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importclientdata",
+                    ":ClientDimensionGroupId",
+                    ":ShouldDeleteExistingRecords"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ShouldReplaceRecordIfExists",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "InlineData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<boolean>",
+                      "key": "ShouldDeleteExistingRecords",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ClientDimensionGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "916677eb-d8d4-444d-98f8-67a0ec6fe65f",
+          "name": "Validates a client data file against a client dimension group.  The file should be posted as part of a 'multipart/form-data'-encoded request.  Only one file may be posted per request.\r\n        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to 'date', 'measure' and 'value' fields.",
+          "request": {
+            "name": "Validates a client data file against a client dimension group.  The file should be posted as part of a 'multipart/form-data'-encoded request.  Only one file may be posted per request.\r\n        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to 'date', 'measure' and 'value' fields.",
+            "description": {
+              "content": "Validates a client data file against a client dimension group.  The file should be posted as part of a 'multipart/form-data'-encoded request.  Only one file may be posted per request.\r\n        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to 'date', 'measure' and 'value' fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "validateclientdata",
+                ":ClientDimensionGroupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ShouldDeleteExistingRecords",
+                  "value": "<boolean>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ShouldReplaceRecordIfExists",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "InlineData",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ClientDimensionGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84fe0c8d-8e06-477a-b5ed-089f60d92053",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validateclientdata",
+                    ":ClientDimensionGroupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ShouldDeleteExistingRecords",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ShouldReplaceRecordIfExists",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "InlineData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ClientDimensionGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a535d893-a79a-4b99-8f52-977af41de6db",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validateclientdata",
+                    ":ClientDimensionGroupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ShouldDeleteExistingRecords",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ShouldReplaceRecordIfExists",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "InlineData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ClientDimensionGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "951b0c40-47fa-42e0-b72a-46c5899c17c6",
+    "name": "Board Foresight API - V1 Alert DataIntegration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

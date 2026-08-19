@@ -1,0 +1,574 @@
+{
+  "item": [
+    {
+      "id": "76ceede3-22ae-4be8-b3c6-fe11fab19d3f",
+      "name": "DiscoverJob",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ce60d101-a0bd-4f00-8a59-4e7d37f4373f",
+          "name": "Retrieves a list of v2 discover jobs",
+          "request": {
+            "name": "Retrieves a list of v2 discover jobs",
+            "description": {
+              "content": "Retrieves a list of v2 discover jobs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "discover",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "235d29db-de2b-45c1-81b3-9d0c724885b6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discover",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"executionId\": \"c94fd42c-ea1b-4055-6013-75395f3ca280\",\n    \"definitionId\": \"e32e03f3-a51a-4ab4-2ad7-4757c6eb7c19\",\n    \"name\": \"string\",\n    \"jobUrl\": \"string\",\n    \"projectId\": \"0a237cb2-3544-0cf5-28b9-d23af407b1da\",\n    \"primaryIndicator\": {\n      \"provider\": \"33f701af-8a34-4889-970b-cd45e5c52f8c\",\n      \"providerId\": \"string\"\n    },\n    \"created\": \"1991-06-26T06:24:01.653Z\",\n    \"lastExecutionDate\": \"1977-03-23T16:15:09.008Z\",\n    \"resultsAvailable\": false,\n    \"companyPrefix\": \"string\",\n    \"owner\": \"string\",\n    \"project\": \"string\"\n  },\n  {\n    \"executionId\": \"21e529b3-fd3b-a069-11cb-c04665519a77\",\n    \"definitionId\": \"47bdaa84-160c-f189-7a2c-e547c1460196\",\n    \"name\": \"string\",\n    \"jobUrl\": \"string\",\n    \"projectId\": \"9a45017d-b3e9-2ebf-d0d5-ad20fc1f72f4\",\n    \"primaryIndicator\": {\n      \"provider\": \"ffc49c51-bba6-5ea7-7d71-57571e8b492c\",\n      \"providerId\": \"string\"\n    },\n    \"created\": \"1994-08-09T03:31:14.108Z\",\n    \"lastExecutionDate\": \"2026-01-19T13:02:23.843Z\",\n    \"resultsAvailable\": true,\n    \"companyPrefix\": \"string\",\n    \"owner\": \"string\",\n    \"project\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fff26f54-b090-4092-809f-f652050edbe1",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discover",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43953372-1aa2-4ecb-82f2-d7185c79f088",
+          "name": "Searches latest discover results for a given definition id",
+          "request": {
+            "name": "Searches latest discover results for a given definition id",
+            "description": {},
+            "url": {
+              "path": [
+                "discover",
+                "search",
+                ":definitionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Query",
+                  "value": "<string>",
+                  "description": "String query identical to the search box in the application, defaults to *"
+                },
+                {
+                  "disabled": false,
+                  "key": "Page",
+                  "value": "<integer>",
+                  "description": "Desired page defaults to 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Desired page size, maximum of 1000 defaults to 20"
+                },
+                {
+                  "disabled": false,
+                  "key": "Frequency",
+                  "value": "<string>",
+                  "description": "Setting this will return only indicators with a matching base Frequency, blank ignores the filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "Seasonality",
+                  "value": "<string>",
+                  "description": "Setting this will return only indicators with matching Seasonality, blank ignores the filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "InternalOnly",
+                  "value": "<boolean>",
+                  "description": "Setting this flag to true will only return internal indicators, default is false"
+                },
+                {
+                  "disabled": false,
+                  "key": "Classification",
+                  "value": "<string>",
+                  "description": "Setting this will return only indicators with matching Classification, blank ignores the filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "MinimumOverlap",
+                  "value": "<integer>",
+                  "description": "Minimum overlap percentage filter, Defaults to 100"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "definitionId",
+                  "description": "(Required) Definition id for the discover job (found in app url for discover job or discover/jobs endpoint)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b295ff49-2402-4abd-a8fd-eb1125548062",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discover",
+                    "search",
+                    ":definitionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Seasonality",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "InternalOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Classification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MinimumOverlap",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "definitionId",
+                      "description": "(Required) Definition id for the discover job (found in app url for discover job or discover/jobs endpoint)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"totalResults\": 6623,\n    \"totalPages\": 7587,\n    \"results\": [\n      {\n        \"indicatorKey\": {\n          \"provider\": \"cd51068f-d5e7-fda1-b0f0-63b5cd5d32a9\",\n          \"providerId\": \"string\"\n        },\n        \"bestROffset\": {\n          \"offset\": 2458,\n          \"coefficient\": 7881.448868082816,\n          \"pValue\": 3660.8652296087985,\n          \"rSquared\": 5690.88745025382,\n          \"overlapPercent\": 1713.5366815982457,\n          \"numberOfDataPoints\": 9579,\n          \"proCyclic\": 5691.469584620225,\n          \"counterCyclic\": 96.29597841663173,\n          \"numberOfMinorOutliers\": 7751,\n          \"numberOfMajorOutliers\": 9178\n        }\n      },\n      {\n        \"indicatorKey\": {\n          \"provider\": \"82cae7cb-c931-516c-2eec-b09b57409b83\",\n          \"providerId\": \"string\"\n        },\n        \"bestROffset\": {\n          \"offset\": 8220,\n          \"coefficient\": 5521.606833787679,\n          \"pValue\": 3394.711712056155,\n          \"rSquared\": 8360.95959095495,\n          \"overlapPercent\": 1712.2660061614247,\n          \"numberOfDataPoints\": 5641,\n          \"proCyclic\": 66.19008642430924,\n          \"counterCyclic\": 4701.814367942799,\n          \"numberOfMinorOutliers\": 887,\n          \"numberOfMajorOutliers\": 3154\n        }\n      }\n    ]\n  },\n  {\n    \"totalResults\": 1103,\n    \"totalPages\": 7105,\n    \"results\": [\n      {\n        \"indicatorKey\": {\n          \"provider\": \"be1af1fc-7cb7-34a0-3674-49deaa0a7871\",\n          \"providerId\": \"string\"\n        },\n        \"bestROffset\": {\n          \"offset\": 9963,\n          \"coefficient\": 5127.88830939585,\n          \"pValue\": 449.1905561441323,\n          \"rSquared\": 321.35435859037773,\n          \"overlapPercent\": 5790.780431231857,\n          \"numberOfDataPoints\": 1773,\n          \"proCyclic\": 4689.084454343152,\n          \"counterCyclic\": 2006.9734914533499,\n          \"numberOfMinorOutliers\": 6328,\n          \"numberOfMajorOutliers\": 8124\n        }\n      },\n      {\n        \"indicatorKey\": {\n          \"provider\": \"f97a9f23-c872-bcc3-66ad-eca7e2c09b78\",\n          \"providerId\": \"string\"\n        },\n        \"bestROffset\": {\n          \"offset\": 2413,\n          \"coefficient\": 7585.361797210497,\n          \"pValue\": 5231.224530577717,\n          \"rSquared\": 6513.223091029885,\n          \"overlapPercent\": 1941.6892538180796,\n          \"numberOfDataPoints\": 6872,\n          \"proCyclic\": 6675.3508373154655,\n          \"counterCyclic\": 5371.887871460074,\n          \"numberOfMinorOutliers\": 4241,\n          \"numberOfMajorOutliers\": 5576\n        }\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e2b0a8b-d9d4-460b-b105-47cf835c4d67",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discover",
+                    "search",
+                    ":definitionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Seasonality",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "InternalOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Classification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MinimumOverlap",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "definitionId",
+                      "description": "(Required) Definition id for the discover job (found in app url for discover job or discover/jobs endpoint)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"string\",\n    \"title\": \"string\",\n    \"status\": 1932,\n    \"detail\": \"string\",\n    \"instance\": \"string\"\n  },\n  {\n    \"type\": \"string\",\n    \"title\": \"string\",\n    \"status\": 6202,\n    \"detail\": \"string\",\n    \"instance\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05899b6c-0398-4dbd-8e36-139f23e40f34",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discover",
+                    "search",
+                    ":definitionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Seasonality",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "InternalOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Classification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MinimumOverlap",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "definitionId",
+                      "description": "(Required) Definition id for the discover job (found in app url for discover job or discover/jobs endpoint)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81a8a8ae-58d9-4195-a0b4-7d27b2c4e75d",
+              "name": "If the user has sent too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discover",
+                    "search",
+                    ":definitionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Seasonality",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "InternalOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Classification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MinimumOverlap",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ApiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "definitionId",
+                      "description": "(Required) Definition id for the discover job (found in app url for discover job or discover/jobs endpoint)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "63c7071d-8560-42e7-bd61-9d040b0d9fac",
+    "name": "Board Foresight API - V1 Alert DiscoverJob API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
