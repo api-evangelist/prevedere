@@ -41,6 +41,17 @@ tags:
 - Indicators
 - Time Series
 - Data Integration
+- Machine-Learning
+tags_raw:
+- Company
+- Economic Forecasting
+- Predictive Analytics
+- Demand Planning
+- Financial Planning
+- Macroeconomic Data
+- Indicators
+- Time Series
+- Data Integration
 - Machine Learning
 apis:
 - aid: prevedere:prevedere-alert-api
@@ -130,6 +141,8 @@ apis:
   humanURL: https://api.prevedere.com/docs/
   baseURL: https://api.prevedere.com
   tags:
+  - Data Integration
+  tags_raw:
   - DataIntegration
   properties:
   - type: OpenAPI
@@ -162,6 +175,8 @@ apis:
   humanURL: https://api.prevedere.com/docs/
   baseURL: https://api.prevedere.com
   tags:
+  - enumeration
+  tags_raw:
   - Enumeration
   properties:
   - type: OpenAPI
@@ -305,7 +320,8 @@ apis:
   description: The Test API from Prevedere — 1 operation(s) for test.
   humanURL: https://api.prevedere.com/docs/
   baseURL: https://api.prevedere.com
-  tags:
+  tags: []
+  tags_raw:
   - Test
   properties:
   - type: OpenAPI
@@ -322,6 +338,8 @@ apis:
   humanURL: https://api.prevedere.com/docs/
   baseURL: https://api.prevedere.com
   tags:
+  - User Context
+  tags_raw:
   - UserContext
   properties:
   - type: OpenAPI
