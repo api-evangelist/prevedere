@@ -88,6 +88,8 @@ apis:
   humanURL: https://api.prevedere.com/docs/
   baseURL: https://api.prevedere.com
   tags:
+  - Alert definition
+  tags_raw:
   - AlertDefinition
   properties:
   - type: OpenAPI
@@ -153,7 +155,7 @@ apis:
   humanURL: https://api.prevedere.com/docs/
   baseURL: https://api.prevedere.com
   tags:
-  - Data Integration
+  - DataIntegration
   tags_raw:
   - DataIntegration
   properties:
@@ -187,7 +189,7 @@ apis:
   humanURL: https://api.prevedere.com/docs/
   baseURL: https://api.prevedere.com
   tags:
-  - enumeration
+  - Enumeration
   tags_raw:
   - Enumeration
   properties:
@@ -350,7 +352,7 @@ apis:
   humanURL: https://api.prevedere.com/docs/
   baseURL: https://api.prevedere.com
   tags:
-  - User Context
+  - UserContext
   tags_raw:
   - UserContext
   properties:
