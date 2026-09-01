@@ -155,7 +155,7 @@ apis:
   humanURL: https://api.prevedere.com/docs/
   baseURL: https://api.prevedere.com
   tags:
-  - DataIntegration
+  - Data Integration
   tags_raw:
   - DataIntegration
   properties:
@@ -189,7 +189,7 @@ apis:
   humanURL: https://api.prevedere.com/docs/
   baseURL: https://api.prevedere.com
   tags:
-  - Enumeration
+  - enumeration
   tags_raw:
   - Enumeration
   properties:
@@ -352,7 +352,7 @@ apis:
   humanURL: https://api.prevedere.com/docs/
   baseURL: https://api.prevedere.com
   tags:
-  - UserContext
+  - User Context
   tags_raw:
   - UserContext
   properties:
