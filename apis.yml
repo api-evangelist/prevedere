@@ -151,24 +151,6 @@ apis:
     url: https://api.prevedere.com/docs/
   - type: DeveloperPortal
     url: https://api.prevedere.com/docs/
-- aid: prevedere:prevedere-dataintegration-api
-  name: Prevedere DataIntegration API
-  description: The DataIntegration API from Prevedere — 3 operation(s) for dataintegration.
-  humanURL: https://api.prevedere.com/docs/
-  baseURL: https://api.prevedere.com
-  tags:
-  - Data Integration
-  tags_raw:
-  - DataIntegration
-  properties:
-  - type: OpenAPI
-    url: openapi/prevedere-dataintegration-api-openapi.yml
-  - type: Documentation
-    url: https://api.prevedere.com/docs/
-  - type: APIReference
-    url: https://api.prevedere.com/docs/
-  - type: DeveloperPortal
-    url: https://api.prevedere.com/docs/
 - aid: prevedere:prevedere-discoverjob-api
   name: Prevedere DiscoverJob API
   description: The DiscoverJob API from Prevedere — 2 operation(s) for discoverjob.
@@ -348,24 +330,6 @@ apis:
     url: https://api.prevedere.com/docs/
   - type: DeveloperPortal
     url: https://api.prevedere.com/docs/
-- aid: prevedere:prevedere-usercontext-api
-  name: Prevedere UserContext API
-  description: The UserContext API from Prevedere — 2 operation(s) for usercontext.
-  humanURL: https://api.prevedere.com/docs/
-  baseURL: https://api.prevedere.com
-  tags:
-  - User Context
-  tags_raw:
-  - UserContext
-  properties:
-  - type: OpenAPI
-    url: openapi/prevedere-usercontext-api-openapi.yml
-  - type: Documentation
-    url: https://api.prevedere.com/docs/
-  - type: APIReference
-    url: https://api.prevedere.com/docs/
-  - type: DeveloperPortal
-    url: https://api.prevedere.com/docs/
 - aid: prevedere:prevedere-workbench-api
   name: Prevedere Workbench API
   description: >-
@@ -390,6 +354,38 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/prevedere-workbench-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-data-integration-api
+  name: Prevedere Data Integration API
+  description: The Data Integration API from Prevedere — 3 operation(s) for data integration.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - Data Integration
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-data-integration-api-openapi.yml
+  - type: Documentation
+    url: https://api.prevedere.com/docs/
+  - type: APIReference
+    url: https://api.prevedere.com/docs/
+  - type: DeveloperPortal
+    url: https://api.prevedere.com/docs/
+- aid: prevedere:prevedere-user-context-api
+  name: Prevedere User Context API
+  description: The User Context API from Prevedere — 2 operation(s) for user context.
+  humanURL: https://api.prevedere.com/docs/
+  baseURL: https://api.prevedere.com
+  tags:
+  - User Context
+  properties:
+  - type: OpenAPI
+    url: openapi/prevedere-user-context-api-openapi.yml
   - type: Documentation
     url: https://api.prevedere.com/docs/
   - type: APIReference
