@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Board Foresight API - V1 Alert ForecastSummary API
+  title: Board Foresight API - V1 Forecast Summary API
   description: ''
   version: v1
 security:
@@ -19,6 +19,10 @@ paths:
         '429':
           description: If the user has sent too many requests
       deprecated: true
+      summary: Get summaries
+      x-summary-source: derived
+      operationId: getSummaries
+      x-operation-id-source: derived
   /forecast/summary/{forecastSummaryId}:
     get:
       tags:
@@ -36,9 +40,13 @@ paths:
         '429':
           description: If the user has sent too many requests
       deprecated: true
+      summary: Get forecast summary by forecast summary id
+      x-summary-source: derived
+      operationId: getForecastSummaryByForecastSummaryId
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    api key:
+    api_key:
       type: apiKey
       name: ApiKey
       in: query

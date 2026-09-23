@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Board Foresight API - V1 Alert ComponentContributionOverrideValues API
+  title: Board Foresight API - V1 Component Contribution Override…
   description: ''
   version: v1
 security:
@@ -53,6 +53,8 @@ paths:
           description: If the user has sent too many requests
         '400':
           description: If model is not locked
+      operationId: getComponentcontributionoverridevaluesByForecastModelId
+      x-operation-id-source: derived
     delete:
       tags:
       - ComponentContributionOverrideValues
@@ -80,6 +82,8 @@ paths:
           description: If the user has sent too many requests
         '400':
           description: If model is not locked
+      operationId: deleteComponentcontributionoverridevaluesByForecastModelId
+      x-operation-id-source: derived
   /componentcontributionoverridevalues:
     post:
       tags:
@@ -124,31 +128,10 @@ paths:
           description: Forecast model is expired or is not a production model
         '429':
           description: If the user has sent too many requests
+      operationId: postComponentcontributionoverridevalues
+      x-operation-id-source: derived
 components:
   schemas:
-    Frequency:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 4
-      - 12
-      - 52
-      - 365
-      - 1000
-      type: integer
-      description: "The frequency of the data.\r\n\r\n\r\nDaily: 365\r\n\r\n\r\nWeekly: 52\r\n\r\n\r\nMonthly: 12\r\n\r\n\r\nQuarterly: 4\r\n\r\n\r\nSemiAnnual: 2\r\n\r\n\r\nAnnual: 1"
-      format: int32
-    ComponentContributionFrequency:
-      enum:
-      - 1
-      - 2
-      - 4
-      - 12
-      - 52
-      type: integer
-      description: "The frequency of the data.\r\n\r\n\r\nWeekly: 52\r\n\r\n\r\nMonthly: 12\r\n\r\n\r\nQuarterly: 4\r\n\r\n\r\nSemiAnnual: 2\r\n\r\n\r\nAnnual: 1"
-      format: int32
     ComponentContributionOverrideValuesRequest:
       type: object
       properties:
@@ -163,12 +146,50 @@ components:
           description: The entry id of the indicator that will have its value overridden.
           format: uuid
         contributionPeriods:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/ComponentContribution'
           description: A list of override values, with a date and value for each.
-          nullable: true
       additionalProperties: false
+    Frequency:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      - 365
+      - 1000
+      type: integer
+      description: 'The frequency of the data.
+
+
+
+        Daily: 365
+
+
+
+        Weekly: 52
+
+
+
+        Monthly: 12
+
+
+
+        Quarterly: 4
+
+
+
+        SemiAnnual: 2
+
+
+
+        Annual: 1'
+      format: int32
     ComponentContribution:
       type: object
       properties:
@@ -179,6 +200,36 @@ components:
           type: number
           format: double
       additionalProperties: false
+    ComponentContributionFrequency:
+      enum:
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      type: integer
+      description: 'The frequency of the data.
+
+
+
+        Weekly: 52
+
+
+
+        Monthly: 12
+
+
+
+        Quarterly: 4
+
+
+
+        SemiAnnual: 2
+
+
+
+        Annual: 1'
+      format: int32
     ComponentContributionOverrideValues:
       type: object
       properties:
@@ -191,13 +242,14 @@ components:
           type: string
           format: uuid
         contributionPeriods:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/ComponentContribution'
-          nullable: true
       additionalProperties: false
   securitySchemes:
-    api key:
+    api_key:
       type: apiKey
       name: ApiKey
       in: query

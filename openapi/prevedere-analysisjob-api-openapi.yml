@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Board Foresight API - V1 Alert AnalysisJob API
+  title: Board Foresight API - V1 Analysis Job API
   description: ''
   version: v1
 security:
@@ -19,6 +19,10 @@ paths:
         '429':
           description: If the user has sent too many requests
       deprecated: true
+      summary: Get analysisjobs
+      x-summary-source: derived
+      operationId: getAnalysisjobs
+      x-operation-id-source: derived
   /analysisjob/{AnalysisJobId}/{ReturnData}:
     get:
       tags:
@@ -40,9 +44,13 @@ paths:
         '429':
           description: If the user has sent too many requests
       deprecated: true
+      summary: Get analysisjob by analysis job id by return data
+      x-summary-source: derived
+      operationId: getAnalysisjobByAnalysisJobIdByReturnData
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    api key:
+    api_key:
       type: apiKey
       name: ApiKey
       in: query

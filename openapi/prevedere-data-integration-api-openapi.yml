@@ -1,18 +1,18 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Board Foresight API - V1 Alert DataIntegration API
+  title: Board Foresight API - V1 Data Integration API
   description: ''
   version: v1
 security:
 - api key: []
 tags:
-- name: DataIntegration
+- name: Data Integration
   description: ''
 paths:
   /clientdimensions:
     get:
       tags:
-      - DataIntegration
+      - Data Integration
       description: The complete list of client dimension groups available for data import. Contains dimension and hierarchy information
       parameters:
       - name: request
@@ -24,11 +24,17 @@ paths:
           description: OK
         '429':
           description: If the user has sent too many requests
+      summary: Get clientdimensions
+      x-summary-source: derived
+      operationId: getClientdimensions
+      x-operation-id-source: derived
   /importclientdata/{ClientDimensionGroupId}/{ShouldDeleteExistingRecords}:
     post:
       tags:
-      - DataIntegration
-      description: "Imports a client data file into the system.  The file should be posted as part of a 'multipart/form-data'-encoded request.  Only one file may be posted per request.\r\n        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to 'date', 'measure' and 'value' fields."
+      - Data Integration
+      description: 'Imports a client data file into the system. The file should be posted as part of a ''multipart/form-data''-encoded request. Only one file may be posted per request.
+
+        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to ''date'', ''measure'' and ''value'' fields.'
       parameters:
       - name: ShouldDeleteExistingRecords
         in: path
@@ -53,11 +59,17 @@ paths:
           description: OK
         '429':
           description: If the user has sent too many requests
+      summary: Create importclientdata by client dimension group id by should delete existing…
+      x-summary-source: derived
+      operationId: postImportclientdataByClientDimensionGroupIdByShouldDeleteExistingRecords
+      x-operation-id-source: derived
   /validateclientdata/{ClientDimensionGroupId}:
     post:
       tags:
-      - DataIntegration
-      description: "Validates a client data file against a client dimension group.  The file should be posted as part of a 'multipart/form-data'-encoded request.  Only one file may be posted per request.\r\n        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to 'date', 'measure' and 'value' fields."
+      - Data Integration
+      description: 'Validates a client data file against a client dimension group. The file should be posted as part of a ''multipart/form-data''-encoded request. Only one file may be posted per request.
+
+        The file should contain all the fields described in the mapping of client dimension group it contains data for, in addition to ''date'', ''measure'' and ''value'' fields.'
       parameters:
       - name: ShouldDeleteExistingRecords
         in: query
@@ -82,13 +94,17 @@ paths:
           description: OK
         '429':
           description: If the user has sent too many requests
+      summary: Create validateclientdata by client dimension group id
+      x-summary-source: derived
+      operationId: postValidateclientdataByClientDimensionGroupId
+      x-operation-id-source: derived
 components:
   schemas:
     ClientDimensions:
       type: object
       additionalProperties: false
   securitySchemes:
-    api key:
+    api_key:
       type: apiKey
       name: ApiKey
       in: query

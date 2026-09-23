@@ -1,25 +1,7 @@
 {
   "provider": "prevedere",
   "sources": [
-    "prevedere-alert-api-openapi.yml",
-    "prevedere-alertdefinition-api-openapi.yml",
-    "prevedere-analysisjob-api-openapi.yml",
-    "prevedere-componentcontributionoverridevalues-api-openapi.yml",
-    "prevedere-context-api-openapi.yml",
-    "prevedere-dataintegration-api-openapi.yml",
-    "prevedere-discoverjob-api-openapi.yml",
-    "prevedere-enumeration-api-openapi.yml",
-    "prevedere-favorites-api-openapi.yml",
-    "prevedere-forecastmodel-api-openapi.yml",
-    "prevedere-forecastmodelhistory-api-openapi.yml",
-    "prevedere-forecastsummary-api-openapi.yml",
-    "prevedere-indicator-api-openapi.yml",
-    "prevedere-provider-api-openapi.yml",
-    "prevedere-scenario-api-openapi.yml",
-    "prevedere-tag-api-openapi.yml",
-    "prevedere-test-api-openapi.yml",
-    "prevedere-usercontext-api-openapi.yml",
-    "prevedere-workbench-api-openapi.yml"
+    "_original/prevedere-openapi-original.json"
   ],
   "outputs": [
     "prevedere-alert-api-openapi.yml",
@@ -42,9 +24,36 @@
     "prevedere-usercontext-api-openapi.yml",
     "prevedere-workbench-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 2 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "prevedere-openapi-original.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0; renamed 1 component key(s) illegal in 3.x (e.g. api key)",
+    "superseded outputs removed: prevedere-data-integration-api-openapi.yml, prevedere-user-context-api-openapi.yml",
+    "apis.yml register: written (+2 apis, 19 total)"
+  ],
+  "skipped": [
+    "prevedere-alert-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-alertdefinition-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-analysisjob-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-componentcontributionoverridevalues-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-context-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-data-integration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-discoverjob-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-enumeration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-favorites-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-forecastmodel-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-forecastmodelhistory-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-forecastsummary-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-indicator-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-provider-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-scenario-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-tag-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-test-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-user-context-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "prevedere-workbench-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

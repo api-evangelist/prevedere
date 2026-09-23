@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Board Foresight API - V1 Alert Enumeration API
+  title: Board Foresight API - V1 Enumeration API
   description: ''
   version: v1
 security:
@@ -19,6 +19,10 @@ paths:
           description: OK
         '429':
           description: If the user has sent too many requests
+      summary: Get aggregationmethods
+      x-summary-source: derived
+      operationId: getAggregationmethods
+      x-operation-id-source: derived
   /calculations:
     get:
       tags:
@@ -29,6 +33,10 @@ paths:
           description: OK
         '429':
           description: If the user has sent too many requests
+      summary: Get calculations
+      x-summary-source: derived
+      operationId: getCalculations
+      x-operation-id-source: derived
   /frequencies:
     get:
       tags:
@@ -39,6 +47,10 @@ paths:
           description: OK
         '429':
           description: If the user has sent too many requests
+      summary: Get frequencies
+      x-summary-source: derived
+      operationId: getFrequencies
+      x-operation-id-source: derived
   /seasonalities:
     get:
       tags:
@@ -49,6 +61,10 @@ paths:
           description: OK
         '429':
           description: If the user has sent too many requests
+      summary: Get seasonalities
+      x-summary-source: derived
+      operationId: getSeasonalities
+      x-operation-id-source: derived
   /forecastmodeltypes:
     get:
       tags:
@@ -59,6 +75,10 @@ paths:
           description: OK
         '429':
           description: If the user has sent too many requests
+      summary: Get forecastmodeltypes
+      x-summary-source: derived
+      operationId: getForecastmodeltypes
+      x-operation-id-source: derived
   /classifications:
     get:
       tags:
@@ -69,9 +89,13 @@ paths:
           description: OK
         '429':
           description: If the user has sent too many requests
+      summary: Get classifications
+      x-summary-source: derived
+      operationId: getClassifications
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    api key:
+    api_key:
       type: apiKey
       name: ApiKey
       in: query

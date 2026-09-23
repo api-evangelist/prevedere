@@ -1,18 +1,18 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Board Foresight API - V1 Alert UserContext API
+  title: Board Foresight API - V1 User Context API
   description: ''
   version: v1
 security:
 - api key: []
 tags:
-- name: UserContext
+- name: User Context
   description: ''
 paths:
   /company:
     get:
       tags:
-      - UserContext
+      - User Context
       summary: Retrieves all companies for authenticated user
       description: The company information associated with the user
       responses:
@@ -40,10 +40,12 @@ paths:
           description: If the user isn't authenticated
         '403':
           description: If the user isn't authorized for such action
+      operationId: getCompany
+      x-operation-id-source: derived
   /company/{CompanyId}:
     put:
       tags:
-      - UserContext
+      - User Context
       description: Switch company context
       parameters:
       - name: CompanyId
@@ -66,20 +68,27 @@ paths:
                 type: string
         '429':
           description: If the user has sent too many requests
+      summary: Replace company by company id
+      x-summary-source: derived
+      operationId: putCompanyByCompanyId
+      x-operation-id-source: derived
 components:
   schemas:
     Company:
       type: object
       properties:
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         prefix:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         createDate:
           type: string
           format: date-time
@@ -88,7 +97,7 @@ components:
           format: uuid
       additionalProperties: false
   securitySchemes:
-    api key:
+    api_key:
       type: apiKey
       name: ApiKey
       in: query

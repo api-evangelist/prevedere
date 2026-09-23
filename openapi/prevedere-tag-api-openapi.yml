@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Board Foresight API - V1 Alert Tag API
+  title: Board Foresight API - V1 Tag API
   description: ''
   version: v1
 security:
@@ -40,9 +40,13 @@ paths:
                   type: string
         '429':
           description: If the user has sent too many requests
+      summary: Get tag
+      x-summary-source: derived
+      operationId: getTag
+      x-operation-id-source: derived
 components:
   securitySchemes:
-    api key:
+    api_key:
       type: apiKey
       name: ApiKey
       in: query

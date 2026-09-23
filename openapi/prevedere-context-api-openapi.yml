@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Board Foresight API - V1 Alert Context API
+  title: Board Foresight API - V1 Context API
   description: ''
   version: v1
 security:
@@ -34,8 +34,42 @@ paths:
           description: If the user isn't authenticated
         '403':
           description: If the user isn't authorized for such action
+      operationId: getContext
+      x-operation-id-source: derived
 components:
   schemas:
+    Feature:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Context:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        company:
+          $ref: '#/components/schemas/Company'
+        roles:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        features:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Feature'
+      additionalProperties: false
     User:
       type: object
       properties:
@@ -43,14 +77,17 @@ components:
           type: string
           format: uuid
         username:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         firstName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         lastName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         created:
           type: string
           format: date-time
@@ -67,14 +104,17 @@ components:
       type: object
       properties:
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         prefix:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         createDate:
           type: string
           format: date-time
@@ -82,36 +122,8 @@ components:
           type: string
           format: uuid
       additionalProperties: false
-    Context:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-        company:
-          $ref: '#/components/schemas/Company'
-        roles:
-          type: array
-          items:
-            type: string
-          nullable: true
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/Feature'
-          nullable: true
-      additionalProperties: false
-    Feature:
-      type: object
-      properties:
-        name:
-          type: string
-          nullable: true
-        description:
-          type: string
-          nullable: true
-      additionalProperties: false
   securitySchemes:
-    api key:
+    api_key:
       type: apiKey
       name: ApiKey
       in: query

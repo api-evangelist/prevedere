@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Board Foresight API - V1 Alert Provider API
+  title: Board Foresight API - V1 Provider API
   description: ''
   version: v1
 security:
@@ -35,26 +35,33 @@ paths:
                   $ref: '#/components/schemas/Provider'
         '429':
           description: If the user has sent too many requests
+      summary: Get provider
+      x-summary-source: derived
+      operationId: getProvider
+      x-operation-id-source: derived
 components:
   schemas:
     Provider:
       type: object
       properties:
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         id:
           type: string
           format: uuid
         source:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
-    api key:
+    api_key:
       type: apiKey
       name: ApiKey
       in: query
