@@ -55,7 +55,7 @@ tags:
 - Indicators
 - Time Series
 - Data Integration
-- Machine-Learning
+- Machine Learning
 tags_raw:
 - Company
 - Economic Forecasting
@@ -67,6 +67,7 @@ tags_raw:
 - Time Series
 - Data Integration
 - Machine Learning
+- Machine-Learning
 apis:
 - aid: prevedere:prevedere-alert-api
   name: Prevedere Alert API

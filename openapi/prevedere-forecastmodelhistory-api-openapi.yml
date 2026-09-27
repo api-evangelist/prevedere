@@ -44,30 +44,33 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Seasonality:
-      enum:
-      - 0
-      - 1
-      - 999
-      type: integer
-      format: int32
-    ContributionResult:
+    ComponentInformation:
       type: object
       properties:
-        forecast:
+        deprecated:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        provider:
+          type: string
+          format: uuid
+        providerId:
+          type:
+          - string
+          - 'null'
+        offset:
+          type: integer
+          format: int32
+        values:
           type:
           - array
           - 'null'
           items:
             $ref: '#/components/schemas/Point'
-        componentContributions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IndicatorValues'
       additionalProperties: false
-    PeriodAlignment:
+    ProviderAccess:
       enum:
       - 0
       - 1
@@ -111,37 +114,6 @@ components:
 
         Annual: 1'
       format: int32
-    AggregationMethod:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      type: integer
-      format: int32
-    Point:
-      type: object
-      properties:
-        value:
-          type: number
-          format: double
-        date:
-          type: string
-          format: date-time
-        annotation:
-          type:
-          - string
-          - 'null'
-        manuallyAdjusted:
-          type: boolean
-        isForecasted:
-          type:
-          - boolean
-          - 'null'
-      additionalProperties: false
     CoefficientInfo:
       type: object
       properties:
@@ -151,42 +123,37 @@ components:
           type: number
           format: double
       additionalProperties: false
-    SegmentInfo:
+    Seasonality:
+      enum:
+      - 0
+      - 1
+      - 999
+      type: integer
+      format: int32
+    DisplayInformation:
       type: object
       properties:
-        segment:
-          type: integer
-          format: int32
-        intercept:
-          type: number
-          format: double
-        coefficients:
+        name:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/CoefficientInfo'
-          description: Component coefficients ordered by indicator offset
+          description: The display name to be used in the application. Limited to 50 characters.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description to be shown in the application. Limited to 1,000 characters.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color to use in the application. Must be a valid hex color code.
+        category:
+          type:
+          - string
+          - 'null'
+          description: The category of the indicator. Limited to 1,000 characters.
       additionalProperties: false
-    ProviderAccess:
-      enum:
-      - 0
-      - 1
-      - 2
-      type: integer
-      format: int32
-    IndicatorType:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      type: integer
-      format: int32
     IndicatorKey:
       type: object
       properties:
@@ -201,40 +168,18 @@ components:
           description: The provider id of the indicator.
       additionalProperties: false
       description: The provider:providerId pair. This is used to identify an indicator in the system.
-    Calculation:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      type: integer
-      description: 'The transformation applied to the data.
-
-
-
-        Possible options:
-
-
-
-        None 1
-
-
-
-        PeriodOverPeriod 2
-
-
-
-        YearOverYear 3
-
-
-
-        ThreePeriodYearOverYear 6'
-      format: int32
+    IndustryCode:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        code:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     ForecastModelIteration:
       type: object
       properties:
@@ -282,41 +227,99 @@ components:
         contributionResult:
           $ref: '#/components/schemas/ContributionResult'
       additionalProperties: false
-    IndustryCode:
+    IndicatorValues:
       type: object
       properties:
-        type:
+        indicator:
+          $ref: '#/components/schemas/Indicator'
+        leadTime:
+          type: integer
+          format: int32
+        values:
           type:
-          - string
+          - array
           - 'null'
-        code:
-          type:
-          - string
-          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
       additionalProperties: false
-    DisplayInformation:
+    ForecastModelType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      type: integer
+      description: 'None: 0
+
+
+
+        Rocet: 1
+
+
+
+        Multivariate: 2
+
+
+
+        SegmentedMultivariate: 3
+
+
+
+        WeightedUnivariateRegression: 4
+
+
+        '
+      format: int32
+    IndicatorDataSource:
       type: object
       properties:
         name:
           type:
           - string
           - 'null'
-          description: The display name to be used in the application. Limited to 50 characters.
-        description:
+        url:
           type:
           - string
           - 'null'
-          description: The description to be shown in the application. Limited to 1,000 characters.
-        color:
+        dataSourceType:
+          $ref: '#/components/schemas/IndicatorType'
+      additionalProperties: false
+    ContributionResult:
+      type: object
+      properties:
+        forecast:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+        componentContributions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/IndicatorValues'
+      additionalProperties: false
+    Point:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        date:
+          type: string
+          format: date-time
+        annotation:
           type:
           - string
           - 'null'
-          description: The color to use in the application. Must be a valid hex color code.
-        category:
+        manuallyAdjusted:
+          type: boolean
+        isForecasted:
           type:
-          - string
+          - boolean
           - 'null'
-          description: The category of the indicator. Limited to 1,000 characters.
       additionalProperties: false
     Indicator:
       type: object
@@ -448,89 +451,48 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    IndicatorValues:
-      type: object
-      properties:
-        indicator:
-          $ref: '#/components/schemas/Indicator'
-        leadTime:
-          type: integer
-          format: int32
-        values:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-      additionalProperties: false
-    ComponentInformation:
-      type: object
-      properties:
-        deprecated:
-          type: boolean
-        name:
-          type:
-          - string
-          - 'null'
-        provider:
-          type: string
-          format: uuid
-        providerId:
-          type:
-          - string
-          - 'null'
-        offset:
-          type: integer
-          format: int32
-        values:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-      additionalProperties: false
-    ForecastModelType:
+    Calculation:
       enum:
       - 0
       - 1
       - 2
       - 3
       - 4
+      - 5
+      - 6
+      - 7
+      - 8
       type: integer
-      description: 'None: 0
+      description: 'The transformation applied to the data.
 
 
 
-        Rocet: 1
+        Possible options:
 
 
 
-        Multivariate: 2
+        None 1
 
 
 
-        SegmentedMultivariate: 3
+        PeriodOverPeriod 2
 
 
 
-        WeightedUnivariateRegression: 4
+        YearOverYear 3
 
 
-        '
+
+        ThreePeriodYearOverYear 6'
       format: int32
-    IndicatorDataSource:
+    ForecastModelHistory:
       type: object
       properties:
-        name:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        dataSourceType:
-          $ref: '#/components/schemas/IndicatorType'
+        captureDate:
+          type: string
+          format: date-time
+        forecastModelIteration:
+          $ref: '#/components/schemas/ForecastModelIteration'
       additionalProperties: false
     Provider:
       type: object
@@ -551,6 +513,53 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    PeriodAlignment:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    AggregationMethod:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      type: integer
+      format: int32
+    SegmentInfo:
+      type: object
+      properties:
+        segment:
+          type: integer
+          format: int32
+        intercept:
+          type: number
+          format: double
+        coefficients:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CoefficientInfo'
+          description: Component coefficients ordered by indicator offset
+      additionalProperties: false
+    IndicatorType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      type: integer
+      format: int32
     Classification:
       enum:
       - 0
@@ -566,15 +575,6 @@ components:
       - 10
       type: integer
       format: int32
-    ForecastModelHistory:
-      type: object
-      properties:
-        captureDate:
-          type: string
-          format: date-time
-        forecastModelIteration:
-          $ref: '#/components/schemas/ForecastModelIteration'
-      additionalProperties: false
   securitySchemes:
     api_key:
       type: apiKey

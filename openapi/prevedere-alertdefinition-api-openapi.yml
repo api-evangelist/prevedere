@@ -64,264 +64,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ProviderAccess:
-      enum:
-      - 0
-      - 1
-      - 2
-      type: integer
-      format: int32
-    Provider:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-          format: uuid
-        source:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    IndicatorType:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      type: integer
-      format: int32
-    Seasonality:
-      enum:
-      - 0
-      - 1
-      - 999
-      type: integer
-      format: int32
-    Classification:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      type: integer
-      format: int32
-    Calculation:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      type: integer
-      description: 'The transformation applied to the data.
-
-
-
-        Possible options:
-
-
-
-        None 1
-
-
-
-        PeriodOverPeriod 2
-
-
-
-        YearOverYear 3
-
-
-
-        ThreePeriodYearOverYear 6'
-      format: int32
-    PeriodAlignment:
-      enum:
-      - 0
-      - 1
-      - 2
-      type: integer
-      format: int32
-    Frequency:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 4
-      - 12
-      - 52
-      - 365
-      - 1000
-      type: integer
-      description: 'The frequency of the data.
-
-
-
-        Daily: 365
-
-
-
-        Weekly: 52
-
-
-
-        Monthly: 12
-
-
-
-        Quarterly: 4
-
-
-
-        SemiAnnual: 2
-
-
-
-        Annual: 1'
-      format: int32
-    AlertDefinition:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type: string
-          format: date-time
-        createdBy:
-          type:
-          - string
-          - 'null'
-        owner:
-          type:
-          - string
-          - 'null'
-        lastModifiedDate:
-          type: string
-          format: date-time
-        targetIndicator:
-          $ref: '#/components/schemas/Indicator'
-        targetForecastModelId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        calculationType:
-          $ref: '#/components/schemas/Calculation'
-        comparer:
-          type:
-          - string
-          - 'null'
-        threshold:
-          type: number
-          format: double
-        timeframe:
-          type: integer
-          format: int32
-        companyId:
-          type:
-          - string
-          - 'null'
-        startDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        notificationEmails:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        notes:
-          type:
-          - string
-          - 'null'
-        containingEntityId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        containingEntityType:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    IndustryCode:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        code:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AggregationMethod:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      type: integer
-      format: int32
-    DisplayInformation:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The display name to be used in the application. Limited to 50 characters.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description to be shown in the application. Limited to 1,000 characters.
-        color:
-          type:
-          - string
-          - 'null'
-          description: The color to use in the application. Must be a valid hex color code.
-        category:
-          type:
-          - string
-          - 'null'
-          description: The category of the indicator. Limited to 1,000 characters.
-      additionalProperties: false
     Indicator:
       type: object
       properties:
@@ -452,6 +194,199 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    IndustryCode:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        code:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PeriodAlignment:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    IndicatorType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      type: integer
+      format: int32
+    ProviderAccess:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    Calculation:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      type: integer
+      description: 'The transformation applied to the data.
+
+
+
+        Possible options:
+
+
+
+        None 1
+
+
+
+        PeriodOverPeriod 2
+
+
+
+        YearOverYear 3
+
+
+
+        ThreePeriodYearOverYear 6'
+      format: int32
+    Frequency:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      - 365
+      - 1000
+      type: integer
+      description: 'The frequency of the data.
+
+
+
+        Daily: 365
+
+
+
+        Weekly: 52
+
+
+
+        Monthly: 12
+
+
+
+        Quarterly: 4
+
+
+
+        SemiAnnual: 2
+
+
+
+        Annual: 1'
+      format: int32
+    AggregationMethod:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      type: integer
+      format: int32
+    AlertDefinition:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type: string
+          format: date-time
+        createdBy:
+          type:
+          - string
+          - 'null'
+        owner:
+          type:
+          - string
+          - 'null'
+        lastModifiedDate:
+          type: string
+          format: date-time
+        targetIndicator:
+          $ref: '#/components/schemas/Indicator'
+        targetForecastModelId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        calculationType:
+          $ref: '#/components/schemas/Calculation'
+        comparer:
+          type:
+          - string
+          - 'null'
+        threshold:
+          type: number
+          format: double
+        timeframe:
+          type: integer
+          format: int32
+        companyId:
+          type:
+          - string
+          - 'null'
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        notificationEmails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        notes:
+          type:
+          - string
+          - 'null'
+        containingEntityId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        containingEntityType:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     IndicatorDataSource:
       type: object
       properties:
@@ -466,6 +401,71 @@ components:
         dataSourceType:
           $ref: '#/components/schemas/IndicatorType'
       additionalProperties: false
+    Seasonality:
+      enum:
+      - 0
+      - 1
+      - 999
+      type: integer
+      format: int32
+    Provider:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+          format: uuid
+        source:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    DisplayInformation:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The display name to be used in the application. Limited to 50 characters.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description to be shown in the application. Limited to 1,000 characters.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color to use in the application. Must be a valid hex color code.
+        category:
+          type:
+          - string
+          - 'null'
+          description: The category of the indicator. Limited to 1,000 characters.
+      additionalProperties: false
+    Classification:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      type: integer
+      format: int32
   securitySchemes:
     api_key:
       type: apiKey

@@ -530,50 +530,150 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CorrelationSet:
+    BaseIndicatorMetadataWithFrequencyRequest:
       type: object
       properties:
-        calculation:
-          $ref: '#/components/schemas/Calculation'
-        maxDataPointOverlap:
-          type: integer
-          format: int32
-        minDataPointOverlap:
-          type: integer
-          format: int32
-        bestCorrelationCoefficient:
-          type: number
-          format: double
-        bestRSquared:
-          type: number
-          format: double
-        bestProcyclic:
-          type: number
-          format: double
-        bestCountercyclic:
-          type: number
-          format: double
-        data:
+        provider:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier for provider
+        providerId:
+          type:
+          - string
+          - 'null'
+          description: Indicator Identifier
+        name:
+          type:
+          - string
+          - 'null'
+          description: Indicator Name
+        description:
+          type:
+          - string
+          - 'null'
+          description: Indicator Description
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Indicator Notes
+        units:
+          type:
+          - string
+          - 'null'
+          description: Indicator Units of measurement
+        citation:
+          type:
+          - string
+          - 'null'
+          description: Indicator Citation
+        path:
+          type:
+          - string
+          - 'null'
+          description: Path of indicator in Prevedere folder structure
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color code to be used in the Prevedere application
+        aggregation:
+          type:
+          - string
+          - 'null'
+          description: Aggregation method used for indicator time series
+        tags:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Correlation'
+            type: string
+          description: Tags assigned to help organize indicator
+        industryCodes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+          description: Industry codes assigned to indicator
+        classification:
+          type:
+          - string
+          - 'null'
+          description: Prevedere Classification for indicator
+        seasonalAdjustment:
+          type:
+          - string
+          - 'null'
+          description: Identifies if indicator is seasonally adjusted
+        periodAlignment:
+          type:
+          - string
+          - 'null'
+          description: Identifies if time series aligns with the beginning or end of time period
+        interval:
+          type:
+          - string
+          - 'null'
+          description: Name and multiple used to describe period length of indicator the time series, similar to frequency
+        frequency:
+          type:
+          - string
+          - 'null'
+          description: Frequency of indicator time series
       additionalProperties: false
-    Seasonality:
-      enum:
-      - 0
-      - 1
-      - 999
-      type: integer
-      format: int32
-    PeriodAlignment:
+    RequestPoint:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        annotation:
+          type:
+          - string
+          - 'null'
+        date:
+          type: string
+          format: date-time
+        isForecasted:
+          type: boolean
+      additionalProperties: false
+    ProviderAccess:
       enum:
       - 0
       - 1
       - 2
       type: integer
       format: int32
+    CompositeIndicatorEntry:
+      type: object
+      properties:
+        provider:
+          type:
+          - string
+          - 'null'
+          description: Unique Identifier for Provider.
+        providerId:
+          type:
+          - string
+          - 'null'
+          description: Identifier for indicator
+        offset:
+          type: integer
+          description: Offset applied to indicator
+          format: int32
+        calculation:
+          type:
+          - string
+          - 'null'
+          description: Calculation of indicator
+        variableName:
+          type:
+          - string
+          - 'null'
+          description: Variable name for indicator that is reference in the formula
+      additionalProperties: false
     Frequency:
       enum:
       - 0
@@ -611,6 +711,375 @@ components:
 
         Annual: 1'
       format: int32
+    CompositeMetadataCreateRequest:
+      type: object
+      properties:
+        provider:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier for provider
+        providerId:
+          type:
+          - string
+          - 'null'
+          description: Indicator Identifier
+        name:
+          type:
+          - string
+          - 'null'
+          description: Indicator Name
+        description:
+          type:
+          - string
+          - 'null'
+          description: Indicator Description
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Indicator Notes
+        units:
+          type:
+          - string
+          - 'null'
+          description: Indicator Units of measurement
+        citation:
+          type:
+          - string
+          - 'null'
+          description: Indicator Citation
+        path:
+          type:
+          - string
+          - 'null'
+          description: Path of indicator in Prevedere folder structure
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color code to be used in the Prevedere application
+        aggregation:
+          type:
+          - string
+          - 'null'
+          description: Aggregation method used for indicator time series
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Tags assigned to help organize indicator
+        industryCodes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+          description: Industry codes assigned to indicator
+        classification:
+          type:
+          - string
+          - 'null'
+          description: Prevedere Classification for indicator
+        seasonalAdjustment:
+          type:
+          - string
+          - 'null'
+          description: Identifies if indicator is seasonally adjusted
+        periodAlignment:
+          type:
+          - string
+          - 'null'
+          description: Identifies if time series aligns with the beginning or end of time period
+        interval:
+          type:
+          - string
+          - 'null'
+          description: Name and multiple used to describe period length of indicator the time series, similar to frequency
+        frequency:
+          type:
+          - string
+          - 'null'
+          description: Frequency of indicator time series
+        calculation:
+          type:
+          - string
+          - 'null'
+          description: Calculation of composite indicator
+        projectId:
+          type:
+          - string
+          - 'null'
+          description: Optional Project ID to associate the indicator with a specific project
+      additionalProperties: false
+    ResponseMessage:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Seasonality:
+      enum:
+      - 0
+      - 1
+      - 999
+      type: integer
+      format: int32
+    Correlation:
+      type: object
+      properties:
+        counterCyclic:
+          type: number
+          format: double
+        periodShift:
+          type: integer
+          format: int32
+        proCyclic:
+          type: number
+          format: double
+        correlationCoefficient:
+          type: number
+          format: double
+        rSquared:
+          type: number
+          format: double
+        numberOfDataPoints:
+          type: integer
+          format: int32
+        notes:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    IndicatorCreate:
+      type: object
+      properties:
+        indicator:
+          $ref: '#/components/schemas/IndicatorCreateRequest'
+      additionalProperties: false
+    DisplayInformation:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The display name to be used in the application. Limited to 50 characters.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description to be shown in the application. Limited to 1,000 characters.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color to use in the application. Must be a valid hex color code.
+        category:
+          type:
+          - string
+          - 'null'
+          description: The category of the indicator. Limited to 1,000 characters.
+      additionalProperties: false
+    BulkIndicatorUpdateRequest:
+      type: object
+      properties:
+        indicators:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/IndicatorUpdateRequest'
+      additionalProperties: false
+      example:
+        indicators:
+          indicator1:
+            provider: 18A87A77-8CB8-4637-A5C3-004089CE0F11
+            providerId: ABC
+            notes: Some notes
+            description: A short description
+            deleteExistingDataRecords: false
+            classification: Weather
+            name: Some Name
+            color: '#FF00000'
+            units: Some Units
+            seasonalAdjustment: false
+            aggregation: Average
+            citation: Some citation
+            path: Some path
+            periodAlignment: Beginning
+            interval: MONTH
+            industryCodes:
+            - type: SIC
+              code: '123'
+            tags:
+            - tag1
+            - tag2
+            data:
+            - value: 1.093
+              annotation: ''
+              date: '2022-10-01'
+              isForecasted: false
+            - Value: 1.163
+              Annotation: 'Note: Something'
+              Date: '2022-11-01'
+              IsForecasted: true
+          indicator2:
+            provider: DF56A04D-5D6D-41DB-B553-8374E4746010
+            providerId: CDE
+            notes: Some different notes
+            description: Description for my indicator
+            deleteExistingDataRecords: false
+            classification: Trade
+            name: Different Name
+            color: '#FF00000'
+            units: Different Units
+            seasonalAdjustment: false
+            aggregation: Sum
+            citation: Different citation
+            path: Different path
+            periodAlignment: End
+            interval: MONTH
+            industryCodes:
+            - type: Nace
+              code: AB
+            tags:
+            - Tag4
+            - Tag8
+            data:
+            - value: 10867.093
+              annotation: ''
+              date: '2020-08-01'
+              isForecasted: false
+            - value: 187564.163
+              annotation: Something happened here.
+              date: '2020-09-01'
+              isForecasted: true
+    IndustryCode:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        code:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CompositeEntryUpdateRequest:
+      type: object
+      properties:
+        provider:
+          type:
+          - string
+          - 'null'
+          description: Unique Identifier for Provider.
+        providerId:
+          type:
+          - string
+          - 'null'
+          description: Identifier for indicator
+        offset:
+          type: integer
+          description: Offset applied to indicator
+          format: int32
+        calculation:
+          type:
+          - string
+          - 'null'
+          description: Calculation of indicator
+      additionalProperties: false
+    IndicatorSearchResults:
+      type: object
+      properties:
+        results:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Indicator'
+          readOnly: true
+        page:
+          type: integer
+          format: int32
+          readOnly: true
+        pageSize:
+          type: integer
+          format: int32
+          readOnly: true
+        totalResults:
+          type: integer
+          format: int64
+          readOnly: true
+      additionalProperties: false
+    CompositeDefinitionUpdateResponse:
+      type: object
+      properties:
+        compositeDefinition:
+          $ref: '#/components/schemas/CompositeDefinition'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+      additionalProperties: false
+    IndicatorDataSource:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        dataSourceType:
+          $ref: '#/components/schemas/IndicatorType'
+      additionalProperties: false
+    IndicatorTransformation:
+      type: object
+      properties:
+        provider:
+          type:
+          - string
+          - 'null'
+        providerId:
+          type:
+          - string
+          - 'null'
+        startDate:
+          type:
+          - string
+          - 'null'
+        endDate:
+          type:
+          - string
+          - 'null'
+        transformations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Transformation'
+        offset:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        isLogged:
+          type: boolean
+      additionalProperties: false
     CompositeMetadata:
       type: object
       properties:
@@ -710,70 +1179,6 @@ components:
           description: Calculation of composite indicator
       additionalProperties: false
       description: This schema contains the metadata for the composite indicator
-    IndicatorTransformation:
-      type: object
-      properties:
-        provider:
-          type:
-          - string
-          - 'null'
-        providerId:
-          type:
-          - string
-          - 'null'
-        startDate:
-          type:
-          - string
-          - 'null'
-        endDate:
-          type:
-          - string
-          - 'null'
-        transformations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Transformation'
-        offset:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        isLogged:
-          type: boolean
-      additionalProperties: false
-    AggregationMethod:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      type: integer
-      format: int32
-    Point:
-      type: object
-      properties:
-        value:
-          type: number
-          format: double
-        date:
-          type: string
-          format: date-time
-        annotation:
-          type:
-          - string
-          - 'null'
-        manuallyAdjusted:
-          type: boolean
-        isForecasted:
-          type:
-          - boolean
-          - 'null'
-      additionalProperties: false
     CompositeDefinition:
       type: object
       properties:
@@ -799,276 +1204,25 @@ components:
           $ref: '#/components/schemas/CompositeMetadata'
       additionalProperties: false
       description: This schema contains the definition of a composite indicator. It includes the formula, start date and information for each indicator used in the formula.
-    Transformation:
+    Point:
       type: object
       properties:
-        order:
-          type: integer
-          format: int32
-        required:
-          type: boolean
-      additionalProperties: false
-    IndicatorCreate:
-      type: object
-      properties:
-        indicator:
-          $ref: '#/components/schemas/IndicatorCreateRequest'
-      additionalProperties: false
-    Correlation:
-      type: object
-      properties:
-        counterCyclic:
+        value:
           type: number
           format: double
-        periodShift:
-          type: integer
-          format: int32
-        proCyclic:
-          type: number
-          format: double
-        correlationCoefficient:
-          type: number
-          format: double
-        rSquared:
-          type: number
-          format: double
-        numberOfDataPoints:
-          type: integer
-          format: int32
-        notes:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ProviderAccess:
-      enum:
-      - 0
-      - 1
-      - 2
-      type: integer
-      format: int32
-    IndicatorType:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      type: integer
-      format: int32
-    IndicatorCreateRequest:
-      type: object
-      properties:
-        provider:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier for provider
-        providerId:
-          type:
-          - string
-          - 'null'
-          description: Indicator Identifier
-        name:
-          type:
-          - string
-          - 'null'
-          description: Indicator Name
-        description:
-          type:
-          - string
-          - 'null'
-          description: Indicator Description
-        notes:
-          type:
-          - string
-          - 'null'
-          description: Indicator Notes
-        units:
-          type:
-          - string
-          - 'null'
-          description: Indicator Units of measurement
-        citation:
-          type:
-          - string
-          - 'null'
-          description: Indicator Citation
-        path:
-          type:
-          - string
-          - 'null'
-          description: Path of indicator in Prevedere folder structure
-        color:
-          type:
-          - string
-          - 'null'
-          description: Color code to be used in the Prevedere application
-        aggregation:
-          type:
-          - string
-          - 'null'
-          description: Aggregation method used for indicator time series
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Tags assigned to help organize indicator
-        industryCodes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IndustryCode'
-          description: Industry codes assigned to indicator
-        classification:
-          type:
-          - string
-          - 'null'
-          description: Prevedere Classification for indicator
-        seasonalAdjustment:
-          type:
-          - string
-          - 'null'
-          description: Identifies if indicator is seasonally adjusted
-        periodAlignment:
-          type:
-          - string
-          - 'null'
-          description: Identifies if time series aligns with the beginning or end of time period
-        interval:
-          type:
-          - string
-          - 'null'
-          description: Name and multiple used to describe period length of indicator the time series, similar to frequency
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RequestPoint'
-          description: Data Time Series For Indicator
-        calculation:
-          type:
-          - string
-          - 'null'
-        projectId:
-          type:
-          - string
-          - 'null'
-          description: Optional Project ID to associate the indicator with a specific project
-      additionalProperties: false
-    Calculation:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      type: integer
-      description: 'The transformation applied to the data.
-
-
-
-        Possible options:
-
-
-
-        None 1
-
-
-
-        PeriodOverPeriod 2
-
-
-
-        YearOverYear 3
-
-
-
-        ThreePeriodYearOverYear 6'
-      format: int32
-    CompositeDefinitionCreateRequest:
-      type: object
-      properties:
-        entries:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CompositeEntryUpdateRequest'
-          description: Indicator Entries that are used in the composite formula
-        formula:
-          type:
-          - string
-          - 'null'
-          description: Formula for composite Indicator where each variable represents a CompositeIndicatorEntry
-        startDate:
-          type:
-          - string
-          - 'null'
-          description: Optional Start Date of Composite, when blank the series will start on the first common date across variables
+        date:
+          type: string
           format: date-time
-        compositeMetadata:
-          $ref: '#/components/schemas/CompositeMetadataCreateRequest'
-      additionalProperties: false
-      description: Request used to create a composite indicator
-    IndustryCode:
-      type: object
-      properties:
-        type:
+        annotation:
           type:
           - string
           - 'null'
-        code:
+        manuallyAdjusted:
+          type: boolean
+        isForecasted:
           type:
-          - string
+          - boolean
           - 'null'
-      additionalProperties: false
-    CompositeDefinitionUpdateResponse:
-      type: object
-      properties:
-        compositeDefinition:
-          $ref: '#/components/schemas/CompositeDefinition'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ResponseMessage'
-      additionalProperties: false
-    DisplayInformation:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The display name to be used in the application. Limited to 50 characters.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description to be shown in the application. Limited to 1,000 characters.
-        color:
-          type:
-          - string
-          - 'null'
-          description: The color to use in the application. Must be a valid hex color code.
-        category:
-          type:
-          - string
-          - 'null'
-          description: The category of the indicator. Limited to 1,000 characters.
       additionalProperties: false
     Indicator:
       type: object
@@ -1200,6 +1354,183 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    Transformation:
+      type: object
+      properties:
+        order:
+          type: integer
+          format: int32
+        required:
+          type: boolean
+      additionalProperties: false
+    Calculation:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      type: integer
+      description: 'The transformation applied to the data.
+
+
+
+        Possible options:
+
+
+
+        None 1
+
+
+
+        PeriodOverPeriod 2
+
+
+
+        YearOverYear 3
+
+
+
+        ThreePeriodYearOverYear 6'
+      format: int32
+    CorrelationSet:
+      type: object
+      properties:
+        calculation:
+          $ref: '#/components/schemas/Calculation'
+        maxDataPointOverlap:
+          type: integer
+          format: int32
+        minDataPointOverlap:
+          type: integer
+          format: int32
+        bestCorrelationCoefficient:
+          type: number
+          format: double
+        bestRSquared:
+          type: number
+          format: double
+        bestProcyclic:
+          type: number
+          format: double
+        bestCountercyclic:
+          type: number
+          format: double
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Correlation'
+      additionalProperties: false
+    IndicatorCreateRequest:
+      type: object
+      properties:
+        provider:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier for provider
+        providerId:
+          type:
+          - string
+          - 'null'
+          description: Indicator Identifier
+        name:
+          type:
+          - string
+          - 'null'
+          description: Indicator Name
+        description:
+          type:
+          - string
+          - 'null'
+          description: Indicator Description
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Indicator Notes
+        units:
+          type:
+          - string
+          - 'null'
+          description: Indicator Units of measurement
+        citation:
+          type:
+          - string
+          - 'null'
+          description: Indicator Citation
+        path:
+          type:
+          - string
+          - 'null'
+          description: Path of indicator in Prevedere folder structure
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color code to be used in the Prevedere application
+        aggregation:
+          type:
+          - string
+          - 'null'
+          description: Aggregation method used for indicator time series
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Tags assigned to help organize indicator
+        industryCodes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+          description: Industry codes assigned to indicator
+        classification:
+          type:
+          - string
+          - 'null'
+          description: Prevedere Classification for indicator
+        seasonalAdjustment:
+          type:
+          - string
+          - 'null'
+          description: Identifies if indicator is seasonally adjusted
+        periodAlignment:
+          type:
+          - string
+          - 'null'
+          description: Identifies if time series aligns with the beginning or end of time period
+        interval:
+          type:
+          - string
+          - 'null'
+          description: Name and multiple used to describe period length of indicator the time series, similar to frequency
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RequestPoint'
+          description: Data Time Series For Indicator
+        calculation:
+          type:
+          - string
+          - 'null'
+        projectId:
+          type:
+          - string
+          - 'null'
+          description: Optional Project ID to associate the indicator with a specific project
+      additionalProperties: false
     CompositeDefinitionUpdateRequest:
       type: object
       properties:
@@ -1225,6 +1556,25 @@ components:
           $ref: '#/components/schemas/BaseIndicatorMetadataWithFrequencyRequest'
       additionalProperties: false
       description: Request used to update the formula of an existing composite indicator, the mix of indicators used as variables in the composite formula, or metadata about the composite indicator.
+    Provider:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+          format: uuid
+        source:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     IndicatorUpdateRequest:
       type: object
       properties:
@@ -1322,234 +1672,36 @@ components:
         deleteExistingDataRecords:
           type: boolean
       additionalProperties: false
-    RequestPoint:
-      type: object
-      properties:
-        value:
-          type: number
-          format: double
-        annotation:
-          type:
-          - string
-          - 'null'
-        date:
-          type: string
-          format: date-time
-        isForecasted:
-          type: boolean
-      additionalProperties: false
-    CompositeEntryUpdateRequest:
-      type: object
-      properties:
-        provider:
-          type:
-          - string
-          - 'null'
-          description: Unique Identifier for Provider.
-        providerId:
-          type:
-          - string
-          - 'null'
-          description: Identifier for indicator
-        offset:
-          type: integer
-          description: Offset applied to indicator
-          format: int32
-        calculation:
-          type:
-          - string
-          - 'null'
-          description: Calculation of indicator
-      additionalProperties: false
-    ResponseMessage:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    CompositeIndicatorEntry:
-      type: object
-      properties:
-        provider:
-          type:
-          - string
-          - 'null'
-          description: Unique Identifier for Provider.
-        providerId:
-          type:
-          - string
-          - 'null'
-          description: Identifier for indicator
-        offset:
-          type: integer
-          description: Offset applied to indicator
-          format: int32
-        calculation:
-          type:
-          - string
-          - 'null'
-          description: Calculation of indicator
-        variableName:
-          type:
-          - string
-          - 'null'
-          description: Variable name for indicator that is reference in the formula
-      additionalProperties: false
-    IndicatorDataSource:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        dataSourceType:
-          $ref: '#/components/schemas/IndicatorType'
-      additionalProperties: false
-    BaseIndicatorMetadataWithFrequencyRequest:
-      type: object
-      properties:
-        provider:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier for provider
-        providerId:
-          type:
-          - string
-          - 'null'
-          description: Indicator Identifier
-        name:
-          type:
-          - string
-          - 'null'
-          description: Indicator Name
-        description:
-          type:
-          - string
-          - 'null'
-          description: Indicator Description
-        notes:
-          type:
-          - string
-          - 'null'
-          description: Indicator Notes
-        units:
-          type:
-          - string
-          - 'null'
-          description: Indicator Units of measurement
-        citation:
-          type:
-          - string
-          - 'null'
-          description: Indicator Citation
-        path:
-          type:
-          - string
-          - 'null'
-          description: Path of indicator in Prevedere folder structure
-        color:
-          type:
-          - string
-          - 'null'
-          description: Color code to be used in the Prevedere application
-        aggregation:
-          type:
-          - string
-          - 'null'
-          description: Aggregation method used for indicator time series
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Tags assigned to help organize indicator
-        industryCodes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IndustryCode'
-          description: Industry codes assigned to indicator
-        classification:
-          type:
-          - string
-          - 'null'
-          description: Prevedere Classification for indicator
-        seasonalAdjustment:
-          type:
-          - string
-          - 'null'
-          description: Identifies if indicator is seasonally adjusted
-        periodAlignment:
-          type:
-          - string
-          - 'null'
-          description: Identifies if time series aligns with the beginning or end of time period
-        interval:
-          type:
-          - string
-          - 'null'
-          description: Name and multiple used to describe period length of indicator the time series, similar to frequency
-        frequency:
-          type:
-          - string
-          - 'null'
-          description: Frequency of indicator time series
-      additionalProperties: false
-    Provider:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-          format: uuid
-        source:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    IndicatorSearchResults:
-      type: object
-      properties:
-        results:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Indicator'
-          readOnly: true
-        page:
-          type: integer
-          format: int32
-          readOnly: true
-        pageSize:
-          type: integer
-          format: int32
-          readOnly: true
-        totalResults:
-          type: integer
-          format: int64
-          readOnly: true
-      additionalProperties: false
+    PeriodAlignment:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    AggregationMethod:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      type: integer
+      format: int32
+    IndicatorType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      type: integer
+      format: int32
     Classification:
       enum:
       - 0
@@ -1565,183 +1717,31 @@ components:
       - 10
       type: integer
       format: int32
-    CompositeMetadataCreateRequest:
+    CompositeDefinitionCreateRequest:
       type: object
       properties:
-        provider:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier for provider
-        providerId:
-          type:
-          - string
-          - 'null'
-          description: Indicator Identifier
-        name:
-          type:
-          - string
-          - 'null'
-          description: Indicator Name
-        description:
-          type:
-          - string
-          - 'null'
-          description: Indicator Description
-        notes:
-          type:
-          - string
-          - 'null'
-          description: Indicator Notes
-        units:
-          type:
-          - string
-          - 'null'
-          description: Indicator Units of measurement
-        citation:
-          type:
-          - string
-          - 'null'
-          description: Indicator Citation
-        path:
-          type:
-          - string
-          - 'null'
-          description: Path of indicator in Prevedere folder structure
-        color:
-          type:
-          - string
-          - 'null'
-          description: Color code to be used in the Prevedere application
-        aggregation:
-          type:
-          - string
-          - 'null'
-          description: Aggregation method used for indicator time series
-        tags:
+        entries:
           type:
           - array
           - 'null'
           items:
-            type: string
-          description: Tags assigned to help organize indicator
-        industryCodes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IndustryCode'
-          description: Industry codes assigned to indicator
-        classification:
+            $ref: '#/components/schemas/CompositeEntryUpdateRequest'
+          description: Indicator Entries that are used in the composite formula
+        formula:
           type:
           - string
           - 'null'
-          description: Prevedere Classification for indicator
-        seasonalAdjustment:
+          description: Formula for composite Indicator where each variable represents a CompositeIndicatorEntry
+        startDate:
           type:
           - string
           - 'null'
-          description: Identifies if indicator is seasonally adjusted
-        periodAlignment:
-          type:
-          - string
-          - 'null'
-          description: Identifies if time series aligns with the beginning or end of time period
-        interval:
-          type:
-          - string
-          - 'null'
-          description: Name and multiple used to describe period length of indicator the time series, similar to frequency
-        frequency:
-          type:
-          - string
-          - 'null'
-          description: Frequency of indicator time series
-        calculation:
-          type:
-          - string
-          - 'null'
-          description: Calculation of composite indicator
-        projectId:
-          type:
-          - string
-          - 'null'
-          description: Optional Project ID to associate the indicator with a specific project
+          description: Optional Start Date of Composite, when blank the series will start on the first common date across variables
+          format: date-time
+        compositeMetadata:
+          $ref: '#/components/schemas/CompositeMetadataCreateRequest'
       additionalProperties: false
-    BulkIndicatorUpdateRequest:
-      type: object
-      properties:
-        indicators:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/IndicatorUpdateRequest'
-      additionalProperties: false
-      example:
-        indicators:
-          indicator1:
-            provider: 18A87A77-8CB8-4637-A5C3-004089CE0F11
-            providerId: ABC
-            notes: Some notes
-            description: A short description
-            deleteExistingDataRecords: false
-            classification: Weather
-            name: Some Name
-            color: '#FF00000'
-            units: Some Units
-            seasonalAdjustment: false
-            aggregation: Average
-            citation: Some citation
-            path: Some path
-            periodAlignment: Beginning
-            interval: MONTH
-            industryCodes:
-            - type: SIC
-              code: '123'
-            tags:
-            - tag1
-            - tag2
-            data:
-            - value: 1.093
-              annotation: ''
-              date: '2022-10-01'
-              isForecasted: false
-            - Value: 1.163
-              Annotation: 'Note: Something'
-              Date: '2022-11-01'
-              IsForecasted: true
-          indicator2:
-            provider: DF56A04D-5D6D-41DB-B553-8374E4746010
-            providerId: CDE
-            notes: Some different notes
-            description: Description for my indicator
-            deleteExistingDataRecords: false
-            classification: Trade
-            name: Different Name
-            color: '#FF00000'
-            units: Different Units
-            seasonalAdjustment: false
-            aggregation: Sum
-            citation: Different citation
-            path: Different path
-            periodAlignment: End
-            interval: MONTH
-            industryCodes:
-            - type: Nace
-              code: AB
-            tags:
-            - Tag4
-            - Tag8
-            data:
-            - value: 10867.093
-              annotation: ''
-              date: '2020-08-01'
-              isForecasted: false
-            - value: 187564.163
-              annotation: Something happened here.
-              date: '2020-09-01'
-              isForecasted: true
+      description: Request used to create a composite indicator
   securitySchemes:
     api_key:
       type: apiKey

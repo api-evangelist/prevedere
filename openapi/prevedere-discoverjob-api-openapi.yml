@@ -149,6 +149,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    DiscoverResult:
+      type: object
+      properties:
+        indicatorKey:
+          $ref: '#/components/schemas/IndicatorKey'
+        bestROffset:
+          $ref: '#/components/schemas/DiscoverCorrelationResult'
+      additionalProperties: false
     DiscoverSearchResponse:
       type: object
       properties:
@@ -165,52 +173,39 @@ components:
           items:
             $ref: '#/components/schemas/DiscoverResult'
       additionalProperties: false
-    IndicatorKey:
+    DiscoverCorrelationResult:
       type: object
       properties:
-        provider:
-          type: string
-          description: The ID of the provider for the indicator.
-          format: uuid
-        providerId:
-          type:
-          - string
-          - 'null'
-          description: The provider id of the indicator.
-      additionalProperties: false
-      description: The provider:providerId pair. This is used to identify an indicator in the system.
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
+        offset:
+          type: integer
           format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
-    DiscoverResult:
-      type: object
-      properties:
-        indicatorKey:
-          $ref: '#/components/schemas/IndicatorKey'
-        bestROffset:
-          $ref: '#/components/schemas/DiscoverCorrelationResult'
+        coefficient:
+          type: number
+          format: double
+        pValue:
+          type: number
+          format: double
+        rSquared:
+          type: number
+          format: double
+        overlapPercent:
+          type: number
+          format: double
+        numberOfDataPoints:
+          type: integer
+          format: int32
+        proCyclic:
+          type: number
+          format: double
+        counterCyclic:
+          type: number
+          format: double
+        numberOfMinorOutliers:
+          type: integer
+          format: int32
+        numberOfMajorOutliers:
+          type: integer
+          format: int32
       additionalProperties: false
     DiscoverJob:
       type: object
@@ -256,40 +251,45 @@ components:
           - 'null'
       additionalProperties: false
       description: This schema contains information about the Discover job definition.
-    DiscoverCorrelationResult:
+    ProblemDetails:
       type: object
       properties:
-        offset:
-          type: integer
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
           format: int32
-        coefficient:
-          type: number
-          format: double
-        pValue:
-          type: number
-          format: double
-        rSquared:
-          type: number
-          format: double
-        overlapPercent:
-          type: number
-          format: double
-        numberOfDataPoints:
-          type: integer
-          format: int32
-        proCyclic:
-          type: number
-          format: double
-        counterCyclic:
-          type: number
-          format: double
-        numberOfMinorOutliers:
-          type: integer
-          format: int32
-        numberOfMajorOutliers:
-          type: integer
-          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    IndicatorKey:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: The ID of the provider for the indicator.
+          format: uuid
+        providerId:
+          type:
+          - string
+          - 'null'
+          description: The provider id of the indicator.
       additionalProperties: false
+      description: The provider:providerId pair. This is used to identify an indicator in the system.
   securitySchemes:
     api_key:
       type: apiKey

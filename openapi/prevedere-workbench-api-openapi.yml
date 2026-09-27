@@ -237,96 +237,29 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Seasonality:
-      enum:
-      - 0
-      - 1
-      - 999
-      type: integer
-      format: int32
-    PeriodAlignment:
-      enum:
-      - 0
-      - 1
-      - 2
-      type: integer
-      format: int32
-    Frequency:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 4
-      - 12
-      - 52
-      - 365
-      - 1000
-      type: integer
-      description: 'The frequency of the data.
-
-
-
-        Daily: 365
-
-
-
-        Weekly: 52
-
-
-
-        Monthly: 12
-
-
-
-        Quarterly: 4
-
-
-
-        SemiAnnual: 2
-
-
-
-        Annual: 1'
-      format: int32
-    AggregationMethod:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      type: integer
-      format: int32
-    Point:
+    WorkbenchCategoryInfo:
       type: object
       properties:
-        value:
-          type: number
-          format: double
-        date:
+        id:
           type: string
-          format: date-time
-        annotation:
+          format: uuid
+        name:
           type:
           - string
           - 'null'
-        manuallyAdjusted:
-          type: boolean
-        isForecasted:
-          type:
-          - boolean
-          - 'null'
-      additionalProperties: false
-    Transformation:
-      type: object
-      properties:
-        order:
+        sort:
           type: integer
           format: int32
-        required:
-          type: boolean
+        note:
+          type:
+          - string
+          - 'null'
+        indicators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/IndicatorKey'
       additionalProperties: false
     Workbench:
       type: object
@@ -432,178 +365,78 @@ components:
       - 2
       type: integer
       format: int32
-    IndicatorType:
+    IndicatorCorrelation:
+      type: object
+      properties:
+        correlationCoefficient:
+          type: number
+          format: double
+        rSquared:
+          type: number
+          format: double
+        proCyclic:
+          type: number
+          format: double
+        counterCyclic:
+          type: number
+          format: double
+      additionalProperties: false
+    Frequency:
       enum:
       - 0
       - 1
       - 2
-      - 3
       - 4
-      - 5
-      - 6
-      - 7
+      - 12
+      - 52
+      - 365
+      - 1000
       type: integer
+      description: 'The frequency of the data.
+
+
+
+        Daily: 365
+
+
+
+        Weekly: 52
+
+
+
+        Monthly: 12
+
+
+
+        Quarterly: 4
+
+
+
+        SemiAnnual: 2
+
+
+
+        Annual: 1'
       format: int32
-    IndicatorKey:
+    ResponseMessage:
       type: object
       properties:
-        provider:
-          type: string
-          description: The ID of the provider for the indicator.
-          format: uuid
-        providerId:
-          type:
-          - string
-          - 'null'
-          description: The provider id of the indicator.
-      additionalProperties: false
-      description: The provider:providerId pair. This is used to identify an indicator in the system.
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
-    WorkbenchInfo:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        created:
-          type: string
-          format: date-time
-        lastModified:
-          type: string
-          format: date-time
-        frequency:
-          $ref: '#/components/schemas/Frequency'
-        owner:
-          type:
-          - string
-          - 'null'
-        count:
-          type: integer
-          format: int32
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    Calculation:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      type: integer
-      description: 'The transformation applied to the data.
-
-
-
-        Possible options:
-
-
-
-        None 1
-
-
-
-        PeriodOverPeriod 2
-
-
-
-        YearOverYear 3
-
-
-
-        ThreePeriodYearOverYear 6'
-      format: int32
-    WorkbenchInfoSearchResults:
-      type: object
-      properties:
-        results:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/WorkbenchInfo'
-          readOnly: true
-        page:
-          type: integer
-          format: int32
-          readOnly: true
-        pageSize:
-          type: integer
-          format: int32
-          readOnly: true
-        totalResults:
-          type: integer
-          format: int64
-          readOnly: true
-      additionalProperties: false
-    IndustryCode:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
         code:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    WorkbenchSeries:
-      type: object
-      properties:
-        primaryIndicator:
-          $ref: '#/components/schemas/WorkbenchIndicatorSeries'
-        workbenchIndicators:
+        message:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/WorkbenchIndicatorSeries'
-          description: Indicator series information for indicators on workbench.
       additionalProperties: false
+    Seasonality:
+      enum:
+      - 0
+      - 1
+      - 999
+      type: integer
+      format: int32
     DisplayInformation:
       type: object
       properties:
@@ -628,47 +461,31 @@ components:
           - 'null'
           description: The category of the indicator. Limited to 1,000 characters.
       additionalProperties: false
-    UpdateWorkbenchIndicatorRequest:
+    IndicatorKey:
       type: object
       properties:
-        indicatorProvider:
-          type:
-          - string
-          - 'null'
-          description: The provider's UUID for the indicator.
-        indicatorProviderId:
+        provider:
+          type: string
+          description: The ID of the provider for the indicator.
+          format: uuid
+        providerId:
           type:
           - string
           - 'null'
           description: The provider id of the indicator.
-        workbenchId:
+      additionalProperties: false
+      description: The provider:providerId pair. This is used to identify an indicator in the system.
+    IndustryCode:
+      type: object
+      properties:
+        type:
           type:
           - string
           - 'null'
-          description: The workbench id to update or add the indicator to.
-        offset:
-          type:
-          - integer
-          - 'null'
-          description: The offset to shift the indicator by. Defaults to 0.
-          format: int32
-        expectedSign:
+        code:
           type:
           - string
           - 'null'
-          description: 'The expected sign of the coefficient. Possible options are: Unspecified, Positive, Negative. Defaults to Unspecified.'
-        locked:
-          type:
-          - boolean
-          - 'null'
-          description: Whether to lock the indicator for editing in the application. Defaults to False.
-        visible:
-          type:
-          - boolean
-          - 'null'
-          description: Whether to show the indicator or hide it in the application. Defaults to True.
-        displayInformation:
-          $ref: '#/components/schemas/DisplayInformation'
       additionalProperties: false
     WorkbenchIndicator:
       type: object
@@ -711,6 +528,63 @@ components:
           items:
             $ref: '#/components/schemas/Transformation'
           description: The transformations applied to the indicator in the workbench.
+      additionalProperties: false
+    WorkbenchInfoSearchResults:
+      type: object
+      properties:
+        results:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WorkbenchInfo'
+          readOnly: true
+        page:
+          type: integer
+          format: int32
+          readOnly: true
+        pageSize:
+          type: integer
+          format: int32
+          readOnly: true
+        totalResults:
+          type: integer
+          format: int64
+          readOnly: true
+      additionalProperties: false
+    IndicatorDataSource:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        dataSourceType:
+          $ref: '#/components/schemas/IndicatorType'
+      additionalProperties: false
+    Point:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        date:
+          type: string
+          format: date-time
+        annotation:
+          type:
+          - string
+          - 'null'
+        manuallyAdjusted:
+          type: boolean
+        isForecasted:
+          type:
+          - boolean
+          - 'null'
       additionalProperties: false
     Indicator:
       type: object
@@ -842,6 +716,110 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    Transformation:
+      type: object
+      properties:
+        order:
+          type: integer
+          format: int32
+        required:
+          type: boolean
+      additionalProperties: false
+    Calculation:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      type: integer
+      description: 'The transformation applied to the data.
+
+
+
+        Possible options:
+
+
+
+        None 1
+
+
+
+        PeriodOverPeriod 2
+
+
+
+        YearOverYear 3
+
+
+
+        ThreePeriodYearOverYear 6'
+      format: int32
+    UpdateWorkbenchIndicatorRequest:
+      type: object
+      properties:
+        indicatorProvider:
+          type:
+          - string
+          - 'null'
+          description: The provider's UUID for the indicator.
+        indicatorProviderId:
+          type:
+          - string
+          - 'null'
+          description: The provider id of the indicator.
+        workbenchId:
+          type:
+          - string
+          - 'null'
+          description: The workbench id to update or add the indicator to.
+        offset:
+          type:
+          - integer
+          - 'null'
+          description: The offset to shift the indicator by. Defaults to 0.
+          format: int32
+        expectedSign:
+          type:
+          - string
+          - 'null'
+          description: 'The expected sign of the coefficient. Possible options are: Unspecified, Positive, Negative. Defaults to Unspecified.'
+        locked:
+          type:
+          - boolean
+          - 'null'
+          description: Whether to lock the indicator for editing in the application. Defaults to False.
+        visible:
+          type:
+          - boolean
+          - 'null'
+          description: Whether to show the indicator or hide it in the application. Defaults to True.
+        displayInformation:
+          $ref: '#/components/schemas/DisplayInformation'
+      additionalProperties: false
+    Provider:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+          format: uuid
+        source:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     WorkbenchIndicatorSeries:
       type: object
       properties:
@@ -879,59 +857,35 @@ components:
             $ref: '#/components/schemas/Transformation'
           description: The transformations applied to the series and the order they were applied
       additionalProperties: false
-    ResponseMessage:
+    WorkbenchSeries:
       type: object
       properties:
-        code:
+        primaryIndicator:
+          $ref: '#/components/schemas/WorkbenchIndicatorSeries'
+        workbenchIndicators:
           type:
-          - string
+          - array
           - 'null'
-        message:
-          type:
-          - string
-          - 'null'
+          items:
+            $ref: '#/components/schemas/WorkbenchIndicatorSeries'
+          description: Indicator series information for indicators on workbench.
       additionalProperties: false
-    IndicatorDataSource:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        dataSourceType:
-          $ref: '#/components/schemas/IndicatorType'
-      additionalProperties: false
-    WorkbenchCategoryInfo:
+    PeriodAlignment:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    WorkbenchInfo:
       type: object
       properties:
         id:
           type: string
           format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-        sort:
-          type: integer
-          format: int32
-        note:
-          type:
-          - string
-          - 'null'
-        indicators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IndicatorKey'
-      additionalProperties: false
-    Provider:
-      type: object
-      properties:
+        companyId:
+          type: string
+          format: uuid
         name:
           type:
           - string
@@ -940,14 +894,51 @@ components:
           type:
           - string
           - 'null'
-        id:
+        created:
           type: string
-          format: uuid
-        source:
+          format: date-time
+        lastModified:
+          type: string
+          format: date-time
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        owner:
           type:
           - string
           - 'null'
+        count:
+          type: integer
+          format: int32
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
       additionalProperties: false
+    AggregationMethod:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      type: integer
+      format: int32
+    IndicatorType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      type: integer
+      format: int32
     Classification:
       enum:
       - 0
@@ -963,22 +954,31 @@ components:
       - 10
       type: integer
       format: int32
-    IndicatorCorrelation:
+    ProblemDetails:
       type: object
       properties:
-        correlationCoefficient:
-          type: number
-          format: double
-        rSquared:
-          type: number
-          format: double
-        proCyclic:
-          type: number
-          format: double
-        counterCyclic:
-          type: number
-          format: double
-      additionalProperties: false
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
   securitySchemes:
     api_key:
       type: apiKey

@@ -132,26 +132,45 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ComponentContributionOverrideValuesRequest:
+    ComponentContributionFrequency:
+      enum:
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      type: integer
+      description: 'The frequency of the data.
+
+
+
+        Weekly: 52
+
+
+
+        Monthly: 12
+
+
+
+        Quarterly: 4
+
+
+
+        SemiAnnual: 2
+
+
+
+        Annual: 1'
+      format: int32
+    ComponentContribution:
       type: object
       properties:
-        forecastModelId:
+        date:
           type: string
-          description: The id of the forecast model that will have its Component Contribution values overridden.
-          format: uuid
-        frequency:
-          $ref: '#/components/schemas/ComponentContributionFrequency'
-        entryId:
-          type: string
-          description: The entry id of the indicator that will have its value overridden.
-          format: uuid
-        contributionPeriods:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ComponentContribution'
-          description: A list of override values, with a date and value for each.
+          format: date-time
+        value:
+          type: number
+          format: double
       additionalProperties: false
     Frequency:
       enum:
@@ -190,46 +209,6 @@ components:
 
         Annual: 1'
       format: int32
-    ComponentContribution:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date-time
-        value:
-          type: number
-          format: double
-      additionalProperties: false
-    ComponentContributionFrequency:
-      enum:
-      - 1
-      - 2
-      - 4
-      - 12
-      - 52
-      type: integer
-      description: 'The frequency of the data.
-
-
-
-        Weekly: 52
-
-
-
-        Monthly: 12
-
-
-
-        Quarterly: 4
-
-
-
-        SemiAnnual: 2
-
-
-
-        Annual: 1'
-      format: int32
     ComponentContributionOverrideValues:
       type: object
       properties:
@@ -247,6 +226,27 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/ComponentContribution'
+      additionalProperties: false
+    ComponentContributionOverrideValuesRequest:
+      type: object
+      properties:
+        forecastModelId:
+          type: string
+          description: The id of the forecast model that will have its Component Contribution values overridden.
+          format: uuid
+        frequency:
+          $ref: '#/components/schemas/ComponentContributionFrequency'
+        entryId:
+          type: string
+          description: The entry id of the indicator that will have its value overridden.
+          format: uuid
+        contributionPeriods:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ComponentContribution'
+          description: A list of override values, with a date and value for each.
       additionalProperties: false
   securitySchemes:
     api_key:

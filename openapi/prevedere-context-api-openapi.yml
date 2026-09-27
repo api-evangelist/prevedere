@@ -38,10 +38,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Feature:
+    Company:
       type: object
       properties:
         name:
+          type:
+          - string
+          - 'null'
+        prefix:
           type:
           - string
           - 'null'
@@ -49,6 +53,12 @@ components:
           type:
           - string
           - 'null'
+        createDate:
+          type: string
+          format: date-time
+        id:
+          type: string
+          format: uuid
       additionalProperties: false
     Context:
       type: object
@@ -69,6 +79,18 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Feature'
+      additionalProperties: false
+    Feature:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     User:
       type: object
@@ -99,28 +121,6 @@ components:
           format: date-time
         isLocked:
           type: boolean
-      additionalProperties: false
-    Company:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        prefix:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type: string
-          format: date-time
-        id:
-          type: string
-          format: uuid
       additionalProperties: false
   securitySchemes:
     api_key:
