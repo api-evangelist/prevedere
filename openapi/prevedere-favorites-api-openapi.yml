@@ -202,6 +202,21 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    Classification:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      type: integer
+      format: int32
     IndustryCode:
       type: object
       properties:
@@ -239,14 +254,21 @@ components:
           type: integer
           format: int32
       additionalProperties: false
-    PeriodAlignment:
-      enum:
-      - 0
-      - 1
-      - 2
-      type: integer
-      format: int32
-    IndicatorType:
+    IndicatorDataSource:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        dataSourceType:
+          $ref: '#/components/schemas/IndicatorType'
+      additionalProperties: false
+    AggregationMethod:
       enum:
       - 0
       - 1
@@ -255,7 +277,6 @@ components:
       - 4
       - 5
       - 6
-      - 7
       type: integer
       format: int32
     Favorite:
@@ -270,13 +291,6 @@ components:
           items:
             $ref: '#/components/schemas/Indicator'
       additionalProperties: false
-    ProviderAccess:
-      enum:
-      - 0
-      - 1
-      - 2
-      type: integer
-      format: int32
     Calculation:
       enum:
       - 0
@@ -311,6 +325,51 @@ components:
 
         ThreePeriodYearOverYear 6'
       format: int32
+    ProviderAccess:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    IndicatorType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      type: integer
+      format: int32
+    Seasonality:
+      enum:
+      - 0
+      - 1
+      - 999
+      type: integer
+      format: int32
+    Provider:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+          format: uuid
+        source:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     Frequency:
       enum:
       - 0
@@ -348,57 +407,6 @@ components:
 
         Annual: 1'
       format: int32
-    AggregationMethod:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      type: integer
-      format: int32
-    IndicatorDataSource:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        dataSourceType:
-          $ref: '#/components/schemas/IndicatorType'
-      additionalProperties: false
-    Seasonality:
-      enum:
-      - 0
-      - 1
-      - 999
-      type: integer
-      format: int32
-    Provider:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-          format: uuid
-        source:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     DisplayInformation:
       type: object
       properties:
@@ -423,19 +431,11 @@ components:
           - 'null'
           description: The category of the indicator. Limited to 1,000 characters.
       additionalProperties: false
-    Classification:
+    PeriodAlignment:
       enum:
       - 0
       - 1
       - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
       type: integer
       format: int32
   securitySchemes:

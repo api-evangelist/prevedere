@@ -132,46 +132,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ComponentContributionFrequency:
-      enum:
-      - 1
-      - 2
-      - 4
-      - 12
-      - 52
-      type: integer
-      description: 'The frequency of the data.
-
-
-
-        Weekly: 52
-
-
-
-        Monthly: 12
-
-
-
-        Quarterly: 4
-
-
-
-        SemiAnnual: 2
-
-
-
-        Annual: 1'
-      format: int32
-    ComponentContribution:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date-time
-        value:
-          type: number
-          format: double
-      additionalProperties: false
     Frequency:
       enum:
       - 0
@@ -227,6 +187,46 @@ components:
           items:
             $ref: '#/components/schemas/ComponentContribution'
       additionalProperties: false
+    ComponentContribution:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        value:
+          type: number
+          format: double
+      additionalProperties: false
+    ComponentContributionFrequency:
+      enum:
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      type: integer
+      description: 'The frequency of the data.
+
+
+
+        Weekly: 52
+
+
+
+        Monthly: 12
+
+
+
+        Quarterly: 4
+
+
+
+        SemiAnnual: 2
+
+
+
+        Annual: 1'
+      format: int32
     ComponentContributionOverrideValuesRequest:
       type: object
       properties:

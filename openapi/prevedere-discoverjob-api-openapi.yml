@@ -149,14 +149,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DiscoverResult:
-      type: object
-      properties:
-        indicatorKey:
-          $ref: '#/components/schemas/IndicatorKey'
-        bestROffset:
-          $ref: '#/components/schemas/DiscoverCorrelationResult'
-      additionalProperties: false
     DiscoverSearchResponse:
       type: object
       properties:
@@ -207,6 +199,31 @@ components:
           type: integer
           format: int32
       additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
     DiscoverJob:
       type: object
       properties:
@@ -251,31 +268,14 @@ components:
           - 'null'
       additionalProperties: false
       description: This schema contains information about the Discover job definition.
-    ProblemDetails:
+    DiscoverResult:
       type: object
       properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
+        indicatorKey:
+          $ref: '#/components/schemas/IndicatorKey'
+        bestROffset:
+          $ref: '#/components/schemas/DiscoverCorrelationResult'
+      additionalProperties: false
     IndicatorKey:
       type: object
       properties:

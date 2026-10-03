@@ -237,355 +237,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    WorkbenchCategoryInfo:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-        sort:
-          type: integer
-          format: int32
-        note:
-          type:
-          - string
-          - 'null'
-        indicators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IndicatorKey'
-      additionalProperties: false
-    Workbench:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the workbench.
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the workbench.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description of the workbench.
-        created:
-          type: string
-          description: The timestamp in UTC for when the workbench was created.
-          format: date-time
-        owner:
-          type:
-          - string
-          - 'null'
-          description: The username of the owner of the workbench.
-        lastModified:
-          type: string
-          description: The timestamp in UTC when the workbench was last saved.
-          format: date-time
-        frequency:
-          type:
-          - string
-          - 'null'
-          description: The frequency of the workbench in string format.
-        calculation:
-          type:
-          - string
-          - 'null'
-          description: The calculation of the workbench in string format.
-        primaryIndicator:
-          $ref: '#/components/schemas/Indicator'
-        indicators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/WorkbenchIndicator'
-          description: A list of the indicators that are in the workbench. Includes hidden indicators as well.
-        categories:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/WorkbenchCategoryInfo'
-          description: A list of the categories that are in the workbench.
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: A list of tags that are assigned to the workbench.
-        cutoffDate:
-          type:
-          - string
-          - 'null'
-          description: The cut off date of the workbench. This is used to front trim the workbench's dependent and independent variables.
-          format: date-time
-        calculatedStartDate:
-          type: string
-          description: The calculated common start date of the workbench.
-          format: date-time
-        endDate:
-          type:
-          - string
-          - 'null'
-          description: The cut off end date of the workbench.
-          format: date-time
-        url:
-          type:
-          - string
-          - 'null'
-          description: The url of the workbench.
-        notes:
-          type:
-          - string
-          - 'null'
-          description: The notes of the workbench.
-        notesLastModified:
-          type:
-          - string
-          - 'null'
-          description: The last modified date of the notes of the workbench.
-          format: date-time
-      additionalProperties: false
-      description: This schema contains information about the Workbench, the dependent variable or Primary Indicator of the workbench under the Indicator subschema, and independent variables or Explanatory Indicators in the WorkbenchIndicator subschema.
-    ProviderAccess:
-      enum:
-      - 0
-      - 1
-      - 2
-      type: integer
-      format: int32
-    IndicatorCorrelation:
-      type: object
-      properties:
-        correlationCoefficient:
-          type: number
-          format: double
-        rSquared:
-          type: number
-          format: double
-        proCyclic:
-          type: number
-          format: double
-        counterCyclic:
-          type: number
-          format: double
-      additionalProperties: false
-    Frequency:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 4
-      - 12
-      - 52
-      - 365
-      - 1000
-      type: integer
-      description: 'The frequency of the data.
-
-
-
-        Daily: 365
-
-
-
-        Weekly: 52
-
-
-
-        Monthly: 12
-
-
-
-        Quarterly: 4
-
-
-
-        SemiAnnual: 2
-
-
-
-        Annual: 1'
-      format: int32
-    ResponseMessage:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Seasonality:
-      enum:
-      - 0
-      - 1
-      - 999
-      type: integer
-      format: int32
-    DisplayInformation:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The display name to be used in the application. Limited to 50 characters.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description to be shown in the application. Limited to 1,000 characters.
-        color:
-          type:
-          - string
-          - 'null'
-          description: The color to use in the application. Must be a valid hex color code.
-        category:
-          type:
-          - string
-          - 'null'
-          description: The category of the indicator. Limited to 1,000 characters.
-      additionalProperties: false
-    IndicatorKey:
-      type: object
-      properties:
-        provider:
-          type: string
-          description: The ID of the provider for the indicator.
-          format: uuid
-        providerId:
-          type:
-          - string
-          - 'null'
-          description: The provider id of the indicator.
-      additionalProperties: false
-      description: The provider:providerId pair. This is used to identify an indicator in the system.
-    IndustryCode:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        code:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    WorkbenchIndicator:
-      type: object
-      properties:
-        indicator:
-          $ref: '#/components/schemas/Indicator'
-        offset:
-          type: integer
-          description: The offset applied to the indicator in the workbench.
-          format: int32
-        sort:
-          type: integer
-          description: The overall sort position of the indicator in the workbench.
-          format: int32
-        locked:
-          type: boolean
-          description: If the indicator is locked in the workbench.
-        visible:
-          type: boolean
-          description: If the indicator is visible in the workbench.
-        isLoggable:
-          type: boolean
-          description: If the indicator series trimmed to the workbench's dates are loggable.
-        incompatible:
-          type: boolean
-          description: If the indicator is compatible with the workbench's selected calculation and frequency.
-        correlation:
-          $ref: '#/components/schemas/IndicatorCorrelation'
-        expectedSign:
-          type:
-          - string
-          - 'null'
-          description: 'The user defined expected sign of the indicator in relation to the primary.
-
-            Current values: Unspecified, Positive, Negative'
-        transformations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Transformation'
-          description: The transformations applied to the indicator in the workbench.
-      additionalProperties: false
-    WorkbenchInfoSearchResults:
-      type: object
-      properties:
-        results:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/WorkbenchInfo'
-          readOnly: true
-        page:
-          type: integer
-          format: int32
-          readOnly: true
-        pageSize:
-          type: integer
-          format: int32
-          readOnly: true
-        totalResults:
-          type: integer
-          format: int64
-          readOnly: true
-      additionalProperties: false
-    IndicatorDataSource:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        dataSourceType:
-          $ref: '#/components/schemas/IndicatorType'
-      additionalProperties: false
-    Point:
-      type: object
-      properties:
-        value:
-          type: number
-          format: double
-        date:
-          type: string
-          format: date-time
-        annotation:
-          type:
-          - string
-          - 'null'
-        manuallyAdjusted:
-          type: boolean
-        isForecasted:
-          type:
-          - boolean
-          - 'null'
-      additionalProperties: false
     Indicator:
       type: object
       properties:
@@ -716,14 +367,176 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Transformation:
+    Workbench:
       type: object
       properties:
-        order:
+        id:
+          type: string
+          description: The id of the workbench.
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the workbench.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the workbench.
+        created:
+          type: string
+          description: The timestamp in UTC for when the workbench was created.
+          format: date-time
+        owner:
+          type:
+          - string
+          - 'null'
+          description: The username of the owner of the workbench.
+        lastModified:
+          type: string
+          description: The timestamp in UTC when the workbench was last saved.
+          format: date-time
+        frequency:
+          type:
+          - string
+          - 'null'
+          description: The frequency of the workbench in string format.
+        calculation:
+          type:
+          - string
+          - 'null'
+          description: The calculation of the workbench in string format.
+        primaryIndicator:
+          $ref: '#/components/schemas/Indicator'
+        indicators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WorkbenchIndicator'
+          description: A list of the indicators that are in the workbench. Includes hidden indicators as well.
+        categories:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WorkbenchCategoryInfo'
+          description: A list of the categories that are in the workbench.
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: A list of tags that are assigned to the workbench.
+        cutoffDate:
+          type:
+          - string
+          - 'null'
+          description: The cut off date of the workbench. This is used to front trim the workbench's dependent and independent variables.
+          format: date-time
+        calculatedStartDate:
+          type: string
+          description: The calculated common start date of the workbench.
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: The cut off end date of the workbench.
+          format: date-time
+        url:
+          type:
+          - string
+          - 'null'
+          description: The url of the workbench.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: The notes of the workbench.
+        notesLastModified:
+          type:
+          - string
+          - 'null'
+          description: The last modified date of the notes of the workbench.
+          format: date-time
+      additionalProperties: false
+      description: This schema contains information about the Workbench, the dependent variable or Primary Indicator of the workbench under the Indicator subschema, and independent variables or Explanatory Indicators in the WorkbenchIndicator subschema.
+    ResponseMessage:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    WorkbenchInfoSearchResults:
+      type: object
+      properties:
+        results:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WorkbenchInfo'
+          readOnly: true
+        page:
           type: integer
           format: int32
-        required:
-          type: boolean
+          readOnly: true
+        pageSize:
+          type: integer
+          format: int32
+          readOnly: true
+        totalResults:
+          type: integer
+          format: int64
+          readOnly: true
+      additionalProperties: false
+    WorkbenchInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        created:
+          type: string
+          format: date-time
+        lastModified:
+          type: string
+          format: date-time
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        owner:
+          type:
+          - string
+          - 'null'
+        count:
+          type: integer
+          format: int32
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
       additionalProperties: false
     Calculation:
       enum:
@@ -759,6 +572,190 @@ components:
 
         ThreePeriodYearOverYear 6'
       format: int32
+    IndicatorType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      type: integer
+      format: int32
+    WorkbenchIndicator:
+      type: object
+      properties:
+        indicator:
+          $ref: '#/components/schemas/Indicator'
+        offset:
+          type: integer
+          description: The offset applied to the indicator in the workbench.
+          format: int32
+        sort:
+          type: integer
+          description: The overall sort position of the indicator in the workbench.
+          format: int32
+        locked:
+          type: boolean
+          description: If the indicator is locked in the workbench.
+        visible:
+          type: boolean
+          description: If the indicator is visible in the workbench.
+        isLoggable:
+          type: boolean
+          description: If the indicator series trimmed to the workbench's dates are loggable.
+        incompatible:
+          type: boolean
+          description: If the indicator is compatible with the workbench's selected calculation and frequency.
+        correlation:
+          $ref: '#/components/schemas/IndicatorCorrelation'
+        expectedSign:
+          type:
+          - string
+          - 'null'
+          description: 'The user defined expected sign of the indicator in relation to the primary.
+
+            Current values: Unspecified, Positive, Negative'
+        transformations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Transformation'
+          description: The transformations applied to the indicator in the workbench.
+      additionalProperties: false
+    WorkbenchSeries:
+      type: object
+      properties:
+        primaryIndicator:
+          $ref: '#/components/schemas/WorkbenchIndicatorSeries'
+        workbenchIndicators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WorkbenchIndicatorSeries'
+          description: Indicator series information for indicators on workbench.
+      additionalProperties: false
+    Frequency:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      - 365
+      - 1000
+      type: integer
+      description: 'The frequency of the data.
+
+
+
+        Daily: 365
+
+
+
+        Weekly: 52
+
+
+
+        Monthly: 12
+
+
+
+        Quarterly: 4
+
+
+
+        SemiAnnual: 2
+
+
+
+        Annual: 1'
+      format: int32
+    Classification:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      type: integer
+      format: int32
+    IndicatorCorrelation:
+      type: object
+      properties:
+        correlationCoefficient:
+          type: number
+          format: double
+        rSquared:
+          type: number
+          format: double
+        proCyclic:
+          type: number
+          format: double
+        counterCyclic:
+          type: number
+          format: double
+      additionalProperties: false
+    DisplayInformation:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The display name to be used in the application. Limited to 50 characters.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description to be shown in the application. Limited to 1,000 characters.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color to use in the application. Must be a valid hex color code.
+        category:
+          type:
+          - string
+          - 'null'
+          description: The category of the indicator. Limited to 1,000 characters.
+      additionalProperties: false
+    AggregationMethod:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      type: integer
+      format: int32
+    IndicatorKey:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: The ID of the provider for the indicator.
+          format: uuid
+        providerId:
+          type:
+          - string
+          - 'null'
+          description: The provider id of the indicator.
+      additionalProperties: false
+      description: The provider:providerId pair. This is used to identify an indicator in the system.
     UpdateWorkbenchIndicatorRequest:
       type: object
       properties:
@@ -801,23 +798,113 @@ components:
         displayInformation:
           $ref: '#/components/schemas/DisplayInformation'
       additionalProperties: false
-    Provider:
+    ProviderAccess:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    PeriodAlignment:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    IndustryCode:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        code:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    WorkbenchCategoryInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+        sort:
+          type: integer
+          format: int32
+        note:
+          type:
+          - string
+          - 'null'
+        indicators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/IndicatorKey'
+      additionalProperties: false
+    IndicatorDataSource:
       type: object
       properties:
         name:
           type:
           - string
           - 'null'
-        description:
+        url:
           type:
           - string
           - 'null'
-        id:
+        dataSourceType:
+          $ref: '#/components/schemas/IndicatorType'
+      additionalProperties: false
+    Point:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        date:
           type: string
-          format: uuid
-        source:
+          format: date-time
+        annotation:
           type:
           - string
+          - 'null'
+        manuallyAdjusted:
+          type: boolean
+        isForecasted:
+          type:
+          - boolean
           - 'null'
       additionalProperties: false
     WorkbenchIndicatorSeries:
@@ -857,35 +944,16 @@ components:
             $ref: '#/components/schemas/Transformation'
           description: The transformations applied to the series and the order they were applied
       additionalProperties: false
-    WorkbenchSeries:
-      type: object
-      properties:
-        primaryIndicator:
-          $ref: '#/components/schemas/WorkbenchIndicatorSeries'
-        workbenchIndicators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/WorkbenchIndicatorSeries'
-          description: Indicator series information for indicators on workbench.
-      additionalProperties: false
-    PeriodAlignment:
+    Seasonality:
       enum:
       - 0
       - 1
-      - 2
+      - 999
       type: integer
       format: int32
-    WorkbenchInfo:
+    Provider:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
         name:
           type:
           - string
@@ -894,91 +962,23 @@ components:
           type:
           - string
           - 'null'
-        created:
+        id:
           type: string
-          format: date-time
-        lastModified:
-          type: string
-          format: date-time
-        frequency:
-          $ref: '#/components/schemas/Frequency'
-        owner:
+          format: uuid
+        source:
           type:
           - string
           - 'null'
-        count:
-          type: integer
-          format: int32
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
       additionalProperties: false
-    AggregationMethod:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      type: integer
-      format: int32
-    IndicatorType:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      type: integer
-      format: int32
-    Classification:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      type: integer
-      format: int32
-    ProblemDetails:
+    Transformation:
       type: object
       properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
+        order:
+          type: integer
           format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
+        required:
+          type: boolean
+      additionalProperties: false
   securitySchemes:
     api_key:
       type: apiKey
