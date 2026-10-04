@@ -165,39 +165,13 @@ components:
           items:
             $ref: '#/components/schemas/DiscoverResult'
       additionalProperties: false
-    DiscoverCorrelationResult:
+    DiscoverResult:
       type: object
       properties:
-        offset:
-          type: integer
-          format: int32
-        coefficient:
-          type: number
-          format: double
-        pValue:
-          type: number
-          format: double
-        rSquared:
-          type: number
-          format: double
-        overlapPercent:
-          type: number
-          format: double
-        numberOfDataPoints:
-          type: integer
-          format: int32
-        proCyclic:
-          type: number
-          format: double
-        counterCyclic:
-          type: number
-          format: double
-        numberOfMinorOutliers:
-          type: integer
-          format: int32
-        numberOfMajorOutliers:
-          type: integer
-          format: int32
+        indicatorKey:
+          $ref: '#/components/schemas/IndicatorKey'
+        bestROffset:
+          $ref: '#/components/schemas/DiscoverCorrelationResult'
       additionalProperties: false
     ProblemDetails:
       type: object
@@ -268,13 +242,39 @@ components:
           - 'null'
       additionalProperties: false
       description: This schema contains information about the Discover job definition.
-    DiscoverResult:
+    DiscoverCorrelationResult:
       type: object
       properties:
-        indicatorKey:
-          $ref: '#/components/schemas/IndicatorKey'
-        bestROffset:
-          $ref: '#/components/schemas/DiscoverCorrelationResult'
+        offset:
+          type: integer
+          format: int32
+        coefficient:
+          type: number
+          format: double
+        pValue:
+          type: number
+          format: double
+        rSquared:
+          type: number
+          format: double
+        overlapPercent:
+          type: number
+          format: double
+        numberOfDataPoints:
+          type: integer
+          format: int32
+        proCyclic:
+          type: number
+          format: double
+        counterCyclic:
+          type: number
+          format: double
+        numberOfMinorOutliers:
+          type: integer
+          format: int32
+        numberOfMajorOutliers:
+          type: integer
+          format: int32
       additionalProperties: false
     IndicatorKey:
       type: object

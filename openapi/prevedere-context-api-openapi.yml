@@ -38,60 +38,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Company:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        prefix:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type: string
-          format: date-time
-        id:
-          type: string
-          format: uuid
-      additionalProperties: false
-    Context:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-        company:
-          $ref: '#/components/schemas/Company'
-        roles:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        features:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Feature'
-      additionalProperties: false
-    Feature:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     User:
       type: object
       properties:
@@ -121,6 +67,60 @@ components:
           format: date-time
         isLocked:
           type: boolean
+      additionalProperties: false
+    Company:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        prefix:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type: string
+          format: date-time
+        id:
+          type: string
+          format: uuid
+      additionalProperties: false
+    Feature:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Context:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        company:
+          $ref: '#/components/schemas/Company'
+        roles:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        features:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Feature'
       additionalProperties: false
   securitySchemes:
     api_key:
