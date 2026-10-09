@@ -1,0 +1,107 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.board.com/pricing
+sources:
+- https://www.board.com/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+delivery:
+  delivery: unclear
+  method: page
+  read: '2026-10-07'
+published: false
+note: No numeric price is published on the pricing page; Board pricing page offers only customized quotes;
+  no numeric prices shown (335% ROI is a marketing stat, not a price).
+plan_count: 8
+plans:
+- name: Finance
+  price_text: Request pricing
+  period: none
+- name: Supply chain
+  price_text: Request pricing
+  period: none
+- name: Retail
+  price_text: Request pricing
+  period: none
+- name: Sales
+  price_text: Request pricing
+  period: none
+- name: HR
+  price_text: Request pricing
+  period: none
+- name: Predictive analytics
+  price_text: Request pricing
+  period: none
+- name: Board add-ins & integrations
+  price_text: Request pricing
+  period: none
+- name: Premium Support
+  price_text: Request pricing
+  period: none
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Finance
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Supply chain
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Retail
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Sales
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: HR
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Predictive analytics
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Board add-ins & integrations
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Premium Support
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
