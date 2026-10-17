@@ -149,30 +149,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DiscoverSearchResponse:
+    IndicatorKey:
       type: object
       properties:
-        totalResults:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int64
-        results:
+        provider:
+          type: string
+          description: The ID of the provider for the indicator.
+          format: uuid
+        providerId:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/DiscoverResult'
+          description: The provider id of the indicator.
       additionalProperties: false
-    DiscoverResult:
-      type: object
-      properties:
-        indicatorKey:
-          $ref: '#/components/schemas/IndicatorKey'
-        bestROffset:
-          $ref: '#/components/schemas/DiscoverCorrelationResult'
-      additionalProperties: false
+      description: The provider:providerId pair. This is used to identify an indicator in the system.
     ProblemDetails:
       type: object
       properties:
@@ -198,6 +188,40 @@ components:
           - string
           - 'null'
       additionalProperties: {}
+    DiscoverCorrelationResult:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        coefficient:
+          type: number
+          format: double
+        pValue:
+          type: number
+          format: double
+        rSquared:
+          type: number
+          format: double
+        overlapPercent:
+          type: number
+          format: double
+        numberOfDataPoints:
+          type: integer
+          format: int32
+        proCyclic:
+          type: number
+          format: double
+        counterCyclic:
+          type: number
+          format: double
+        numberOfMinorOutliers:
+          type: integer
+          format: int32
+        numberOfMajorOutliers:
+          type: integer
+          format: int32
+      additionalProperties: false
     DiscoverJob:
       type: object
       properties:
@@ -242,54 +266,30 @@ components:
           - 'null'
       additionalProperties: false
       description: This schema contains information about the Discover job definition.
-    DiscoverCorrelationResult:
+    DiscoverResult:
       type: object
       properties:
-        offset:
-          type: integer
-          format: int32
-        coefficient:
-          type: number
-          format: double
-        pValue:
-          type: number
-          format: double
-        rSquared:
-          type: number
-          format: double
-        overlapPercent:
-          type: number
-          format: double
-        numberOfDataPoints:
-          type: integer
-          format: int32
-        proCyclic:
-          type: number
-          format: double
-        counterCyclic:
-          type: number
-          format: double
-        numberOfMinorOutliers:
-          type: integer
-          format: int32
-        numberOfMajorOutliers:
-          type: integer
-          format: int32
+        indicatorKey:
+          $ref: '#/components/schemas/IndicatorKey'
+        bestROffset:
+          $ref: '#/components/schemas/DiscoverCorrelationResult'
       additionalProperties: false
-    IndicatorKey:
+    DiscoverSearchResponse:
       type: object
       properties:
-        provider:
-          type: string
-          description: The ID of the provider for the indicator.
-          format: uuid
-        providerId:
+        totalResults:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64
+        results:
           type:
-          - string
+          - array
           - 'null'
-          description: The provider id of the indicator.
+          items:
+            $ref: '#/components/schemas/DiscoverResult'
       additionalProperties: false
-      description: The provider:providerId pair. This is used to identify an indicator in the system.
   securitySchemes:
     api_key:
       type: apiKey

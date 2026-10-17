@@ -72,7 +72,7 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Calculation:
+    IndicatorType:
       enum:
       - 0
       - 1
@@ -82,46 +82,8 @@ components:
       - 5
       - 6
       - 7
-      - 8
       type: integer
-      description: 'The transformation applied to the data.
-
-
-
-        Possible options:
-
-
-
-        None 1
-
-
-
-        PeriodOverPeriod 2
-
-
-
-        YearOverYear 3
-
-
-
-        ThreePeriodYearOverYear 6'
       format: int32
-    ContributionResult:
-      type: object
-      properties:
-        forecast:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-        componentContributions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IndicatorValues'
-      additionalProperties: false
     Provider:
       type: object
       properties:
@@ -141,65 +103,55 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Frequency:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 4
-      - 12
-      - 52
-      - 365
-      - 1000
-      type: integer
-      description: 'The frequency of the data.
-
-
-
-        Daily: 365
-
-
-
-        Weekly: 52
-
-
-
-        Monthly: 12
-
-
-
-        Quarterly: 4
-
-
-
-        SemiAnnual: 2
-
-
-
-        Annual: 1'
-      format: int32
-    ScenarioCoefficient:
+    ForecastModelEntry:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        scenarioForecastId:
-          type: string
-          format: uuid
-        provider:
-          type: string
-          format: uuid
-        providerId:
+        indicator:
+          $ref: '#/components/schemas/IndicatorKey'
+        displayName:
           type:
           - string
           - 'null'
-        coefficients:
+          description: A user defined name for an indicator.
+        displayDescription:
+          type:
+          - string
+          - 'null'
+          description: A user defined description for an indicator.
+        displayColor:
+          type:
+          - string
+          - 'null'
+          description: 'A user defined color for an indicator. A valid six integer hex value with the leading #'
+        displayCategory:
+          type:
+          - string
+          - 'null'
+          description: A user defined category for the indicator.
+        offset:
+          type: integer
+          description: The number of periods to shift the data when modeling.
+          format: int32
+        includeInModel:
+          type: boolean
+          description: A flag used to determine if the indicator should be used when modeling.
+        includeInAllSegments:
+          type: boolean
+          description: 'A flag used to force the indicator in every segment. If true the indicator will be used in all segments, but may trim the model forecast to periods where data exists for the forced indicator.
+
+
+
+            Only allowed for entries with an offset of 0.'
+        isLogged:
+          type: boolean
+          description: A flag used to determine if the data for this indicator should be logged transformed.
+        transformations:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/DoubleEditable'
+            $ref: '#/components/schemas/Transformation'
+          description: The series transformations applied to the series of this entry and the order that they are applied
       additionalProperties: false
     PeriodAlignment:
       enum:
@@ -208,287 +160,115 @@ components:
       - 2
       type: integer
       format: int32
-    IndicatorEntry:
+    LockedModelInfo:
       type: object
       properties:
-        indicator:
-          $ref: '#/components/schemas/Indicator'
-        offset:
-          type: integer
-          format: int32
-        values:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the locked model.
+        createdOn:
+          type: string
+          description: When the locked model was created.
+          format: date-time
+        asOf:
+          type:
+          - string
+          - 'null'
+          description: An optional date used to trim the model period.
+          format: date-time
+        lockedBy:
+          type:
+          - string
+          - 'null'
+          description: The user who locked the model.
+        lastCheckedBy:
+          type:
+          - string
+          - 'null'
+          description: The last user to trigger a model health check.
+        modelScoreWhenLocked:
+          type: number
+          description: The model quality score when the model was locked.
+          format: double
+        dataEndDateWhenLocked:
+          type:
+          - string
+          - 'null'
+          description: The last date in the model period when the model was locked.
+          format: date-time
+        lastModelCheckupDate:
+          type:
+          - string
+          - 'null'
+          description: The last time model health was checked.
+          format: date-time
+      additionalProperties: false
+    ForecastResult:
+      type: object
+      properties:
+        forecasts:
           type:
           - array
           - 'null'
           items:
             $ref: '#/components/schemas/Point'
-        includeInModel:
-          type: boolean
-        isLogged:
-          type: boolean
-        entryId:
-          type: string
-          format: uuid
-        useCoefficientBounds:
-          type: boolean
-        coefficientLowerBounds:
+        justForecasts:
           type:
-          - number
+          - array
           - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+        actuals:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+        actualsInModelCalculation:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+        actualsWithForecast:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+        forecastInModelCalculation:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+      additionalProperties: false
+    ContributionPeriod:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        errorFlag:
+          type: boolean
+        errorText:
+          type:
+          - string
+          - 'null'
+        yearOverYear:
+          type: number
           format: double
-        coefficientUpperBounds:
-          type:
-          - number
-          - 'null'
+        unexplained:
+          type: number
           format: double
-        transformations:
+        components:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Transformation'
-      additionalProperties: false
-    Indicator:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        aggregate:
-          $ref: '#/components/schemas/AggregationMethod'
-        calculation:
-          $ref: '#/components/schemas/Calculation'
-        color:
-          type:
-          - string
-          - 'null'
-        displayInformation:
-          $ref: '#/components/schemas/DisplayInformation'
-        count:
-          type: integer
-          format: int32
-        created:
-          type: string
-          format: date-time
-        startTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        endTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        transformedStartTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        transformedEndTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        frequency:
-          $ref: '#/components/schemas/Frequency'
-        deprecated:
-          type: boolean
-        deprecationReason:
-          type:
-          - string
-          - 'null'
-        lastModified:
-          type: string
-          format: date-time
-        provider:
-          $ref: '#/components/schemas/Provider'
-        providerId:
-          type:
-          - string
-          - 'null'
-        seasonality:
-          $ref: '#/components/schemas/Seasonality'
-        source:
-          type:
-          - string
-          - 'null'
-        classification:
-          $ref: '#/components/schemas/Classification'
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        type:
-          type:
-          - string
-          - 'null'
-        units:
-          type:
-          - string
-          - 'null'
-        accessibility:
-          $ref: '#/components/schemas/ProviderAccess'
-        periodAlignment:
-          $ref: '#/components/schemas/PeriodAlignment'
-        path:
-          type:
-          - string
-          - 'null'
-        notes:
-          type:
-          - string
-          - 'null'
-        citation:
-          type:
-          - string
-          - 'null'
-        dataSources:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IndicatorDataSource'
-        industryCodes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IndustryCode'
-        hasZeroVariance:
-          type:
-          - boolean
-          - 'null'
-        interval:
-          type:
-          - string
-          - 'null'
-        countryCode:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    VolumeDecompResult:
-      type: object
-      properties:
-        decomps:
-          type:
-          - object
-          - 'null'
-          properties:
-            Unknown:
-              type: array
-              items:
-                $ref: '#/components/schemas/ContributionPeriod'
-            Annual:
-              type: array
-              items:
-                $ref: '#/components/schemas/ContributionPeriod'
-            SemiAnnual:
-              type: array
-              items:
-                $ref: '#/components/schemas/ContributionPeriod'
-            Quarterly:
-              type: array
-              items:
-                $ref: '#/components/schemas/ContributionPeriod'
-            Monthly:
-              type: array
-              items:
-                $ref: '#/components/schemas/ContributionPeriod'
-            Weekly:
-              type: array
-              items:
-                $ref: '#/components/schemas/ContributionPeriod'
-            Daily:
-              type: array
-              items:
-                $ref: '#/components/schemas/ContributionPeriod'
-            Raw:
-              type: array
-              items:
-                $ref: '#/components/schemas/ContributionPeriod'
-          additionalProperties: false
-        entries:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IndicatorEntry'
-      additionalProperties: false
-    Transformation:
-      type: object
-      properties:
-        order:
-          type: integer
-          format: int32
-        required:
-          type: boolean
-      additionalProperties: false
-    IndustryCode:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        code:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ScenarioListing:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        createdOn:
-          type: string
-          format: date-time
-        lastModified:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        scenarioForecasts:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ScenarioForecastListing'
-      additionalProperties: false
-    IndicatorDataSource:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        dataSourceType:
-          $ref: '#/components/schemas/IndicatorType'
+            $ref: '#/components/schemas/IndicatorContribution'
       additionalProperties: false
     ForecastModelInfo:
       type: object
@@ -656,84 +436,21 @@ components:
 
 
         If the Model is locked information is populated in the LockedModelInfo subschema.'
-    IndicatorType:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      type: integer
-      format: int32
-    ProviderAccess:
-      enum:
-      - 0
-      - 1
-      - 2
-      type: integer
-      format: int32
-    LockedModelInfo:
+    ContributionResult:
       type: object
       properties:
-        name:
+        forecast:
           type:
-          - string
+          - array
           - 'null'
-          description: The name of the locked model.
-        createdOn:
-          type: string
-          description: When the locked model was created.
-          format: date-time
-        asOf:
+          items:
+            $ref: '#/components/schemas/Point'
+        componentContributions:
           type:
-          - string
+          - array
           - 'null'
-          description: An optional date used to trim the model period.
-          format: date-time
-        lockedBy:
-          type:
-          - string
-          - 'null'
-          description: The user who locked the model.
-        lastCheckedBy:
-          type:
-          - string
-          - 'null'
-          description: The last user to trigger a model health check.
-        modelScoreWhenLocked:
-          type: number
-          description: The model quality score when the model was locked.
-          format: double
-        dataEndDateWhenLocked:
-          type:
-          - string
-          - 'null'
-          description: The last date in the model period when the model was locked.
-          format: date-time
-        lastModelCheckupDate:
-          type:
-          - string
-          - 'null'
-          description: The last time model health was checked.
-          format: date-time
-      additionalProperties: false
-    ScenarioForecastListing:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-          format: uuid
+          items:
+            $ref: '#/components/schemas/IndicatorValues'
       additionalProperties: false
     Point:
       type: object
@@ -755,127 +472,6 @@ components:
           - boolean
           - 'null'
       additionalProperties: false
-    Seasonality:
-      enum:
-      - 0
-      - 1
-      - 999
-      type: integer
-      format: int32
-    IndicatorValues:
-      type: object
-      properties:
-        indicator:
-          $ref: '#/components/schemas/Indicator'
-        leadTime:
-          type: integer
-          format: int32
-        values:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-      additionalProperties: false
-    ForecastModelEntry:
-      type: object
-      properties:
-        indicator:
-          $ref: '#/components/schemas/IndicatorKey'
-        displayName:
-          type:
-          - string
-          - 'null'
-          description: A user defined name for an indicator.
-        displayDescription:
-          type:
-          - string
-          - 'null'
-          description: A user defined description for an indicator.
-        displayColor:
-          type:
-          - string
-          - 'null'
-          description: 'A user defined color for an indicator. A valid six integer hex value with the leading #'
-        displayCategory:
-          type:
-          - string
-          - 'null'
-          description: A user defined category for the indicator.
-        offset:
-          type: integer
-          description: The number of periods to shift the data when modeling.
-          format: int32
-        includeInModel:
-          type: boolean
-          description: A flag used to determine if the indicator should be used when modeling.
-        includeInAllSegments:
-          type: boolean
-          description: 'A flag used to force the indicator in every segment. If true the indicator will be used in all segments, but may trim the model forecast to periods where data exists for the forced indicator.
-
-
-
-            Only allowed for entries with an offset of 0.'
-        isLogged:
-          type: boolean
-          description: A flag used to determine if the data for this indicator should be logged transformed.
-        transformations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Transformation'
-          description: The series transformations applied to the series of this entry and the order that they are applied
-      additionalProperties: false
-    ScenarioLite:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        createdOn:
-          type: string
-          format: date-time
-        lastModified:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        scenarioForecasts:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ScenarioForecast'
-        points:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-      additionalProperties: false
-    IndicatorKey:
-      type: object
-      properties:
-        provider:
-          type: string
-          description: The ID of the provider for the indicator.
-          format: uuid
-        providerId:
-          type:
-          - string
-          - 'null'
-          description: The provider id of the indicator.
-      additionalProperties: false
-      description: The provider:providerId pair. This is used to identify an indicator in the system.
     AggregationMethod:
       enum:
       - 0
@@ -887,45 +483,6 @@ components:
       - 6
       type: integer
       format: int32
-    Classification:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      type: integer
-      format: int32
-    DisplayInformation:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The display name to be used in the application. Limited to 50 characters.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description to be shown in the application. Limited to 1,000 characters.
-        color:
-          type:
-          - string
-          - 'null'
-          description: The color to use in the application. Must be a valid hex color code.
-        category:
-          type:
-          - string
-          - 'null'
-          description: The category of the indicator. Limited to 1,000 characters.
-      additionalProperties: false
     IndicatorContribution:
       type: object
       properties:
@@ -937,107 +494,61 @@ components:
           type: number
           format: double
       additionalProperties: false
-    ScenarioForecastPoints:
+    Transformation:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        scenarioForecastId:
-          type: string
-          format: uuid
-        provider:
-          type: string
-          format: uuid
-        providerId:
-          type:
-          - string
-          - 'null'
-        indicatorName:
-          type:
-          - string
-          - 'null'
-        lastModified:
-          type: string
-          format: date-time
-        points:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
+        order:
+          type: integer
+          format: int32
+        required:
+          type: boolean
+      additionalProperties: false
+    ProviderAccess:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    IndicatorEntry:
+      type: object
+      properties:
+        indicator:
+          $ref: '#/components/schemas/Indicator'
         offset:
           type: integer
           format: int32
-        includeInAllSegments:
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+        includeInModel:
           type: boolean
         isLogged:
           type: boolean
-      additionalProperties: false
-    ForecastResult:
-      type: object
-      properties:
-        forecasts:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-        justForecasts:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-        actuals:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-        actualsInModelCalculation:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-        actualsWithForecast:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-        forecastInModelCalculation:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-      additionalProperties: false
-    ContributionPeriod:
-      type: object
-      properties:
-        date:
+        entryId:
           type: string
-          format: date-time
-        errorFlag:
+          format: uuid
+        useCoefficientBounds:
           type: boolean
-        errorText:
+        coefficientLowerBounds:
           type:
-          - string
+          - number
           - 'null'
-        yearOverYear:
-          type: number
           format: double
-        unexplained:
-          type: number
+        coefficientUpperBounds:
+          type:
+          - number
+          - 'null'
           format: double
-        components:
+        transformations:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/IndicatorContribution'
+            $ref: '#/components/schemas/Transformation'
       additionalProperties: false
     ForecastModelType:
       enum:
@@ -1068,6 +579,76 @@ components:
 
         '
       format: int32
+    Seasonality:
+      enum:
+      - 0
+      - 1
+      - 999
+      type: integer
+      format: int32
+    IndustryCode:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        code:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Frequency:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      - 365
+      - 1000
+      type: integer
+      description: 'The frequency of the data.
+
+
+
+        Daily: 365
+
+
+
+        Weekly: 52
+
+
+
+        Monthly: 12
+
+
+
+        Quarterly: 4
+
+
+
+        SemiAnnual: 2
+
+
+
+        Annual: 1'
+      format: int32
+    IndicatorKey:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: The ID of the provider for the indicator.
+          format: uuid
+        providerId:
+          type:
+          - string
+          - 'null'
+          description: The provider id of the indicator.
+      additionalProperties: false
+      description: The provider:providerId pair. This is used to identify an indicator in the system.
     ScenarioForecast:
       type: object
       properties:
@@ -1133,6 +714,425 @@ components:
         currentValue:
           type: number
           format: double
+      additionalProperties: false
+    Classification:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      type: integer
+      format: int32
+    ScenarioLite:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        createdOn:
+          type: string
+          format: date-time
+        lastModified:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        scenarioForecasts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ScenarioForecast'
+        points:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+      additionalProperties: false
+    ScenarioCoefficient:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        scenarioForecastId:
+          type: string
+          format: uuid
+        provider:
+          type: string
+          format: uuid
+        providerId:
+          type:
+          - string
+          - 'null'
+        coefficients:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DoubleEditable'
+      additionalProperties: false
+    IndicatorDataSource:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        dataSourceType:
+          $ref: '#/components/schemas/IndicatorType'
+      additionalProperties: false
+    Indicator:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        aggregate:
+          $ref: '#/components/schemas/AggregationMethod'
+        calculation:
+          $ref: '#/components/schemas/Calculation'
+        color:
+          type:
+          - string
+          - 'null'
+        displayInformation:
+          $ref: '#/components/schemas/DisplayInformation'
+        count:
+          type: integer
+          format: int32
+        created:
+          type: string
+          format: date-time
+        startTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        transformedStartTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        transformedEndTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        deprecated:
+          type: boolean
+        deprecationReason:
+          type:
+          - string
+          - 'null'
+        lastModified:
+          type: string
+          format: date-time
+        provider:
+          $ref: '#/components/schemas/Provider'
+        providerId:
+          type:
+          - string
+          - 'null'
+        seasonality:
+          $ref: '#/components/schemas/Seasonality'
+        source:
+          type:
+          - string
+          - 'null'
+        classification:
+          $ref: '#/components/schemas/Classification'
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        type:
+          type:
+          - string
+          - 'null'
+        units:
+          type:
+          - string
+          - 'null'
+        accessibility:
+          $ref: '#/components/schemas/ProviderAccess'
+        periodAlignment:
+          $ref: '#/components/schemas/PeriodAlignment'
+        path:
+          type:
+          - string
+          - 'null'
+        notes:
+          type:
+          - string
+          - 'null'
+        citation:
+          type:
+          - string
+          - 'null'
+        dataSources:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/IndicatorDataSource'
+        industryCodes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/IndustryCode'
+        hasZeroVariance:
+          type:
+          - boolean
+          - 'null'
+        interval:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ScenarioForecastListing:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+          format: uuid
+      additionalProperties: false
+    ScenarioForecastPoints:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        scenarioForecastId:
+          type: string
+          format: uuid
+        provider:
+          type: string
+          format: uuid
+        providerId:
+          type:
+          - string
+          - 'null'
+        indicatorName:
+          type:
+          - string
+          - 'null'
+        lastModified:
+          type: string
+          format: date-time
+        points:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+        offset:
+          type: integer
+          format: int32
+        includeInAllSegments:
+          type: boolean
+        isLogged:
+          type: boolean
+      additionalProperties: false
+    ScenarioListing:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        createdOn:
+          type: string
+          format: date-time
+        lastModified:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        scenarioForecasts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ScenarioForecastListing'
+      additionalProperties: false
+    Calculation:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      type: integer
+      description: 'The transformation applied to the data.
+
+
+
+        Possible options:
+
+
+
+        None 1
+
+
+
+        PeriodOverPeriod 2
+
+
+
+        YearOverYear 3
+
+
+
+        ThreePeriodYearOverYear 6'
+      format: int32
+    IndicatorValues:
+      type: object
+      properties:
+        indicator:
+          $ref: '#/components/schemas/Indicator'
+        leadTime:
+          type: integer
+          format: int32
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+      additionalProperties: false
+    DisplayInformation:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The display name to be used in the application. Limited to 50 characters.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description to be shown in the application. Limited to 1,000 characters.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color to use in the application. Must be a valid hex color code.
+        category:
+          type:
+          - string
+          - 'null'
+          description: The category of the indicator. Limited to 1,000 characters.
+      additionalProperties: false
+    VolumeDecompResult:
+      type: object
+      properties:
+        decomps:
+          type:
+          - object
+          - 'null'
+          properties:
+            Unknown:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Annual:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            SemiAnnual:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Quarterly:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Monthly:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Weekly:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Daily:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+            Raw:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPeriod'
+          additionalProperties: false
+        entries:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/IndicatorEntry'
       additionalProperties: false
   securitySchemes:
     api_key:

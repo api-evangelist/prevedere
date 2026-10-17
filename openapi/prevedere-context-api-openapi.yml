@@ -38,6 +38,26 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Context:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        company:
+          $ref: '#/components/schemas/Company'
+        roles:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        features:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Feature'
+      additionalProperties: false
     User:
       type: object
       properties:
@@ -101,26 +121,6 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    Context:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-        company:
-          $ref: '#/components/schemas/Company'
-        roles:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        features:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Feature'
       additionalProperties: false
   securitySchemes:
     api_key:

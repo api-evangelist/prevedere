@@ -44,16 +44,7 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CoefficientInfo:
-      type: object
-      properties:
-        indicatorKey:
-          $ref: '#/components/schemas/IndicatorKey'
-        value:
-          type: number
-          format: double
-      additionalProperties: false
-    Calculation:
+    IndicatorType:
       enum:
       - 0
       - 1
@@ -63,45 +54,24 @@ components:
       - 5
       - 6
       - 7
-      - 8
       type: integer
-      description: 'The transformation applied to the data.
-
-
-
-        Possible options:
-
-
-
-        None 1
-
-
-
-        PeriodOverPeriod 2
-
-
-
-        YearOverYear 3
-
-
-
-        ThreePeriodYearOverYear 6'
       format: int32
-    ContributionResult:
+    SegmentInfo:
       type: object
       properties:
-        forecast:
+        segment:
+          type: integer
+          format: int32
+        intercept:
+          type: number
+          format: double
+        coefficients:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Point'
-        componentContributions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IndicatorValues'
+            $ref: '#/components/schemas/CoefficientInfo'
+          description: Component coefficients ordered by indicator offset
       additionalProperties: false
     Provider:
       type: object
@@ -121,6 +91,197 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    PeriodAlignment:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    ContributionResult:
+      type: object
+      properties:
+        forecast:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+        componentContributions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/IndicatorValues'
+      additionalProperties: false
+    Point:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        date:
+          type: string
+          format: date-time
+        annotation:
+          type:
+          - string
+          - 'null'
+        manuallyAdjusted:
+          type: boolean
+        isForecasted:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    AggregationMethod:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      type: integer
+      format: int32
+    ForecastModelIteration:
+      type: object
+      properties:
+        forecastModelName:
+          type:
+          - string
+          - 'null'
+        forecastModelId:
+          type: string
+          format: uuid
+        forecastModelType:
+          $ref: '#/components/schemas/ForecastModelType'
+        forecastModelCalculation:
+          $ref: '#/components/schemas/Calculation'
+        executionTime:
+          type: string
+          format: date-time
+        fitAndForecast:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+          description: Forecast Model output values with no calculation applied and trimmed using regression start and as of dates
+        primaryValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
+          description: Time series data of Primary Indicator with no calculation applied
+        components:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ComponentInformation'
+          description: Model components, excluding user specified indicators, ordered by offset
+        segments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SegmentInfo'
+        contributionResult:
+          $ref: '#/components/schemas/ContributionResult'
+      additionalProperties: false
+    ProviderAccess:
+      enum:
+      - 0
+      - 1
+      - 2
+      type: integer
+      format: int32
+    ForecastModelType:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      type: integer
+      description: 'None: 0
+
+
+
+        Rocet: 1
+
+
+
+        Multivariate: 2
+
+
+
+        SegmentedMultivariate: 3
+
+
+
+        WeightedUnivariateRegression: 4
+
+
+        '
+      format: int32
+    ForecastModelHistory:
+      type: object
+      properties:
+        captureDate:
+          type: string
+          format: date-time
+        forecastModelIteration:
+          $ref: '#/components/schemas/ForecastModelIteration'
+      additionalProperties: false
+    Seasonality:
+      enum:
+      - 0
+      - 1
+      - 999
+      type: integer
+      format: int32
+    IndustryCode:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        code:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ComponentInformation:
+      type: object
+      properties:
+        deprecated:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        provider:
+          type: string
+          format: uuid
+        providerId:
+          type:
+          - string
+          - 'null'
+        offset:
+          type: integer
+          format: int32
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Point'
       additionalProperties: false
     Frequency:
       enum:
@@ -159,38 +320,48 @@ components:
 
         Annual: 1'
       format: int32
-    PeriodAlignment:
-      enum:
-      - 0
-      - 1
-      - 2
-      type: integer
-      format: int32
-    ComponentInformation:
+    IndicatorKey:
       type: object
       properties:
-        deprecated:
-          type: boolean
-        name:
-          type:
-          - string
-          - 'null'
         provider:
           type: string
+          description: The ID of the provider for the indicator.
           format: uuid
         providerId:
           type:
           - string
           - 'null'
-        offset:
-          type: integer
-          format: int32
-        values:
+          description: The provider id of the indicator.
+      additionalProperties: false
+      description: The provider:providerId pair. This is used to identify an indicator in the system.
+    Classification:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      type: integer
+      format: int32
+    IndicatorDataSource:
+      type: object
+      properties:
+        name:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
+        url:
+          type:
+          - string
+          - 'null'
+        dataSourceType:
+          $ref: '#/components/schemas/IndicatorType'
       additionalProperties: false
     Indicator:
       type: object
@@ -322,89 +493,7 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    IndustryCode:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        code:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ForecastModelIteration:
-      type: object
-      properties:
-        forecastModelName:
-          type:
-          - string
-          - 'null'
-        forecastModelId:
-          type: string
-          format: uuid
-        forecastModelType:
-          $ref: '#/components/schemas/ForecastModelType'
-        forecastModelCalculation:
-          $ref: '#/components/schemas/Calculation'
-        executionTime:
-          type: string
-          format: date-time
-        fitAndForecast:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-          description: Forecast Model output values with no calculation applied and trimmed using regression start and as of dates
-        primaryValues:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Point'
-          description: Time series data of Primary Indicator with no calculation applied
-        components:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ComponentInformation'
-          description: Model components, excluding user specified indicators, ordered by offset
-        segments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SegmentInfo'
-        contributionResult:
-          $ref: '#/components/schemas/ContributionResult'
-      additionalProperties: false
-    IndicatorDataSource:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        dataSourceType:
-          $ref: '#/components/schemas/IndicatorType'
-      additionalProperties: false
-    ForecastModelHistory:
-      type: object
-      properties:
-        captureDate:
-          type: string
-          format: date-time
-        forecastModelIteration:
-          $ref: '#/components/schemas/ForecastModelIteration'
-      additionalProperties: false
-    IndicatorType:
+    Calculation:
       enum:
       - 0
       - 1
@@ -414,34 +503,38 @@ components:
       - 5
       - 6
       - 7
+      - 8
       type: integer
+      description: 'The transformation applied to the data.
+
+
+
+        Possible options:
+
+
+
+        None 1
+
+
+
+        PeriodOverPeriod 2
+
+
+
+        YearOverYear 3
+
+
+
+        ThreePeriodYearOverYear 6'
       format: int32
-    ProviderAccess:
-      enum:
-      - 0
-      - 1
-      - 2
-      type: integer
-      format: int32
-    Point:
+    CoefficientInfo:
       type: object
       properties:
+        indicatorKey:
+          $ref: '#/components/schemas/IndicatorKey'
         value:
           type: number
           format: double
-        date:
-          type: string
-          format: date-time
-        annotation:
-          type:
-          - string
-          - 'null'
-        manuallyAdjusted:
-          type: boolean
-        isForecasted:
-          type:
-          - boolean
-          - 'null'
       additionalProperties: false
     IndicatorValues:
       type: object
@@ -458,70 +551,6 @@ components:
           items:
             $ref: '#/components/schemas/Point'
       additionalProperties: false
-    Seasonality:
-      enum:
-      - 0
-      - 1
-      - 999
-      type: integer
-      format: int32
-    IndicatorKey:
-      type: object
-      properties:
-        provider:
-          type: string
-          description: The ID of the provider for the indicator.
-          format: uuid
-        providerId:
-          type:
-          - string
-          - 'null'
-          description: The provider id of the indicator.
-      additionalProperties: false
-      description: The provider:providerId pair. This is used to identify an indicator in the system.
-    SegmentInfo:
-      type: object
-      properties:
-        segment:
-          type: integer
-          format: int32
-        intercept:
-          type: number
-          format: double
-        coefficients:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CoefficientInfo'
-          description: Component coefficients ordered by indicator offset
-      additionalProperties: false
-    AggregationMethod:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      type: integer
-      format: int32
-    Classification:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      type: integer
-      format: int32
     DisplayInformation:
       type: object
       properties:
@@ -546,35 +575,6 @@ components:
           - 'null'
           description: The category of the indicator. Limited to 1,000 characters.
       additionalProperties: false
-    ForecastModelType:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      type: integer
-      description: 'None: 0
-
-
-
-        Rocet: 1
-
-
-
-        Multivariate: 2
-
-
-
-        SegmentedMultivariate: 3
-
-
-
-        WeightedUnivariateRegression: 4
-
-
-        '
-      format: int32
   securitySchemes:
     api_key:
       type: apiKey

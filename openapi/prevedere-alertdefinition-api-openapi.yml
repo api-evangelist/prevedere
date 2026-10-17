@@ -64,12 +64,66 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ProviderAccess:
+    IndustryCode:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        code:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    IndicatorType:
       enum:
       - 0
       - 1
       - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
       type: integer
+      format: int32
+    Frequency:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 12
+      - 52
+      - 365
+      - 1000
+      type: integer
+      description: 'The frequency of the data.
+
+
+
+        Daily: 365
+
+
+
+        Weekly: 52
+
+
+
+        Monthly: 12
+
+
+
+        Quarterly: 4
+
+
+
+        SemiAnnual: 2
+
+
+
+        Annual: 1'
       format: int32
     Indicator:
       type: object
@@ -201,7 +255,7 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Classification:
+    AggregationMethod:
       enum:
       - 0
       - 1
@@ -210,113 +264,7 @@ components:
       - 4
       - 5
       - 6
-      - 7
-      - 8
-      - 9
-      - 10
       type: integer
-      format: int32
-    Calculation:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      type: integer
-      description: 'The transformation applied to the data.
-
-
-
-        Possible options:
-
-
-
-        None 1
-
-
-
-        PeriodOverPeriod 2
-
-
-
-        YearOverYear 3
-
-
-
-        ThreePeriodYearOverYear 6'
-      format: int32
-    DisplayInformation:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The display name to be used in the application. Limited to 50 characters.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description to be shown in the application. Limited to 1,000 characters.
-        color:
-          type:
-          - string
-          - 'null'
-          description: The color to use in the application. Must be a valid hex color code.
-        category:
-          type:
-          - string
-          - 'null'
-          description: The category of the indicator. Limited to 1,000 characters.
-      additionalProperties: false
-    Seasonality:
-      enum:
-      - 0
-      - 1
-      - 999
-      type: integer
-      format: int32
-    Frequency:
-      enum:
-      - 0
-      - 1
-      - 2
-      - 4
-      - 12
-      - 52
-      - 365
-      - 1000
-      type: integer
-      description: 'The frequency of the data.
-
-
-
-        Daily: 365
-
-
-
-        Weekly: 52
-
-
-
-        Monthly: 12
-
-
-
-        Quarterly: 4
-
-
-
-        SemiAnnual: 2
-
-
-
-        Annual: 1'
       format: int32
     Provider:
       type: object
@@ -337,18 +285,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    IndustryCode:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        code:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     PeriodAlignment:
       enum:
       - 0
@@ -356,20 +292,6 @@ components:
       - 2
       type: integer
       format: int32
-    IndicatorDataSource:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        dataSourceType:
-          $ref: '#/components/schemas/IndicatorType'
-      additionalProperties: false
     AlertDefinition:
       type: object
       properties:
@@ -443,18 +365,14 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    AggregationMethod:
+    ProviderAccess:
       enum:
       - 0
       - 1
       - 2
-      - 3
-      - 4
-      - 5
-      - 6
       type: integer
       format: int32
-    IndicatorType:
+    Calculation:
       enum:
       - 0
       - 1
@@ -464,6 +382,88 @@ components:
       - 5
       - 6
       - 7
+      - 8
+      type: integer
+      description: 'The transformation applied to the data.
+
+
+
+        Possible options:
+
+
+
+        None 1
+
+
+
+        PeriodOverPeriod 2
+
+
+
+        YearOverYear 3
+
+
+
+        ThreePeriodYearOverYear 6'
+      format: int32
+    Classification:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      type: integer
+      format: int32
+    DisplayInformation:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The display name to be used in the application. Limited to 50 characters.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description to be shown in the application. Limited to 1,000 characters.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color to use in the application. Must be a valid hex color code.
+        category:
+          type:
+          - string
+          - 'null'
+          description: The category of the indicator. Limited to 1,000 characters.
+      additionalProperties: false
+    IndicatorDataSource:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        dataSourceType:
+          $ref: '#/components/schemas/IndicatorType'
+      additionalProperties: false
+    Seasonality:
+      enum:
+      - 0
+      - 1
+      - 999
       type: integer
       format: int32
   securitySchemes:
